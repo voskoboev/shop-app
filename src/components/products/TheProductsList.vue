@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import TheProductsListItem from '@/components/products/TheProductsListItem.vue'
-
 import { type TProductUI } from '@/types/products//TProductUI'
 
 defineProps<{

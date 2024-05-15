@@ -1,9 +1,9 @@
 <template>
-  <div :class="$style.loader"></div>
+  <div :class="$style.spinner"></div>
 </template>
 
 <style module>
-.loader {
+.spinner {
   width: 16px;
   height: 16px;
   border-radius: 50%;

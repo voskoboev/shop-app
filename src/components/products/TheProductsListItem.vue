@@ -24,5 +24,3 @@ const log = () => {
     </article>
   </li>
 </template>
-
-<style module></style>

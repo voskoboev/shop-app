@@ -5,9 +5,7 @@ import { RouterView } from 'vue-router'
 <template>
   <main :class="$style.main">
     <div class="container" :class="$style.mainContainer">
-      <!-- <KeepAlive> -->
       <RouterView />
-      <!-- </KeepAlive> -->
     </div>
   </main>
 </template>

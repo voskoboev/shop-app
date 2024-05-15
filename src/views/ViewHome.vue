@@ -3,16 +3,16 @@ import TheCategories from '@/components/categories/TheCategories.vue'
 import AppProducts from '@/components/products/AppProducts.vue'
 import { useProductsStore } from '@/stores/productsStore'
 
-const store = useProductsStore()
+const productsStore = useProductsStore()
 
-store.fetchProducts()
+productsStore.fetchProducts()
 </script>
 
 <template>
   <div :class="$style.homeContainer">
     <TheCategories :class="$style.leftPanel" />
     <div :class="$style.rightPanel">
-      <AppProducts :products="store.products" v-if="store.areProductsLoaded" />
+      <AppProducts :products="productsStore.products" v-if="productsStore.areProductsLoaded" />
       <AppSpinner v-else />
     </div>
   </div>

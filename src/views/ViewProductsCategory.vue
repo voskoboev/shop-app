@@ -2,16 +2,15 @@
 import AppProducts from '@/components/products/AppProducts.vue'
 import { useProductsStore } from '@/stores/productsStore'
 
-const store = useProductsStore()
+const productsStore = useProductsStore()
 
-store.fetchProducts()
+productsStore.fetchProducts()
 </script>
 
 <template>
   <div :class="$style.productsContainer">
-    <AppProducts :products="store.products" v-if="store.areProductsLoaded" />
+    <AppProducts :products="productsStore.products" v-if="productsStore.areProductsLoaded" />
     <AppSpinner v-else />
-    <!-- <AppSpinner /> -->
   </div>
 </template>
 
