@@ -1,29 +1,28 @@
 <script lang="ts" setup>
 import { type TProductUI } from '@/types/products/TProductUI'
-import AppProductCard from '@/components/products/AppProductCard.vue'
+import TheProductCard from '@/components/products/TheProductCard.vue'
 
 defineProps<{
   product: TProductUI
 }>()
+
+const log = () => {
+  console.log('btn clicked')
+}
 </script>
 
 <template>
   <li>
     <article>
-      <AppProductCard
+      <TheProductCard
         :linkUrl="'/'"
         :imageUrl="product.imageUrl"
         :name="product.name"
         :price="product.price"
-      >
-        <AppButton :class="$style.button"> Добавить в корзину </AppButton>
-      </AppProductCard>
+        :handler="log"
+      />
     </article>
   </li>
 </template>
 
-<style module>
-.button {
-  width: 100%;
-}
-</style>
+<style module></style>

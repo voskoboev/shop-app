@@ -6,6 +6,7 @@ defineProps<{
   imageUrl: string
   name: string
   price: number
+  handler: Function
 }>()
 </script>
 
@@ -20,7 +21,7 @@ defineProps<{
         <p :class="$style.price">{{ price }} руб.</p>
       </div>
     </RouterLink>
-    <slot />
+    <AppButton :class="$style.button" @click="handler"> Добавить в корзину </AppButton>
   </div>
 </template>
 
@@ -45,5 +46,9 @@ defineProps<{
   font-size: 1.5em;
   font-weight: 700;
   margin-bottom: 6px;
+}
+
+.button {
+  width: 100%;
 }
 </style>

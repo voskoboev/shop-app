@@ -2,16 +2,16 @@
 import TheCategoriesList from '@/components/categories/TheCategoriesList.vue'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 
-const store = useCategoriesStore()
+const categoriesStore = useCategoriesStore()
 
-// store.fetchCategories()
+categoriesStore.fetchCategories()
 </script>
 
 <template>
   <div :class="$style.categories">
     <h2 :class="$style.title">Категории</h2>
-    <nav :class="$style.nav" v-if="store.areCategoriesLoaded">
-      <TheCategoriesList :categories="store.categories" />
+    <nav :class="$style.nav" v-if="categoriesStore.areCategoriesLoaded">
+      <TheCategoriesList :categories="categoriesStore.categories" />
     </nav>
     <AppSpinner :class="$style.spinner" v-else />
   </div>

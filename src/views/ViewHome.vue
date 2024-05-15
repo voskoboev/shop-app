@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import TheCategories from '@/components/categories/TheCategories.vue'
 import AppProducts from '@/components/products/AppProducts.vue'
-
 import { useProductsStore } from '@/stores/productsStore'
 
 const store = useProductsStore()
