@@ -1,5 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import TheCart from '@/components/cart/TheCart.vue'
+</script>
 
 <template>
-  <div></div>
+  <!-- <div class="container"> -->
+  <TheCart />
+  <!-- </div> -->
 </template>
+
+<style module></style>

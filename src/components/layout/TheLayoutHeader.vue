@@ -13,7 +13,7 @@ import IconCart from '@/components/icons/IconCart.vue'
       </h1>
       <RouterLink to="/products">Products</RouterLink>
 
-      <RouterLink to="/" :class="$style.cartLink" aria-label="Корзины покупок">
+      <RouterLink to="/cart" :class="$style.cartLink" aria-label="Корзины покупок">
         <IconCart :class="$style.cartIcon" />
       </RouterLink>
     </div>
