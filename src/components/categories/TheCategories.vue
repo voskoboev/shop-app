@@ -21,6 +21,9 @@ const store = useCategoriesStore()
 .categories {
   padding-right: 20px;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .title {

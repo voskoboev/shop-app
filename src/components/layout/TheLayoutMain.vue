@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 
 <template>
   <main :class="$style.main">
-    <div class="container">
+    <div class="container" :class="$style.mainContainer">
       <!-- <KeepAlive> -->
       <RouterView />
       <!-- </KeepAlive> -->
@@ -14,9 +14,15 @@ import { RouterView } from 'vue-router'
 
 <style module>
 .main {
-  padding-top: 50px;
-  padding-bottom: 100px;
   min-height: 600px;
   flex-grow: 1;
+  display: flex;
+}
+
+.mainContainer {
+  padding-top: 50px;
+  padding-bottom: 100px;
+  flex-grow: 1;
+  display: flex;
 }
 </style>

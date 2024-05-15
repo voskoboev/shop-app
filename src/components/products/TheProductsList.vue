@@ -21,4 +21,3 @@ defineProps<{
   gap: 40px;
 }
 </style>
-@/types/products/IProduct

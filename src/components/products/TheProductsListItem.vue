@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type TProductUI } from '@/types/products/TProductUI'
+import AppProductCard from '@/components/products/AppProductCard.vue'
 
 defineProps<{
   product: TProductUI
