@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { type ICategory } from '@/types/categories/ICategory'
+import { type TCategoryUI } from '@/types/categories/TCategoryUI'
 
 defineProps<{
-  category: ICategory
+  category: TCategoryUI
 }>()
 </script>
 

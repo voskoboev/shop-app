@@ -4,24 +4,22 @@ import TheProducts from '@/components/products/TheProducts.vue'
 </script>
 
 <template>
-  <div>
-    <div :class="$style.wrapper">
-      <TheCategories :class="$style.leftPanel" />
-      <TheProducts :class="$style.rightPanel" />
-    </div>
+  <div :class="$style.homeContainer">
+    <TheCategories :class="$style.leftPanel" />
+    <TheProducts :class="$style.rightPanel" />
   </div>
 </template>
 
 <style module>
-.wrapper {
+.homeContainer {
   display: flex;
 }
 
 .leftPanel {
-  width: 15%;
+  flex-basis: 250px;
 }
 
 .rightPanel {
-  width: 85%;
+  flex-shrink: 1;
 }
 </style>

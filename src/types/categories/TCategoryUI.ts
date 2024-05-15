@@ -1,3 +1,3 @@
 import { type ICategory } from '@/types/categories/ICategory'
 
-export type ICategoryUI = Pick<ICategory, 'name' | 'imageUrl'>
+export type TCategoryUI = Pick<ICategory, 'id' | 'name' | 'imageUrl'>
