@@ -1,27 +1,25 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
+import { type TProductUI } from '@/types/products/TProductUI'
 
 defineProps<{
-  linkUrl: string
-  imageUrl: string
-  name: string
-  price: number
+  product: TProductUI
   handler: Function
 }>()
 </script>
 
 <template>
   <div :class="$style.card">
-    <RouterLink :to="linkUrl">
-      <img :class="$style.image" :src="imageUrl" :alt="name" />
+    <RouterLink :to="'/'">
+      <img :class="$style.image" :src="product.imageUrl" :alt="product.name" />
       <div :class="$style.info">
         <h3 :class="$style.title">
-          {{ name }}
+          {{ product.name }}
         </h3>
-        <p :class="$style.price">{{ price }} руб.</p>
+        <p :class="$style.price">{{ product.price }} руб.</p>
       </div>
     </RouterLink>
-    <AppButton :class="$style.button" @click="handler"> Добавить в корзину </AppButton>
+    <AppButton :class="$style.button" @click="handler(product.id)"> Добавить в корзину </AppButton>
   </div>
 </template>
 

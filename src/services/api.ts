@@ -24,64 +24,23 @@ export function useServerApi(baseUrl: string, authData: string): IServerApi {
 }
 
 export function useClientApi(itemKey: string): IClientApi {
-  const setItem = (item: string) => {
-    localStorage.setItem(itemKey, item)
+  const setItem = (item: any) => {
+    const stringifiedItem = JSON.stringify(item)
+    localStorage.setItem(itemKey, stringifiedItem)
   }
 
   const getItem = () => {
-    return localStorage.getItem(itemKey)
-  }
+    const loadedItem = localStorage.getItem(itemKey)
 
-  const deleteItem = () => {
-    localStorage.removeItem(itemKey)
+    if (!loadedItem) {
+      return
+    }
+
+    return JSON.parse(loadedItem)
   }
 
   return {
     setItem,
-    getItem,
-    deleteItem
+    getItem
   }
 }
-
-// class ServerApi implements IServerApi {
-//   private readonly api: AxiosInstance
-
-//   constructor(baseUrl: string, authData: string) {
-//     this.api = axios.create({
-//       baseURL: baseUrl,
-//       headers: {
-//         Authorization: `Bearer ${authData}`
-//       }
-//     })
-//   }
-
-//   get(path: string) {
-//     return this.api.get(path)
-//   }
-// }
-
-// export const serverApi = new ServerApi(API_BASE_URL, API_TOKEN)
-
-// class ClientApi implements IClientApi {
-//   constructor(private readonly itemKey: string) {}
-
-//   public setClientItem = (item: string) => {
-//     localStorage.setItem(this.itemKey, item)
-//   }
-
-//   public getClientItem = () => {
-//     return localStorage.getItem(this.itemKey)
-//   }
-
-//   public deleteClientItem = () => {
-//     localStorage.removeItem(this.itemKey)
-//   }
-// }
-
-// export const clientApi = new ClientApi('lightSpeed')
-
-// export interface IClientApi {
-//   setClientItem: (item: string) => void;
-//   getClientItem: () => string | null;
-//   deleteClientItem: () => void;
-// }

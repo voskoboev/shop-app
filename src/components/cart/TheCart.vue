@@ -1,17 +1,11 @@
 <script lang="ts" setup>
 import TheCartList from '@/components/cart/TheCartList.vue'
-
-import { useProductsStore } from '@/stores/productsStore'
-
-const productsStore = useProductsStore()
-
-productsStore.fetchProducts()
 </script>
 
 <template>
   <div :class="$style.cart">
     <h2 :class="$style.title">Корзина</h2>
-    <TheCartList :cart-products="productsStore.products" />
+    <TheCartList />
   </div>
 </template>
 

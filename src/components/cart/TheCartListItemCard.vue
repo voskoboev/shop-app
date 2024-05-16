@@ -1,27 +1,25 @@
 <script lang="ts" setup>
-import type AppButton from '../UI/AppButton.vue'
+import AppButton from '../UI/AppButton.vue'
+import { useCartStore } from '@/stores/cartStore'
+import { type TCartProductUI } from '@/types/cart/TCartProductUI'
+
+const cartStore = useCartStore()
 
 defineProps<{
-  imageUrl: string
-  name: string
-  price: number
+  cartProduct: TCartProductUI
 }>()
-
-const deleteItem = () => {
-  console.log('cart item deleted')
-}
 </script>
 
 <template>
   <div :class="$style.card">
-    <img :class="$style.image" :src="imageUrl" :alt="name" />
+    <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
     <div :class="$style.infoWrapper">
       <h3 :class="$style.title">
-        {{ name }}
+        {{ cartProduct.name }}
       </h3>
-      <p :class="$style.price">{{ price }} руб.</p>
+      <p :class="$style.price">{{ cartProduct.price }} руб.</p>
       <div :class="$style.buttonWrapper">
-        <AppButton @click="deleteItem">Удалить</AppButton>
+        <AppButton @click="cartStore.deleteProductFromCart(cartProduct.id)">Удалить</AppButton>
       </div>
     </div>
   </div>

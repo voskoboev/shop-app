@@ -1,5 +1,5 @@
 export interface IClientApi {
-  setItem: (item: string) => void
-  getItem: (item: string) => string | null
-  deleteItem: (item: string) => void
+  setItem: (item: any) => void
+  getItem: () => any
+  // deleteItem: (item: string) => void
 }

@@ -1,21 +1,20 @@
 <script lang="ts" setup>
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
-import { type TCartProductUI } from '@/types/cart/TCartProductUI'
+import { useCartStore } from '@/stores/cartStore'
 
-defineProps<{
-  cartProducts: TCartProductUI[]
-}>()
+const cartStore = useCartStore()
 </script>
 
 <template>
   <ul :class="$style.list">
     <TheCartListItem
-      v-for="cartProduct in cartProducts"
+      v-for="cartProduct in cartStore.cartProducts"
       :key="cartProduct.id"
       :cart-product="cartProduct"
     />
   </ul>
 </template>
+9
 
 <style module>
 .list {

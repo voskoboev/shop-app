@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import TheCartCard from '@/components/cart/TheCartCard.vue'
+import TheCartListItemCard from '@/components/cart/TheCartListItemCard.vue'
 import { type TCartProductUI } from '@/types/cart/TCartProductUI'
 
 defineProps<{
@@ -9,12 +9,6 @@ defineProps<{
 
 <template>
   <li>
-    <TheCartCard
-      :imageUrl="cartProduct.thumbnailUrl"
-      :name="cartProduct.name"
-      :price="cartProduct.price"
-    />
+    <TheCartListItemCard :cart-product="cartProduct" />
   </li>
 </template>
-
-<style module></style>
