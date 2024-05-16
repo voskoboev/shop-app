@@ -1,5 +1,6 @@
+import { type IProduct } from '@/types/products/IProduct'
+
 export interface IClientApi {
-  setItem: (item: any) => void
-  getItem: () => any
-  // deleteItem: (item: string) => void
+  setItem: (item: IProduct[]) => void
+  getItem: () => IProduct[]
 }

@@ -9,10 +9,6 @@ const cartStore = useCartStore()
 defineProps<{
   product: TProductUI
 }>()
-
-// const log = () => {
-//   console.log('btn clicked')
-// }
 </script>
 
 <template>

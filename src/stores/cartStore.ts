@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { clientApi } from '@/services/api'
+import { clientApi } from '@/services/api/clientApi'
 import { useProductsStore } from '@/stores/productsStore'
 import { type IProduct } from '@/types/products/IProduct'
 
