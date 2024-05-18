@@ -1,16 +1,26 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { type TProductUI } from '@/types/products/TProductUI'
 
-defineProps<{
+const props = defineProps<{
   product: TProductUI
   handler: Function
 }>()
+
+const individualProductPath = computed(() => {
+  return {
+    name: 'product-details',
+    params: {
+      id: props.product.id
+    }
+  }
+})
 </script>
 
 <template>
   <div :class="$style.card">
-    <RouterLink :to="'/'">
+    <RouterLink :to="individualProductPath">
       <img :class="$style.image" :src="product.imageUrl" :alt="product.name" />
       <div :class="$style.info">
         <h3 :class="$style.title">

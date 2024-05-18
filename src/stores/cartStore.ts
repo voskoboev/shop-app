@@ -9,9 +9,10 @@ export const useCartStore = defineStore('cart', () => {
 
   const cartProducts = ref<IProduct[]>([])
 
+  const cartProductsAmount = computed(() => cartProducts.value.length)
   const areCartProductsAvailable = computed(() => cartProducts.value.length > 0)
 
-  const addProductToCart = (productId: number) => {
+  const addProductToCart = (productId: number | undefined) => {
     const foundProduct = productsStore.products.find((product) => product.id === productId)
 
     if (foundProduct) {
@@ -35,6 +36,7 @@ export const useCartStore = defineStore('cart', () => {
 
   return {
     cartProducts,
+    cartProductsAmount,
     areCartProductsAvailable,
     addProductToCart,
     deleteProductFromCart,
