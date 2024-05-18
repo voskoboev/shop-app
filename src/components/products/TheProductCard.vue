@@ -25,7 +25,7 @@ defineProps<{
 
 <style module>
 .image {
-  border-radius: 20px;
+  border-radius: var(--rounding);
   width: 100%;
   aspect-ratio: 1 / 1;
 }

@@ -16,7 +16,6 @@
   background-color: var(--color-accent);
   font-size: 1.2em;
   padding: 0.6em 2em;
-  /* line-height: 110%; */
 }
 
 @media (any-hover: hover) {

@@ -30,7 +30,7 @@ defineProps<{
   padding: 16px 24px;
   display: flex;
   border: 1px solid #dedede;
-  border-radius: 20px;
+  border-radius: var(--rounding);
 }
 
 @media (max-width: 576px) {
@@ -41,7 +41,7 @@ defineProps<{
 
 .image {
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: var(--rounding);
   width: 100px;
   height: 100px;
   flex-basis: 100px;
