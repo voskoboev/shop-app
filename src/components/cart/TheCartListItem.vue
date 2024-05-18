@@ -12,8 +12,7 @@ defineProps<{
 
 <template>
   <li>
-    <!-- <TheCartListItemCard :cart-product="cartProduct" /> -->
-    <div :class="$style.card">
+    <acticle :class="$style.card">
       <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
       <div :class="$style.infoWrapper">
         <h3 :class="$style.title">
@@ -24,7 +23,7 @@ defineProps<{
           <AppButton @click="cartStore.deleteProductFromCart(cartProduct.id)">Удалить</AppButton>
         </div>
       </div>
-    </div>
+    </acticle>
   </li>
 </template>
 
