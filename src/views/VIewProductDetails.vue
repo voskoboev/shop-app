@@ -99,6 +99,12 @@ productsStore.fetchIndividualProduct(route.params.id)
   gap: 14px;
 }
 
+.descr p:has(strong) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .button {
   margin-top: auto;
 }

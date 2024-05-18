@@ -25,12 +25,20 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   const fetchIndividualProduct = async (id: string | string[]) => {
-    const fetchedData = await useFetch({
-      loadingStatus: isIndividualProductLoaded,
-      handler: serverApi.get,
-      path: `/products/${id}`,
-      errorMessage: 'Individual product fetch error'
-    })
+    let fetchedData: IProduct
+
+    if (typeof id === 'string') {
+      fetchedData = await useFetch({
+        loadingStatus: isIndividualProductLoaded,
+        handler: serverApi.get,
+        path: `/products/${id}`,
+        errorMessage: 'Individual product fetch error'
+      })
+    } else {
+      throw new Error(
+        'Individual product fetch error: Invalid type of id parameter in fetch store method'
+      )
+    }
 
     if (fetchedData) {
       individualProduct.value = fetchedData

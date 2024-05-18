@@ -8,6 +8,13 @@ const props = defineProps<{
   handler: Function
 }>()
 
+// interface IProductDetailsRouteParams {
+//   name: string
+//   params: {
+//     id: string
+//   }
+// }
+
 const individualProductPath = computed(() => {
   return {
     name: 'product-details',

@@ -1,5 +1,5 @@
-import { type IImage } from '@/types/IImage'
-import { type IItemBorderInfo } from '@/types/IItemBorderInfo'
+import { type IImage } from '@/types/utils/IImage'
+import { type IItemBorderInfo } from '@/types/utils/IItemBorderInfo'
 
 export interface IProduct {
   attributes: unknown[]
