@@ -66,7 +66,7 @@ defineProps<{
 @media (max-width: 768px) {
   .infoWrapper {
     flex-direction: column;
-    padding-left: 0px;
+    padding-left: 0;
   }
 }
 

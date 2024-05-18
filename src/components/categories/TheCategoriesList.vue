@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import TheCategoriesListItem from '@/components/categories/TheCategoriesListItem.vue'
-import { type TCategoryUI } from '@/types/categories/TCategoryUI'
+import { useCategoriesStore } from '@/stores/categoriesStore'
 
-defineProps<{
-  categories: TCategoryUI[]
-}>()
+const categoriesStore = useCategoriesStore()
 </script>
 
 <template>
   <ul :class="$style.list">
-    <TheCategoriesListItem v-for="category in categories" :key="category.id" :category="category" />
+    <TheCategoriesListItem
+      v-for="category in categoriesStore.categories"
+      :key="category.id"
+      :category="category"
+    />
   </ul>
 </template>
 

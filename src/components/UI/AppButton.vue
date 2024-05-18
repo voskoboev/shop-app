@@ -1,6 +1,6 @@
 <template>
   <button :class="$style.button">
-    <slot>Купить</slot>
+    <slot>Приобрести товар</slot>
   </button>
 </template>
 
@@ -16,7 +16,7 @@
   background-color: var(--color-accent);
   font-size: 1.2em;
   padding: 0.6em 2em;
-  line-height: 110%;
+  /* line-height: 110%; */
 }
 
 @media (any-hover: hover) {
