@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import TheCategories from '@/components/categories/TheCategories.vue'
+import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
 import AppProducts from '@/components/products/AppProducts.vue'
 import { useProductsStore } from '@/stores/productsStore'
 
 const productsStore = useProductsStore()
 
-productsStore.fetchProducts()
+productsStore.fetchAllProducts()
 </script>
 
 <template>
   <div :class="$style.homeContainer">
-    <TheCategories :class="$style.leftPanel" />
+    <TheCategoriesMenu :class="$style.leftPanel" />
     <div :class="$style.rightPanel">
-      <AppProducts :products="productsStore.products" v-if="productsStore.areProductsLoaded" />
+      <AppProducts :products="productsStore.products" v-if="productsStore.areAllProductsLoaded" />
       <AppSpinner v-else />
     </div>
   </div>

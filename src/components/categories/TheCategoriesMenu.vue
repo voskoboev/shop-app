@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import TheCategoriesList from '@/components/categories/TheCategoriesList.vue'
+import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 
 const categoriesStore = useCategoriesStore()
@@ -11,7 +11,7 @@ categoriesStore.fetchCategories()
   <div :class="$style.categories">
     <h2 :class="$style.title">Категории</h2>
     <nav :class="$style.nav" v-if="categoriesStore.areCategoriesLoaded">
-      <TheCategoriesList :categories="categoriesStore.categories" />
+      <TheCategoriesMenuList :categories="categoriesStore.categories" />
     </nav>
     <AppSpinner :class="$style.spinner" v-else />
   </div>

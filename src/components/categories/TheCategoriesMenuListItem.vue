@@ -1,15 +1,26 @@
 <script lang="ts" setup>
-import { type TCategoryUI } from '@/types/categories/TCategoryUI'
+import { computed } from 'vue'
+import { type ICategory } from '@/types/categories/ICategory'
+import { type IRouteCategory } from '@/types/router/IRouteCategory'
 
-defineProps<{
-  category: TCategoryUI
+const props = defineProps<{
+  category: ICategory
 }>()
+
+const categoryPath = computed((): IRouteCategory => {
+  return {
+    name: 'category',
+    params: {
+      id: props.category.id
+    }
+  }
+})
 </script>
 
 <template>
   <li :class="$style.item">
-    <RouterLink to="/" :class="$style.link">
-      <img :class="$style.image" :src="category.imageUrl" :alt="category.name" />
+    <RouterLink :to="categoryPath" :class="$style.link">
+      <img :class="$style.image" :src="category.thumbnailUrl" :alt="category.name" />
       <h2 :class="$style.title">
         {{ category.name }}
       </h2>

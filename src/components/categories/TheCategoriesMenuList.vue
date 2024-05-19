@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import TheCategoriesListItem from '@/components/categories/TheCategoriesListItem.vue'
+import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 
 const categoriesStore = useCategoriesStore()
@@ -7,7 +7,7 @@ const categoriesStore = useCategoriesStore()
 
 <template>
   <ul :class="$style.list">
-    <TheCategoriesListItem
+    <TheCategoriesMenuListItem
       v-for="category in categoriesStore.categories"
       :key="category.id"
       :category="category"

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import TheProductsListItem from '@/components/products/TheProductsListItem.vue'
-import { type TProductUI } from '@/types/products//TProductUI'
+import { type IProduct } from '@/types/products/IProduct'
 
 defineProps<{
-  products: TProductUI[]
+  products: IProduct[]
 }>()
 </script>
 

@@ -10,9 +10,10 @@ export async function useFetch({ loadingStatus, handler, path, errorMessage }: I
     console.log(`useFetch data: ${path}`, res.data)
 
     data = await res.data
-    loadingStatus.value = true
   } catch (err: any) {
     console.error(`${errorMessage}: ${err.message}`)
+  } finally {
+    loadingStatus.value = true
   }
 
   return data

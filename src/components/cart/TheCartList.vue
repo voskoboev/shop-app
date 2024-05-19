@@ -14,7 +14,6 @@ const cartStore = useCartStore()
     />
   </ul>
 </template>
-9
 
 <style module>
 .list {

@@ -27,7 +27,6 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 .wrapper {
   justify-content: flex-start;
   align-items: center;
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;

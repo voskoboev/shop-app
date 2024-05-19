@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import TheProductsList from '@/components/products/TheProductsList.vue'
-import { type TProductUI } from '@/types/products//TProductUI'
+import { type IProduct } from '@/types/products/IProduct'
 
 defineProps<{
   title?: string
-  products: TProductUI[]
+  products: IProduct[]
 }>()
 </script>
 

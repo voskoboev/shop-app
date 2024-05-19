@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import TheCart from '@/components/cart/TheCart.vue'
 import { useCartStore } from '@/stores/cartStore'
-import type AppPlaceholder from '../UI/AppPlaceholder.vue'
+import type AppPlaceholder from '@/components/UI/AppPlaceholder.vue'
 
 const cartStore = useCartStore()
 </script>

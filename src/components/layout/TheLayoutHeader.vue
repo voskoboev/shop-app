@@ -14,8 +14,6 @@ const cartStore = useCartStore()
           Lightspeed
         </RouterLink>
       </h1>
-      <RouterLink to="/products">Products</RouterLink>
-
       <RouterLink
         to="/cart"
         :class="$style.cartLink"

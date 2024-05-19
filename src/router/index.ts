@@ -6,13 +6,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      // name: 'home',
       component: ViewHome
-    },
-    {
-      path: '/products',
-      // name: 'products',
-      component: () => import('../views/ViewProductsCategory.vue')
     },
     {
       path: '/products/:id',
@@ -20,8 +14,12 @@ const router = createRouter({
       component: () => import('../views/ViewProductDetails.vue')
     },
     {
+      path: '/category/:id',
+      name: 'category',
+      component: () => import('../views/ViewCategory.vue')
+    },
+    {
       path: '/cart',
-      // name: 'cart',
       component: () => import('../views/ViewCart.vue')
     }
   ]

@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import AppButton from '../UI/AppButton.vue'
 import { useCartStore } from '@/stores/cartStore'
-import { type TCartProductUI } from '@/types/cart/TCartProductUI'
+import { type IProduct } from '@/types/products/IProduct'
 
 const cartStore = useCartStore()
 
 defineProps<{
-  cartProduct: TCartProductUI
+  cartProduct: IProduct
 }>()
 </script>
 
 <template>
   <li>
-    <acticle :class="$style.card">
+    <article :class="$style.card">
       <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
       <div :class="$style.infoWrapper">
         <h3 :class="$style.title">
@@ -23,7 +23,7 @@ defineProps<{
           <AppButton @click="cartStore.deleteProductFromCart(cartProduct.id)">Удалить</AppButton>
         </div>
       </div>
-    </acticle>
+    </article>
   </li>
 </template>
 
