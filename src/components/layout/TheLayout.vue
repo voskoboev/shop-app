@@ -1,9 +1,8 @@
 <script lang="ts" setup>
+import { useCartStore } from '@/stores/cartStore'
 import TheLayoutHeader from '@/components/layout/TheLayoutHeader.vue'
 import TheLayoutMain from '@/components/layout/TheLayoutMain.vue'
 import TheLayoutFooter from '@/components/layout/TheLayoutFooter.vue'
-
-import { useCartStore } from '@/stores/cartStore'
 
 const cartStore = useCartStore()
 </script>

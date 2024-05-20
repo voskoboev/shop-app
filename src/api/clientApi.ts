@@ -4,6 +4,7 @@ import { type IProduct } from '@/types/products/IProduct'
 function useClientApi(itemKey: string): IClientApi {
   const setItem = (item: IProduct[]) => {
     const stringifiedItem = JSON.stringify(item)
+
     localStorage.setItem(itemKey, stringifiedItem)
   }
 

@@ -5,6 +5,7 @@ import { type IRouteCategory } from '@/types/router/IRouteCategory'
 
 const props = defineProps<{
   category: ICategory
+  microMarkupListPosition: number
 }>()
 
 const categoryPath = computed((): IRouteCategory => {
@@ -18,10 +19,21 @@ const categoryPath = computed((): IRouteCategory => {
 </script>
 
 <template>
-  <li :class="$style.item">
-    <RouterLink :to="categoryPath" :class="$style.link">
-      <img :class="$style.image" :src="category.thumbnailUrl" :alt="category.name" />
-      <h2 :class="$style.title" ref="categoryName">
+  <li
+    :class="$style.item"
+    itemprop="itemListElement"
+    itemscope
+    itemtype="https://schema.org/ListItem"
+  >
+    <meta itemprop="position" :content="String(microMarkupListPosition)" />
+    <RouterLink :to="categoryPath" :class="$style.link" itemprop="item">
+      <img
+        :class="$style.image"
+        :src="category.thumbnailUrl"
+        :alt="category.name"
+        itemprop="image"
+      />
+      <h2 :class="$style.title" itemprop="name">
         {{ category.name }}
       </h2>
     </RouterLink>

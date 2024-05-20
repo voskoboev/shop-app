@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TheLayout from '@/components/layout/TheLayout.vue'
 import { useCartStore } from '@/stores/cartStore'
+import TheLayout from '@/components/layout/TheLayout.vue'
 
 const cartStore = useCartStore()
 

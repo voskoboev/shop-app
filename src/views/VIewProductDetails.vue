@@ -29,24 +29,33 @@ productsStore.fetchIndividualProduct(route.params.id)
       <AppBreadcrumbs :items="breadcrumbsItems" v-if="productsStore.isIndividualProductLoaded" />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
-    <section :class="$style.productInfo">
+    <section :class="$style.productInfo" itemscope itemtype="https://schema.org/Product">
       <div :class="$style.wrapper" v-if="productsStore.isIndividualProductLoaded">
         <div :class="$style.leftPanel">
           <img
             :class="$style.image"
             :src="productsStore.individualProduct.imageUrl"
             :alt="productsStore.individualProduct.name"
+            itemprop="image"
           />
         </div>
         <div :class="$style.rightPanel">
-          <h2 :class="$style.title">{{ productsStore.individualProduct.name }}</h2>
-          <p :class="$style.price">{{ productsStore.individualProduct.price }} руб.</p>
+          <h2 :class="$style.title" itemprop="name">{{ productsStore.individualProduct.name }}</h2>
+          <p :class="$style.price">
+            <span itemprop="price" :content="productsStore.individualProduct.price">
+              {{ productsStore.individualProduct.price }}
+            </span>
+            <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+          </p>
           <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
           <AppButton
             :class="$style.button"
             @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
+            itemprop="potentialAction"
+            itemscope
+            itemtype="https://schema.org/BuyAction"
           >
-            Добавить в корзину
+            <span itemprop="name"> Добавить в корзину </span>
           </AppButton>
         </div>
       </div>

@@ -28,11 +28,9 @@ export const useCartStore = defineStore('cart', () => {
     if (foundProduct) {
       cartProducts.value.push(foundProduct)
 
-      if (isProductAddedToCart.value === true) {
-        return
+      if (!isProductAddedToCart.value) {
+        toggleToastVisibility()
       }
-
-      toggleToastVisibility()
     }
   }
 

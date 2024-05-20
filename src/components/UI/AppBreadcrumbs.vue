@@ -9,13 +9,29 @@ defineProps<{
 
 <template>
   <nav :class="$style.breadcrumbs">
-    <ol :class="$style.list">
-      <li :class="$style.listItem">
-        <RouterLink to="/"> Главная </RouterLink>
+    <ol :class="$style.list" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li
+        :class="$style.listItem"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        <meta itemprop="position" content="1" />
+        <RouterLink to="/" itemprop="item"> <span itemprop="name">Главная</span> </RouterLink>
       </li>
-      <li v-for="(item, index) in items" :key="index" :class="$style.listItem">
-        <RouterLink :to="item.path">
-          {{ item.name }}
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        :class="$style.listItem"
+        itemprop="itemListElement"
+        itemscope
+        itemtype="https://schema.org/ListItem"
+      >
+        <meta itemprop="position" :content="String(index + 2)" />
+        <RouterLink :to="item.path" itemprop="item">
+          <span itemprop="name">
+            {{ item.name }}
+          </span>
         </RouterLink>
       </li>
     </ol>
@@ -47,7 +63,8 @@ defineProps<{
 
 .listItem:not(:last-child)::after {
   color: var(--color-dark);
-  content: '›';
+  /* content: '›'; */
+  content: '\203A';
   position: absolute;
   right: -18px;
   top: 0;

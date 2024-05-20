@@ -23,19 +23,33 @@ const individualProductPath = computed((): IRouteProductDetails => {
 
 <template>
   <li>
-    <article>
+    <article itemscope itemtype="https://schema.org/Product">
       <div :class="$style.card">
         <RouterLink :to="individualProductPath">
-          <img :class="$style.image" :src="product.imageUrl" :alt="product.name" />
+          <img :class="$style.image" :src="product.imageUrl" :alt="product.name" itemprop="image" />
           <div :class="$style.info">
-            <h3 :class="$style.title">
+            <h3 :class="$style.title" itemprop="name">
               {{ product.name }}
             </h3>
-            <p :class="$style.price">{{ product.price }} руб.</p>
+            <p
+              :class="$style.price"
+              itemprop="offers"
+              itemscope
+              itemtype="https://schema.org/Offer"
+            >
+              <span itemprop="price" :content="product.price">{{ product.price }}</span>
+              <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+            </p>
           </div>
         </RouterLink>
-        <AppButton :class="$style.button" @click="cartStore.addProductToCart(product.id)">
-          Добавить в корзину
+        <AppButton
+          :class="$style.button"
+          @click="cartStore.addProductToCart(product.id)"
+          itemprop="potentialAction"
+          itemscope
+          itemtype="https://schema.org/BuyAction"
+        >
+          <span itemprop="name"> Добавить в корзину </span>
         </AppButton>
       </div>
     </article>

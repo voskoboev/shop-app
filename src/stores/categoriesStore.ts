@@ -37,8 +37,6 @@ export const useCategoriesStore = defineStore('categories', () => {
       path,
       errorMessage
     })
-
-    console.log('individualCategory.value', individualCategory.value)
   }
 
   const resetIndividualCategoryValue = () => {

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import AppProducts from '@/components/products/AppProducts.vue'
-import { useProductsStore } from '@/stores/productsStore'
 import { useCategoriesStore } from '@/stores/categoriesStore'
+import { useProductsStore } from '@/stores/productsStore'
+import AppProducts from '@/components/products/AppProducts.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()

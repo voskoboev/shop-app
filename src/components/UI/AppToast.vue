@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="[{ [$style.toastActive]: visibilityStatus }, $style.toast]">
+  <div :class="[{ [$style.toastVisible]: visibilityStatus }, $style.toast]">
     <slot />
   </div>
 </template>
@@ -34,7 +34,7 @@ defineProps<{
   text-align: center;
 }
 
-.toastActive {
+.toastVisible {
   opacity: 1;
   visibility: visible;
   transition:
