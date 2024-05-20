@@ -14,11 +14,14 @@ export const useProductsStore = defineStore('products', () => {
   const isIndividualProductLoaded = ref(true)
 
   const fetchAllProducts = async () => {
+    const path = '/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl)'
+    const errorMessage = 'All products fetch error'
+
     const fetchedData: IProductsData = await useFetch({
       loadingStatus: areAllProductsLoaded,
       handler: serverApi.get,
-      path: '/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl)',
-      errorMessage: 'All products fetch error'
+      path,
+      errorMessage
     })
 
     if (fetchedData) {
@@ -27,11 +30,14 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   const fetchIndividualProduct = async (productId: string | string[]) => {
+    const path = `/products/${productId}?responseFields=id,name,price,imageUrl,description`
+    const errorMessage = 'Individual product fetch error'
+
     individualProduct.value = await useFetch({
       loadingStatus: isIndividualProductLoaded,
       handler: serverApi.get,
-      path: `/products/${productId}?responseFields=id,name,price,imageUrl,description`,
-      errorMessage: 'Individual product fetch error'
+      path,
+      errorMessage
     })
   }
 
@@ -40,11 +46,14 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   const fetchCategoryProducts = async (categoryId: string | string[]) => {
+    const path = `/products?responseFields=items(id,name,price,imageUrl)&category=${categoryId}`
+    const errorMessage = 'Category products fetch error'
+
     const fetchedData: IProductsData = await useFetch({
       loadingStatus: areCategoryProductsLoaded,
       handler: serverApi.get,
-      path: `/products?responseFields=items(id,name,price,imageUrl)&category=${categoryId}`,
-      errorMessage: 'Category products fetch error'
+      path,
+      errorMessage
     })
 
     if (fetchedData) {

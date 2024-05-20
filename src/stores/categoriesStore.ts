@@ -9,12 +9,15 @@ export const useCategoriesStore = defineStore('categories', () => {
   const categories = ref<ICategory[]>([])
   const areCategoriesLoaded = ref(true)
 
-  const fetchCategories = async () => {
+  const fetchAllCategories = async () => {
+    const path = '/categories?responseFields=count,items(id,name,thumbnailUrl)'
+    const errorMessage = 'Categories fetch error'
+
     const fetchedData: ICategoriesData = await useFetch({
       loadingStatus: areCategoriesLoaded,
       handler: serverApi.get,
-      path: '/categories?responseFields=count,items(id,name,thumbnailUrl)',
-      errorMessage: 'Categories fetch error'
+      path,
+      errorMessage
     })
 
     if (fetchedData) {
@@ -25,6 +28,6 @@ export const useCategoriesStore = defineStore('categories', () => {
   return {
     categories,
     areCategoriesLoaded,
-    fetchCategories
+    fetchAllCategories
   }
 })

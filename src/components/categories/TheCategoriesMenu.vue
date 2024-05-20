@@ -4,7 +4,7 @@ import { useCategoriesStore } from '@/stores/categoriesStore'
 
 const categoriesStore = useCategoriesStore()
 
-categoriesStore.fetchCategories()
+categoriesStore.fetchAllCategories()
 </script>
 
 <template>
