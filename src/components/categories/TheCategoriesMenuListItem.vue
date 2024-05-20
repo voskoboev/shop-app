@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { type ICategory } from '@/types/categories/ICategory'
 import { type IRouteCategory } from '@/types/router/IRouteCategory'
 
@@ -12,6 +12,7 @@ const categoryPath = computed((): IRouteCategory => {
     name: 'category',
     params: {
       id: props.category.id
+      // name: categoryNameText
     }
   }
 })
@@ -21,7 +22,7 @@ const categoryPath = computed((): IRouteCategory => {
   <li :class="$style.item">
     <RouterLink :to="categoryPath" :class="$style.link">
       <img :class="$style.image" :src="category.thumbnailUrl" :alt="category.name" />
-      <h2 :class="$style.title">
+      <h2 :class="$style.title" ref="categoryName">
         {{ category.name }}
       </h2>
     </RouterLink>

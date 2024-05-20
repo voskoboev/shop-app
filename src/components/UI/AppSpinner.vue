@@ -7,8 +7,6 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  display: inline-flex;
-  /* margin: 15px auto; */
   position: relative;
   background: #dedede;
   box-shadow:

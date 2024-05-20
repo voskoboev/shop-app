@@ -4,7 +4,6 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 
 <template>
   <section :class="$style.cart">
-    <h2 :class="$style.title">Корзина</h2>
     <div :class="$style.wrapper">
       <TheCartList />
     </div>
@@ -25,6 +24,7 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 }
 
 .wrapper {
+  /* width: 100%; */
   justify-content: flex-start;
   align-items: center;
   display: flex;

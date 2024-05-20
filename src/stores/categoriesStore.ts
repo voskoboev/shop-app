@@ -7,10 +7,12 @@ import { type ICategory } from '@/types/categories/ICategory'
 
 export const useCategoriesStore = defineStore('categories', () => {
   const categories = ref<ICategory[]>([])
+  const individualCategory = ref(<Pick<ICategory, 'name'>>{})
+  const isIndividualCategoryLoaded = ref(false)
   const areCategoriesLoaded = ref(true)
 
   const fetchAllCategories = async () => {
-    const path = '/categories?responseFields=count,items(id,name,thumbnailUrl)'
+    const path = '/categories?responseFields=items(id,name,thumbnailUrl)'
     const errorMessage = 'Categories fetch error'
 
     const fetchedData: ICategoriesData = await useFetch({
@@ -25,9 +27,31 @@ export const useCategoriesStore = defineStore('categories', () => {
     }
   }
 
+  const fetchIndividualCategory = async (categoryId: any) => {
+    const path = `/categories/${categoryId}?responseFields=name`
+    const errorMessage = 'Individual category fetch error'
+
+    individualCategory.value = await useFetch({
+      loadingStatus: isIndividualCategoryLoaded,
+      handler: serverApi.get,
+      path,
+      errorMessage
+    })
+
+    console.log('individualCategory.value', individualCategory.value)
+  }
+
+  const resetIndividualCategoryValue = () => {
+    individualCategory.value = <Pick<ICategory, 'name'>>{}
+  }
+
   return {
     categories,
+    individualCategory,
+    isIndividualCategoryLoaded,
     areCategoriesLoaded,
-    fetchAllCategories
+    fetchAllCategories,
+    fetchIndividualCategory,
+    resetIndividualCategoryValue
   }
 })

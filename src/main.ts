@@ -11,6 +11,7 @@ import AppButton from '@/components/UI/AppButton.vue'
 import AppSpinner from '@/components/UI/AppSpinner.vue'
 import AppPlaceholder from '@/components/UI/AppPlaceholder.vue'
 import AppToast from '@/components/UI/AppToast.vue'
+import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
 
 const app = createApp(App)
 
@@ -21,5 +22,6 @@ app.component('AppButton', AppButton)
 app.component('AppSpinner', AppSpinner)
 app.component('AppPlaceholder', AppPlaceholder)
 app.component('AppToast', AppToast)
+app.component('AppBreadcrumbs', AppBreadcrumbs)
 
 app.mount('#app')

@@ -1,51 +1,74 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useCartStore } from '@/stores/cartStore'
+import type AppSpinner from '@/components/UI/AppSpinner.vue'
 
 const route = useRoute()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
+
+const breadcrumbsItems = computed(() => {
+  return [
+    {
+      name: productsStore.individualProduct.name,
+      path: `/products/${route.params.id}`
+    }
+  ]
+})
 
 productsStore.resetIndividualProductValue()
 productsStore.fetchIndividualProduct(route.params.id)
 </script>
 
 <template>
-  <section :class="$style.productDetails">
-    <!-- <div>
-      <h2>Детали продукта</h2>
-    </div> -->
-
-    <!-- prod {{ productsStore.individualProduct }} -->
-
-    <div :class="$style.wrapper" v-if="productsStore.isIndividualProductLoaded">
-      <div :class="$style.leftPanel">
-        <img
-          :class="$style.image"
-          :src="productsStore.individualProduct.imageUrl"
-          :alt="productsStore.individualProduct.name"
-        />
-      </div>
-      <div :class="$style.rightPanel">
-        <h2 :class="$style.title">{{ productsStore.individualProduct.name }}</h2>
-        <p :class="$style.price">{{ productsStore.individualProduct.price }} руб.</p>
-        <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
-        <AppButton
-          :class="$style.button"
-          @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
-        >
-          Добавить в корзину
-        </AppButton>
-      </div>
+  <div :class="$style.productDetails">
+    <div :class="$style.breadcrumbsInfo">
+      <AppBreadcrumbs :items="breadcrumbsItems" v-if="productsStore.isIndividualProductLoaded" />
+      <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
-    <AppSpinner v-else />
-  </section>
+    <section :class="$style.productInfo">
+      <div :class="$style.wrapper" v-if="productsStore.isIndividualProductLoaded">
+        <div :class="$style.leftPanel">
+          <img
+            :class="$style.image"
+            :src="productsStore.individualProduct.imageUrl"
+            :alt="productsStore.individualProduct.name"
+          />
+        </div>
+        <div :class="$style.rightPanel">
+          <h2 :class="$style.title">{{ productsStore.individualProduct.name }}</h2>
+          <p :class="$style.price">{{ productsStore.individualProduct.price }} руб.</p>
+          <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
+          <AppButton
+            :class="$style.button"
+            @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
+          >
+            Добавить в корзину
+          </AppButton>
+        </div>
+      </div>
+      <AppSpinner v-else />
+    </section>
+  </div>
 </template>
 
 <style module>
 .productDetails {
   width: 100%;
+}
+
+.breadcrumbsInfo {
+  height: 50px;
+}
+
+.breadcrumbsSpinner {
+  margin-left: 50px;
+}
+
+.productInfo {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

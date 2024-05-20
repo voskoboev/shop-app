@@ -12,7 +12,6 @@ import { RouterView } from 'vue-router'
 
 <style module>
 .main {
-  min-height: 600px;
   flex-grow: 1;
   display: flex;
 }

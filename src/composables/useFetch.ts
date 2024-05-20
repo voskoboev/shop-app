@@ -4,7 +4,10 @@ export async function useFetch({ loadingStatus, handler, path, errorMessage }: I
   let data: any
 
   try {
-    loadingStatus.value = false
+    if (loadingStatus) {
+      loadingStatus.value = false
+    }
+
     const res = await handler(path)
 
     console.log(`useFetch data: ${path}`, res.data)
@@ -13,7 +16,9 @@ export async function useFetch({ loadingStatus, handler, path, errorMessage }: I
   } catch (err: any) {
     console.error(`${errorMessage}: ${err.message}`)
   } finally {
-    loadingStatus.value = true
+    if (loadingStatus) {
+      loadingStatus.value = true
+    }
   }
 
   return data
