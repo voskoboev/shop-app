@@ -4,12 +4,13 @@ import { useRoute } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useCartStore } from '@/stores/cartStore'
 import type AppSpinner from '@/components/UI/AppSpinner.vue'
+import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
 
-const breadcrumbsItems = computed(() => {
+const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
     {
       name: productsStore.individualProduct.name,

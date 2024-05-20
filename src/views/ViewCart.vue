@@ -2,10 +2,11 @@
 import TheCart from '@/components/cart/TheCart.vue'
 import { useCartStore } from '@/stores/cartStore'
 import type AppPlaceholder from '@/components/UI/AppPlaceholder.vue'
+import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const cartStore = useCartStore()
 
-const breadcrumbsItems = [
+const breadcrumbsItems: IBreadcrumbsItem[] = [
   {
     name: 'Корзина',
     path: '/cart'

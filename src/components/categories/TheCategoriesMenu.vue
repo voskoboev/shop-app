@@ -1,19 +1,18 @@
 <script lang="ts" setup>
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
-import { useCategoriesStore } from '@/stores/categoriesStore'
+import { type ICategory } from '@/types/categories/ICategory'
 
-const categoriesStore = useCategoriesStore()
-
-categoriesStore.fetchAllCategories()
+defineProps<{
+  categories: ICategory[]
+}>()
 </script>
 
 <template>
   <div :class="$style.categories">
     <h2 :class="$style.title">Категории</h2>
-    <nav :class="$style.nav" v-if="categoriesStore.areCategoriesLoaded">
-      <TheCategoriesMenuList :categories="categoriesStore.categories" />
+    <nav :class="$style.nav">
+      <TheCategoriesMenuList :categories="categories" />
     </nav>
-    <AppSpinner :class="$style.spinner" v-else />
   </div>
 </template>
 
@@ -37,8 +36,8 @@ categoriesStore.fetchAllCategories()
   top: 20px;
 }
 
-.spinner {
+/* .spinner {
   margin-top: 40px;
   margin-left: 60px;
-}
+} */
 </style>

@@ -3,14 +3,12 @@ import TheProductsList from '@/components/products/TheProductsList.vue'
 import { type IProduct } from '@/types/products/IProduct'
 
 defineProps<{
-  // title?: string
   products: IProduct[]
 }>()
 </script>
 
 <template>
   <section>
-    <!-- <h2 v-if="title" :class="$style.title">{{ title }}</h2> -->
     <TheProductsList :products="products" />
   </section>
 </template>

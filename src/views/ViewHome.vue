@@ -2,15 +2,24 @@
 import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
 import AppProducts from '@/components/products/AppProducts.vue'
 import { useProductsStore } from '@/stores/productsStore'
+import { useCategoriesStore } from '@/stores/categoriesStore'
 
+const categoriesStore = useCategoriesStore()
 const productsStore = useProductsStore()
 
+categoriesStore.fetchAllCategories()
 productsStore.fetchAllProducts()
 </script>
 
 <template>
   <div :class="$style.homeContainer">
-    <TheCategoriesMenu :class="$style.leftPanel" />
+    <div :class="$style.leftPanel">
+      <TheCategoriesMenu
+        :categories="categoriesStore.categories"
+        v-if="categoriesStore.areCategoriesLoaded"
+      />
+      <AppSpinner :class="$style.spinner" v-else />
+    </div>
     <div :class="$style.rightPanel">
       <AppProducts :products="productsStore.products" v-if="productsStore.areAllProductsLoaded" />
       <AppSpinner v-else />
@@ -33,5 +42,10 @@ productsStore.fetchAllProducts()
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+}
+
+.spinner {
+  margin-top: 40px;
+  margin-left: 60px;
 }
 </style>

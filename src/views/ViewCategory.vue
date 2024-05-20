@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import AppProducts from '@/components/products/AppProducts.vue'
 import { useProductsStore } from '@/stores/productsStore'
 import { useCategoriesStore } from '@/stores/categoriesStore'
+import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()
 const productsStore = useProductsStore()
@@ -12,7 +13,7 @@ const categoriesStore = useCategoriesStore()
 categoriesStore.resetIndividualCategoryValue()
 categoriesStore.fetchIndividualCategory(route.params.id)
 
-const breadcrumbsItems = computed(() => {
+const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
     {
       name: categoriesStore.individualCategory.name,

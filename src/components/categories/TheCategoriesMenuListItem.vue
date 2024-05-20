@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { type ICategory } from '@/types/categories/ICategory'
 import { type IRouteCategory } from '@/types/router/IRouteCategory'
 
@@ -12,7 +12,6 @@ const categoryPath = computed((): IRouteCategory => {
     name: 'category',
     params: {
       id: props.category.id
-      // name: categoryNameText
     }
   }
 })
