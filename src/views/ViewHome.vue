@@ -15,6 +15,7 @@ productsStore.fetchAllProducts()
   <div :class="$style.homeContainer">
     <div :class="$style.leftPanel">
       <TheCategoriesMenu
+        :class="$style.categoriesMenu"
         :categories="categoriesStore.categories"
         v-if="categoriesStore.areCategoriesLoaded"
       />
@@ -35,6 +36,11 @@ productsStore.fetchAllProducts()
 
 .leftPanel {
   flex-basis: 250px;
+}
+
+.categoriesMenu {
+  position: sticky;
+  top: 20px;
 }
 
 .rightPanel {

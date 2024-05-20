@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useCartStore } from '@/stores/cartStore'
-import type AppSpinner from '@/components/UI/AppSpinner.vue'
+import AppSpinner from '@/components/UI/AppSpinner.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()

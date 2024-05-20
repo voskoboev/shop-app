@@ -8,16 +8,16 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="$style.categories">
+  <div :class="$style.categoriesMenu">
     <h2 :class="$style.title">Категории</h2>
-    <nav :class="$style.nav">
+    <nav>
       <TheCategoriesMenuList :categories="categories" />
     </nav>
   </div>
 </template>
 
 <style module>
-.categories {
+.categoriesMenu {
   padding-right: 20px;
   padding-bottom: 20px;
   display: flex;
@@ -30,14 +30,4 @@ defineProps<{
   font-weight: 600;
   margin-bottom: 20px;
 }
-
-.nav {
-  position: sticky;
-  top: 20px;
-}
-
-/* .spinner {
-  margin-top: 40px;
-  margin-left: 60px;
-} */
 </style>
