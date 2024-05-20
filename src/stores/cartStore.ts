@@ -8,15 +8,31 @@ export const useCartStore = defineStore('cart', () => {
   const productsStore = useProductsStore()
 
   const cartProducts = ref<IProduct[]>([])
+  const isProductAddedToCart = ref(false)
 
   const cartProductsAmount = computed(() => cartProducts.value.length)
   const areCartProductsAvailable = computed(() => cartProducts.value.length > 0)
+
+  const toggleToastVisibility = () => {
+    const timeout = 1000
+    isProductAddedToCart.value = true
+
+    setTimeout(() => {
+      isProductAddedToCart.value = false
+    }, timeout)
+  }
 
   const addProductToCart = (productId: number | undefined) => {
     const foundProduct = productsStore.products.find((product) => product.id === productId)
 
     if (foundProduct) {
       cartProducts.value.push(foundProduct)
+
+      if (isProductAddedToCart.value === true) {
+        return
+      }
+
+      toggleToastVisibility()
     }
   }
 
@@ -36,6 +52,7 @@ export const useCartStore = defineStore('cart', () => {
 
   return {
     cartProducts,
+    isProductAddedToCart,
     cartProductsAmount,
     areCartProductsAvailable,
     addProductToCart,

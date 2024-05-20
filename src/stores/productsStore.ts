@@ -65,8 +65,8 @@ export const useProductsStore = defineStore('products', () => {
     isIndividualProductLoaded,
     fetchAllProducts,
     fetchCategoryProducts,
+    resetCategoryProductsValue,
     fetchIndividualProduct,
-    resetIndividualProductValue,
-    resetCategoryProductsValue
+    resetIndividualProductValue
   }
 })
