@@ -22,4 +22,10 @@ import { RouterView } from 'vue-router'
   flex-grow: 1;
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .mainContainer {
+    display: block;
+  }
+}
 </style>

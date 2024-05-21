@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useCartStore } from '@/stores/cartStore'
 import TheLayout from '@/components/layout/TheLayout.vue'
 

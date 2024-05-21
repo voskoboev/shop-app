@@ -13,12 +13,14 @@ defineProps<{
 <template>
   <li>
     <article :class="$style.card">
-      <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
+      <div>
+        <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
+      </div>
       <div :class="$style.infoWrapper">
         <h3 :class="$style.title">
           {{ cartProduct.name }}
         </h3>
-        <p :class="$style.price">{{ cartProduct.price }} руб.</p>
+        <p :class="$style.price">{{ cartProduct.price }} &#8381;</p>
         <div :class="$style.buttonWrapper">
           <AppButton @click="cartStore.deleteProductFromCart(cartProduct.id)">Удалить</AppButton>
         </div>
@@ -45,14 +47,12 @@ defineProps<{
   object-fit: cover;
   border-radius: var(--rounding);
   width: 100px;
-  height: 100px;
-  flex-basis: 100px;
+  aspect-ratio: 1 / 1;
 }
 
 @media (max-width: 576px) {
   .image {
-    width: 60px;
-    height: 60px;
+    width: 80px;
   }
 }
 
@@ -68,17 +68,30 @@ defineProps<{
 @media (max-width: 768px) {
   .infoWrapper {
     flex-direction: column;
-    padding-left: 0;
+    padding-left: 10px;
   }
 }
 
 .title {
+  text-align: center;
   width: 30%;
+}
+
+@media (max-width: 576px) {
+  .title {
+    width: 100%;
+  }
 }
 
 .price {
   text-align: center;
   width: 30%;
+}
+
+@media (max-width: 576px) {
+  .price {
+    width: 100%;
+  }
 }
 
 .buttonWrapper {

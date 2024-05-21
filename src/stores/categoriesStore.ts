@@ -4,12 +4,16 @@ import { serverApi } from '@/api/serverApi'
 import { useFetch } from '@/composables/useFetch'
 import { type ICategoriesData } from '@/types/categories/ICategoriesData'
 import { type ICategory } from '@/types/categories/ICategory'
+import { type TIndividualCategory } from '@/types/categories/TIndividualCategory'
 
 export const useCategoriesStore = defineStore('categories', () => {
+  const body = document.body
+  const stopScrollSelectorName = 'stopScroll'
   const categories = ref<ICategory[]>([])
-  const individualCategory = ref(<Pick<ICategory, 'name'>>{})
+  const individualCategory = ref(<TIndividualCategory>{})
   const isIndividualCategoryLoaded = ref(false)
   const areCategoriesLoaded = ref(true)
+  const isMobileMenuOpen = ref(true)
 
   const fetchAllCategories = async () => {
     const path = '/categories?responseFields=items(id,name,thumbnailUrl)'
@@ -40,7 +44,53 @@ export const useCategoriesStore = defineStore('categories', () => {
   }
 
   const resetIndividualCategoryValue = () => {
-    individualCategory.value = <Pick<ICategory, 'name'>>{}
+    individualCategory.value = <TIndividualCategory>{}
+  }
+
+  const changeMenuStateDependingOnWindowWidth = () => {
+    const mediumTabletWindowWidth = 768
+
+    if (window.innerWidth <= mediumTabletWindowWidth) {
+      isMobileMenuOpen.value = false
+    } else {
+      isMobileMenuOpen.value = true
+    }
+  }
+
+  const addWindowResizeListener = () => {
+    window.addEventListener('resize', changeMenuStateDependingOnWindowWidth)
+  }
+
+  const removeWindowResizeListener = () => {
+    window.removeEventListener('resize', changeMenuStateDependingOnWindowWidth)
+  }
+
+  const createStopScrollSelector = () => {
+    const styleSheet = document.styleSheets[0]
+    const stopScrollCssRules = '{ height: 100%; overflow: hidden; }'
+
+    styleSheet.insertRule(
+      `.${stopScrollSelectorName} ${stopScrollCssRules}`,
+      styleSheet.cssRules.length
+    )
+  }
+
+  const disableBodyScroll = () => {
+    body.classList.add(stopScrollSelectorName)
+  }
+
+  const enableBodyScroll = () => {
+    body.classList.remove(stopScrollSelectorName)
+  }
+
+  const openMobileMenu = () => {
+    isMobileMenuOpen.value = true
+    disableBodyScroll()
+  }
+
+  const closeMobileMenu = () => {
+    isMobileMenuOpen.value = false
+    enableBodyScroll()
   }
 
   return {
@@ -50,6 +100,13 @@ export const useCategoriesStore = defineStore('categories', () => {
     areCategoriesLoaded,
     fetchAllCategories,
     fetchIndividualCategory,
-    resetIndividualCategoryValue
+    resetIndividualCategoryValue,
+    changeMenuStateDependingOnWindowWidth,
+    addWindowResizeListener,
+    removeWindowResizeListener,
+    isMobileMenuOpen,
+    openMobileMenu,
+    closeMobileMenu,
+    createStopScrollSelector
   }
 })

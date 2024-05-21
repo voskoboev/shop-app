@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ViewHome from '@/views/ViewHome.vue'
+import { setBeforeEachGuards } from '@/router/guards/setBeforeEachGuards'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,5 +25,7 @@ const router = createRouter({
     }
   ]
 })
+
+setBeforeEachGuards(router)
 
 export default router

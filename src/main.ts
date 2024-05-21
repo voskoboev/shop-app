@@ -22,3 +22,20 @@ app.component('AppSpinner', AppSpinner)
 app.component('AppToast', AppToast)
 
 app.mount('#app')
+
+// setBeforeEachGuards()
+// import router from '@/router'
+
+// import { useCategoriesStore } from '@/stores/categoriesStore'
+
+// const categoriesStore = useCategoriesStore()
+
+// export const setRouterBeforeEachGuards = () => {
+//   router.beforeEach((_, from, next) => {
+//     if (from.path === '/') {
+//       categoriesStore.closeMobileMenu()
+//     }
+//     //
+//     next()
+//   })
+// }

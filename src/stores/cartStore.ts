@@ -22,8 +22,20 @@ export const useCartStore = defineStore('cart', () => {
     }, timeout)
   }
 
-  const addProductToCart = (productId: number | undefined) => {
+  const addProductToCart = (
+    // stateData: keyof typeof productsStore,
+    // stateData: any,
+    productId: number
+  ) => {
+    // let foundProduct: IProduct
+
+    // if (typeof foundProduct === 'IProduct[]') {
+
+    // }
     const foundProduct = productsStore.products.find((product) => product.id === productId)
+    // const foundProduct = (<IProduct[]>productsStore[stateData]).find(
+    //   (product) => product.id === productId
+    // )
 
     if (foundProduct) {
       cartProducts.value.push(foundProduct)
@@ -33,6 +45,18 @@ export const useCartStore = defineStore('cart', () => {
       }
     }
   }
+
+  // const addProductToCartFromCategory = (productId: number) => {
+  //   addProductToCart(productsStore.products, productId)
+  // }
+
+  // const addProductToCartFromAllProducts = (productId: number) => {
+  //   addProductToCart(productsStore.categoryProducts, productId)
+  // }
+
+  // const addProductToCartFromIndividualProduct = (productId: number) => {
+  //   // productsStore.individualProduct =
+  // }
 
   const deleteProductFromCart = (productId: number) => {
     const foundProductIndex = cartProducts.value.findIndex((product) => product.id === productId)

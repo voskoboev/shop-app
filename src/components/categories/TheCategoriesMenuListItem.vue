@@ -65,5 +65,7 @@ const categoryPath = computed((): IRouteCategory => {
 .image {
   width: 50px;
   height: 50px;
+  border-radius: 14px;
+  object-fit: cover;
 }
 </style>

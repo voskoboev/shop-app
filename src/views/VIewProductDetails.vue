@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useProductsStore } from '@/stores/productsStore'
 import { useCartStore } from '@/stores/cartStore'
+import { useProductsStore } from '@/stores/productsStore'
 import AppSpinner from '@/components/UI/AppSpinner.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()
-const productsStore = useProductsStore()
 const cartStore = useCartStore()
+const productsStore = useProductsStore()
+
+productsStore.resetIndividualProductValue()
+productsStore.fetchIndividualProduct(route.params.id)
 
 const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
@@ -18,9 +21,6 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
     }
   ]
 })
-
-productsStore.resetIndividualProductValue()
-productsStore.fetchIndividualProduct(route.params.id)
 </script>
 
 <template>
@@ -40,7 +40,9 @@ productsStore.fetchIndividualProduct(route.params.id)
           />
         </div>
         <div :class="$style.rightPanel">
-          <h2 :class="$style.title" itemprop="name">{{ productsStore.individualProduct.name }}</h2>
+          <h2 :class="$style.title" itemprop="name">
+            {{ productsStore.individualProduct.name }}
+          </h2>
           <p :class="$style.price">
             <span itemprop="price" :content="productsStore.individualProduct.price">
               {{ productsStore.individualProduct.price }}
@@ -49,8 +51,8 @@ productsStore.fetchIndividualProduct(route.params.id)
           </p>
           <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
           <AppButton
-            :class="$style.button"
             @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
+            :class="$style.button"
             itemprop="potentialAction"
             itemscope
             itemtype="https://schema.org/BuyAction"
@@ -67,6 +69,7 @@ productsStore.fetchIndividualProduct(route.params.id)
 <style module>
 .productDetails {
   width: 100%;
+  height: 100%;
 }
 
 .breadcrumbsInfo {

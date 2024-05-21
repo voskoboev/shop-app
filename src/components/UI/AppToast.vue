@@ -32,6 +32,7 @@ defineProps<{
   align-items: center;
   justify-content: center;
   text-align: center;
+  z-index: 50;
 }
 
 .toastVisible {

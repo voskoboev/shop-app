@@ -50,6 +50,12 @@ productsStore.fetchCategoryProducts(route.params.id)
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .productsContainer {
+    height: 100%;
+  }
+}
+
 .info {
   display: flex;
   align-items: center;

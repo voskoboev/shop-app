@@ -19,7 +19,7 @@ productsStore.fetchAllProducts()
         :categories="categoriesStore.categories"
         v-if="categoriesStore.areCategoriesLoaded"
       />
-      <AppSpinner :class="$style.spinner" v-else />
+      <AppSpinner :class="$style.categoriesSpinner" v-else />
     </div>
     <div :class="$style.rightPanel">
       <AppProducts :products="productsStore.products" v-if="productsStore.areAllProductsLoaded" />
@@ -34,13 +34,32 @@ productsStore.fetchAllProducts()
   flex-grow: 1;
 }
 
+@media (max-width: 768px) {
+  .homeContainer {
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
 .leftPanel {
   flex-basis: 250px;
+}
+
+@media (max-width: 768px) {
+  .leftPanel {
+    flex-basis: auto;
+  }
 }
 
 .categoriesMenu {
   position: sticky;
   top: 20px;
+}
+
+@media (max-width: 768px) {
+  .categoriesMenu {
+    position: static;
+  }
 }
 
 .rightPanel {
@@ -50,8 +69,15 @@ productsStore.fetchAllProducts()
   flex-grow: 1;
 }
 
-.spinner {
+.categoriesSpinner {
   margin-top: 40px;
   margin-left: 60px;
+}
+
+@media (max-width: 768px) {
+  .categoriesSpinner {
+    margin-top: 20px;
+    margin-left: 40px;
+  }
 }
 </style>

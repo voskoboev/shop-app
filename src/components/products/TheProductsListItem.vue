@@ -37,8 +37,7 @@ const individualProductPath = computed((): IRouteProductDetails => {
               itemscope
               itemtype="https://schema.org/Offer"
             >
-              <span itemprop="price" :content="product.price">{{ product.price }}</span>
-              <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+              <span itemprop="price" :content="product.price">{{ product.price }}</span> <span itemprop="priceCurrency" content="RUB">&#8381;</span>
             </p>
           </div>
         </RouterLink>

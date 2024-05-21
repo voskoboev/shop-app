@@ -13,6 +13,7 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 <style module>
 .cart {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

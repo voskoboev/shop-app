@@ -22,4 +22,10 @@ const categoriesStore = useCategoriesStore()
   flex-direction: column;
   gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .list {
+    gap: 36px;
+  }
+}
 </style>
