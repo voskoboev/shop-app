@@ -16,13 +16,28 @@ categoriesStore.createStopScrollSelector()
 
 <template>
   <div :class="$style.categoriesMenu">
-    <button :class="$style.buttonOpenMobile" @click="categoriesStore.openMobileMenu">
+    <button
+      :class="$style.buttonOpenMobile"
+      @click="categoriesStore.openMobileMenu"
+      aria-label="Открыть меню категорий товаров"
+      aria-controls="categoriesNav"
+      :aria-expanded="categoriesStore.isMobileMenuOpen"
+    >
       <div :class="$style.buttonOpenDecorLine"></div>
     </button>
     <h2 :class="$style.title">Категории</h2>
-    <nav :class="$style.nav" v-if="categoriesStore.isMobileMenuOpen">
+    <nav
+      id="categoriesNav"
+      :class="$style.nav"
+      v-if="categoriesStore.isMobileMenuOpen"
+      aria-label="Навигационное меню категорий товаров"
+    >
       <div :class="$style.wrapper">
-        <button :class="$style.buttonCloseMobile" @click="categoriesStore.closeMobileMenu"></button>
+        <button
+          :class="$style.buttonCloseMobile"
+          @click="categoriesStore.closeMobileMenu"
+          aria-label="Закрыть меню категорий товаров"
+        ></button>
         <TheCategoriesMenuList :categories="categories" />
       </div>
     </nav>

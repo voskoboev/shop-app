@@ -17,7 +17,7 @@ const cartStore = useCartStore()
       <RouterLink
         to="/cart"
         :class="$style.cartLink"
-        aria-label="Корзины покупок"
+        aria-label="Корзина покупок"
         :data-product-amount="cartStore.cartProductsAmount"
       >
         <IconCart :class="$style.cartIcon" />

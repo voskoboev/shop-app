@@ -1,6 +1,12 @@
 <template>
-  <div :class="$style.placeholder">
-    <div :class="$style.placeholderInner">
+  <div
+    :class="$style.placeholder"
+    tabindex="0"
+    role="status"
+    aria-live="polite"
+    aria-labelledby="placeholderInner"
+  >
+    <div id="placeholderInner" :class="$style.placeholderInner">
       <slot />
     </div>
   </div>
@@ -21,6 +27,6 @@
   font-weight: 600;
   border-radius: var(--rounding);
   border: 1px solid var(--color-accent);
-  padding: 20px;
+  padding: 14px;
 }
 </style>

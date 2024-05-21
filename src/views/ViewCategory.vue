@@ -10,9 +10,6 @@ const route = useRoute()
 const productsStore = useProductsStore()
 const categoriesStore = useCategoriesStore()
 
-categoriesStore.resetIndividualCategoryValue()
-categoriesStore.fetchIndividualCategory(route.params.id)
-
 const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
     {
@@ -21,6 +18,9 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
     }
   ]
 })
+
+categoriesStore.resetIndividualCategoryValue()
+categoriesStore.fetchIndividualCategory(route.params.id)
 
 productsStore.resetCategoryProductsValue()
 productsStore.fetchCategoryProducts(route.params.id)

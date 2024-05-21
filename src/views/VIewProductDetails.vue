@@ -10,9 +10,6 @@ const route = useRoute()
 const cartStore = useCartStore()
 const productsStore = useProductsStore()
 
-productsStore.resetIndividualProductValue()
-productsStore.fetchIndividualProduct(route.params.id)
-
 const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
     {
@@ -21,6 +18,13 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
     }
   ]
 })
+
+const buttonAriaLabel = computed(
+  () => `Добавить в корзину товар ${productsStore.individualProduct.name}`
+)
+
+productsStore.resetIndividualProductValue()
+productsStore.fetchIndividualProduct(route.params.id)
 </script>
 
 <template>
@@ -56,8 +60,9 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
             itemprop="potentialAction"
             itemscope
             itemtype="https://schema.org/BuyAction"
+            :aria-label="buttonAriaLabel"
           >
-            <span itemprop="name"> Добавить в корзину </span>
+            <span itemprop="name" aria-hidden="true"> Добавить в корзину </span>
           </AppButton>
         </div>
       </div>

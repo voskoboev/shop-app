@@ -19,25 +19,29 @@ const individualProductPath = computed((): IRouteProductDetails => {
     }
   }
 })
+
+const buttonAriaLabel = computed(() => `Добавить в корзину товар ${props.product.name}`)
 </script>
 
 <template>
   <li>
     <article itemscope itemtype="https://schema.org/Product">
       <div :class="$style.card">
-        <RouterLink :to="individualProductPath">
+        <RouterLink :to="individualProductPath" aria-labelledby="productName productPrice">
           <img :class="$style.image" :src="product.imageUrl" :alt="product.name" itemprop="image" />
           <div :class="$style.info">
-            <h3 :class="$style.title" itemprop="name">
+            <h3 id="productName" :class="$style.title" itemprop="name">
               {{ product.name }}
             </h3>
             <p
+              id="productPrice"
               :class="$style.price"
               itemprop="offers"
               itemscope
               itemtype="https://schema.org/Offer"
             >
-              <span itemprop="price" :content="product.price">{{ product.price }}</span> <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+              <span itemprop="price" :content="product.price">{{ product.price }}</span>
+              <span itemprop="priceCurrency" content="RUB">&#8381;</span>
             </p>
           </div>
         </RouterLink>
@@ -47,8 +51,9 @@ const individualProductPath = computed((): IRouteProductDetails => {
           itemprop="potentialAction"
           itemscope
           itemtype="https://schema.org/BuyAction"
+          :aria-label="buttonAriaLabel"
         >
-          <span itemprop="name"> Добавить в корзину </span>
+          <span itemprop="name" aria-hidden="true"> Добавить в корзину </span>
         </AppButton>
       </div>
     </article>

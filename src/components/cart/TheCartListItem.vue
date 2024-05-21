@@ -22,7 +22,11 @@ defineProps<{
         </h3>
         <p :class="$style.price">{{ cartProduct.price }} &#8381;</p>
         <div :class="$style.buttonWrapper">
-          <AppButton @click="cartStore.deleteProductFromCart(cartProduct.id)">Удалить</AppButton>
+          <AppButton
+            @click="cartStore.deleteProductFromCart(cartProduct.id)"
+            aria-label="Удалить товар из корзины"
+            >Удалить</AppButton
+          >
         </div>
       </div>
     </article>
