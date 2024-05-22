@@ -28,11 +28,11 @@ productsStore.fetchCategoryProducts(route.params.id)
 
 <template>
   <div :class="$style.productsContainer">
-    <div :class="$style.info">
+    <div :class="$style.navWrapper">
       <AppBreadcrumbs :items="breadcrumbsItems" v-if="categoriesStore.isIndividualCategoryLoaded" />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
-    <div :class="$style.wrapper">
+    <div :class="$style.productsWrapper">
       <AppProducts
         :class="$style.products"
         :products="productsStore.categoryProducts"
@@ -56,7 +56,7 @@ productsStore.fetchCategoryProducts(route.params.id)
   }
 }
 
-.info {
+.navWrapper {
   display: flex;
   align-items: center;
   min-height: 50px;
@@ -66,7 +66,7 @@ productsStore.fetchCategoryProducts(route.params.id)
   margin-left: 50px;
 }
 
-.wrapper {
+.productsWrapper {
   flex-grow: 1;
   display: flex;
   align-items: center;

@@ -16,7 +16,7 @@ defineProps<{
       <div>
         <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
       </div>
-      <div :class="$style.infoWrapper">
+      <div :class="$style.info">
         <h3 :class="$style.title">
           {{ cartProduct.name }}
         </h3>
@@ -60,7 +60,7 @@ defineProps<{
   }
 }
 
-.infoWrapper {
+.info {
   width: 100%;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@ defineProps<{
 }
 
 @media (max-width: 768px) {
-  .infoWrapper {
+  .info {
     flex-direction: column;
     padding-left: 10px;
   }

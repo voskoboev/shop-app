@@ -20,7 +20,7 @@ const categoryPath = computed((): IRouteCategory => {
 
 <template>
   <li
-    :class="$style.item"
+    :class="$style.menuItem"
     itemprop="itemListElement"
     itemscope
     itemtype="https://schema.org/ListItem"
@@ -48,12 +48,12 @@ const categoryPath = computed((): IRouteCategory => {
 </template>
 
 <style module>
-.item {
+.menuItem {
   transition: 0.3s color ease;
 }
 
 @media (any-hover: hover) {
-  .item:hover {
+  .menuItem:hover {
     color: var(--color-accent);
     transition: 0.3s color ease;
   }

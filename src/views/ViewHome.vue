@@ -12,7 +12,7 @@ productsStore.fetchAllProducts()
 </script>
 
 <template>
-  <div :class="$style.homeContainer">
+  <div :class="$style.home">
     <div :class="$style.leftPanel">
       <TheCategoriesMenu
         :class="$style.categoriesMenu"
@@ -29,13 +29,13 @@ productsStore.fetchAllProducts()
 </template>
 
 <style module>
-.homeContainer {
+.home {
   display: flex;
   flex-grow: 1;
 }
 
 @media (max-width: 768px) {
-  .homeContainer {
+  .home {
     flex-direction: column;
     height: 100%;
   }

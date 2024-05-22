@@ -29,11 +29,11 @@ productsStore.fetchIndividualProduct(route.params.id)
 
 <template>
   <div :class="$style.productDetails">
-    <div :class="$style.breadcrumbsInfo">
+    <div :class="$style.breadcrumbsWrapper">
       <AppBreadcrumbs :items="breadcrumbsItems" v-if="productsStore.isIndividualProductLoaded" />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
-    <section :class="$style.productInfo" itemscope itemtype="https://schema.org/Product">
+    <section :class="$style.productDetailsInfo" itemscope itemtype="https://schema.org/Product">
       <div :class="$style.wrapper" v-if="productsStore.isIndividualProductLoaded">
         <div :class="$style.leftPanel">
           <img
@@ -77,7 +77,7 @@ productsStore.fetchIndividualProduct(route.params.id)
   height: 100%;
 }
 
-.breadcrumbsInfo {
+.breadcrumbsWrapper {
   height: 50px;
 }
 
@@ -85,7 +85,7 @@ productsStore.fetchIndividualProduct(route.params.id)
   margin-left: 50px;
 }
 
-.productInfo {
+.productDetailsInfo {
   height: 100%;
   display: flex;
   align-items: center;

@@ -17,13 +17,13 @@ categoriesStore.createStopScrollSelector()
 <template>
   <div :class="$style.categoriesMenu">
     <button
-      :class="$style.buttonOpenMobile"
+      :class="$style.buttonMenuOpen"
       @click="categoriesStore.openMobileMenu"
       aria-label="Открыть меню категорий товаров"
       aria-controls="categoriesNav"
       :aria-expanded="categoriesStore.isMobileMenuOpen"
     >
-      <div :class="$style.buttonOpenDecorLine"></div>
+      <div :class="$style.buttonMenuOpenDecorLine"></div>
     </button>
     <h2 :class="$style.title">Категории</h2>
     <nav
@@ -34,7 +34,7 @@ categoriesStore.createStopScrollSelector()
     >
       <div :class="$style.wrapper">
         <button
-          :class="$style.buttonCloseMobile"
+          :class="$style.buttonMenuClose"
           @click="categoriesStore.closeMobileMenu"
           aria-label="Закрыть меню категорий товаров"
         ></button>
@@ -54,44 +54,44 @@ categoriesStore.createStopScrollSelector()
   width: 100%;
 }
 
-.buttonOpenMobile {
+.buttonMenuOpen {
   display: none;
   width: 40px;
   height: 40px;
 }
 
 @media (max-width: 768px) {
-  .buttonOpenMobile {
+  .buttonMenuOpen {
     display: block;
   }
 }
 
-.buttonOpenDecorLine,
-.buttonOpenDecorLine::before,
-.buttonOpenDecorLine::after {
+.buttonMenuOpenDecorLine,
+.buttonMenuOpenDecorLine::before,
+.buttonMenuOpenDecorLine::after {
   height: 4px;
   background: var(--color-dark);
   border-radius: 2px;
 }
 
-.buttonOpenDecorLine::before,
-.buttonOpenDecorLine::after {
+.buttonMenuOpenDecorLine::before,
+.buttonMenuOpenDecorLine::after {
   position: absolute;
   content: '';
   left: 0;
 }
 
-.buttonOpenDecorLine {
+.buttonMenuOpenDecorLine {
   position: relative;
   width: 40px;
 }
 
-.buttonOpenDecorLine::before {
+.buttonMenuOpenDecorLine::before {
   width: 40px;
   top: -10px;
 }
 
-.buttonOpenDecorLine::after {
+.buttonMenuOpenDecorLine::after {
   bottom: -10px;
   width: 30px;
 }
@@ -130,7 +130,7 @@ categoriesStore.createStopScrollSelector()
   }
 }
 
-.buttonCloseMobile {
+.buttonMenuClose {
   position: relative;
   width: 40px;
   height: 40px;
@@ -143,19 +143,13 @@ categoriesStore.createStopScrollSelector()
 }
 
 @media (max-width: 768px) {
-  .buttonCloseMobile {
+  .buttonMenuClose {
     display: block;
   }
 }
 
-/* @media (max-width: 768px) {
-  .buttonCloseMobile {
-  
-  }
-} */
-
-.buttonCloseMobile::before,
-.buttonCloseMobile::after {
+.buttonMenuClose::before,
+.buttonMenuClose::after {
   position: absolute;
   top: 17px;
   left: 3px;
@@ -165,11 +159,11 @@ categoriesStore.createStopScrollSelector()
   background: var(--color-dark);
 }
 
-.buttonCloseMobile::before {
+.buttonMenuClose::before {
   transform: rotate(45deg);
 }
 
-.buttonCloseMobile::after {
+.buttonMenuClose::after {
   transform: rotate(-45deg);
 }
 </style>

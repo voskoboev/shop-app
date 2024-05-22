@@ -24,7 +24,7 @@ defineProps<{
   top: 20px;
   left: 50%;
   transform: translate(-50%);
-  background-color: var(--color-accent);
+  background-color: var(--color-success);
   border-radius: var(--rounding);
   width: 250px;
   padding: 14px;

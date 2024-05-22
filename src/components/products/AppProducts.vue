@@ -12,11 +12,3 @@ defineProps<{
     <TheProductsList :products="products" />
   </section>
 </template>
-
-<style module>
-.title {
-  font-size: 1.6em;
-  font-weight: 500;
-  margin-bottom: 40px;
-}
-</style>

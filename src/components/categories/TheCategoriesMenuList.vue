@@ -6,7 +6,7 @@ const categoriesStore = useCategoriesStore()
 </script>
 
 <template>
-  <ul :class="$style.list" itemscope itemtype="https://schema.org/ItemList" role="menu">
+  <ul :class="$style.menuList" itemscope itemtype="https://schema.org/ItemList" role="menu">
     <TheCategoriesMenuListItem
       v-for="(category, index) in categoriesStore.categories"
       :key="category.id"
@@ -17,14 +17,14 @@ const categoriesStore = useCategoriesStore()
 </template>
 
 <style module>
-.list {
+.menuList {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 @media (max-width: 768px) {
-  .list {
+  .menuList {
     gap: 36px;
   }
 }

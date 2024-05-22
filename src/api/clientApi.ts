@@ -11,11 +11,9 @@ function useClientApi(itemKey: string): IClientApi {
   const getItem = () => {
     const loadedItem = localStorage.getItem(itemKey)
 
-    if (!loadedItem) {
-      return
+    if (loadedItem) {
+      return JSON.parse(loadedItem)
     }
-
-    return JSON.parse(loadedItem)
   }
 
   return {

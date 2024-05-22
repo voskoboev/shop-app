@@ -67,7 +67,6 @@ defineProps<{
 
 .listItem:not(:last-child)::after {
   color: var(--color-dark);
-  /* content: '›'; */
   content: '\203A';
   position: absolute;
   right: -18px;
