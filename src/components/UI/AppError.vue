@@ -1,30 +1,29 @@
 <template>
   <div
     tabindex="0"
-    role="status"
-    aria-live="polite"
-    aria-labelledby="placeholderInner"
-    :class="$style.placeholder"
+    role="alert"
+    aria-live="assertive"
+    aria-labelledby="errorInner"
+    :class="$style.error"
   >
-    <div id="placeholderInner" :class="$style.placeholderInner">
+    <div id="errorInner" :class="$style.errorInner">
       <slot />
     </div>
   </div>
 </template>
 
 <style module>
-.placeholder {
+.error {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
-.placeholderInner {
+.errorInner {
   min-width: 250px;
   max-width: 320px;
   padding: 14px;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-danger);
   border-radius: var(--rounding);
   font-size: 1.5em;
   font-weight: 600;
