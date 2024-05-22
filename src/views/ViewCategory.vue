@@ -3,12 +3,14 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import { useProductsStore } from '@/stores/productsStore'
+import { useCartStore } from '@/stores/cartStore'
 import AppProducts from '@/components/products/AppProducts.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()
 const productsStore = useProductsStore()
 const categoriesStore = useCategoriesStore()
+const cartStore = useCartStore()
 
 const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   return [
@@ -37,6 +39,7 @@ productsStore.fetchCategoryProducts(route.params.id)
         v-if="productsStore.areCategoryProductsLoaded"
         :class="$style.products"
         :products="productsStore.categoryProducts"
+        :cardButtonHandler="cartStore.addProductToCartFromCategory"
       />
       <AppSpinner v-else />
     </div>

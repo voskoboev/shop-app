@@ -60,7 +60,7 @@ productsStore.fetchIndividualProduct(route.params.id)
             itemtype="https://schema.org/BuyAction"
             :class="$style.button"
             :aria-label="buttonAriaLabel"
-            @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
+            @click="cartStore.addProductToCartFromIndividualProduct"
           >
             <span aria-hidden="true" itemprop="name"> Добавить в корзину </span>
           </AppButton>

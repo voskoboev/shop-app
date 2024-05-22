@@ -29,8 +29,9 @@ export const useProductsStore = defineStore('products', () => {
     }
   }
 
+  // TODO: проверить соответствия всех запрашиваемых сущностей, привести все к единой струкруре данных
   const fetchIndividualProduct = async (productId: string | string[]) => {
-    const path = `/products/${productId}?responseFields=id,name,price,imageUrl,description`
+    const path = `/products/${productId}?responseFields=id,name,price,imageUrl,thumbnailUrl,description`
     const errorMessage = 'Individual product fetch error'
 
     individualProduct.value = await useFetch({
@@ -46,7 +47,7 @@ export const useProductsStore = defineStore('products', () => {
   }
 
   const fetchCategoryProducts = async (categoryId: string | string[]) => {
-    const path = `/products?responseFields=items(id,name,price,imageUrl)&category=${categoryId}`
+    const path = `/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl)&category=${categoryId}`
     const errorMessage = 'Category products fetch error'
 
     const fetchedData: IProductsData = await useFetch({

@@ -1,15 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useCartStore } from '@/stores/cartStore'
 import { type IProduct } from '@/types/products/IProduct'
 import { type IRouteProductDetails } from '@/types/router/IRouteProductDetails'
 
 const props = defineProps<{
   product: IProduct
+  cardButtonHandler: (productId: number) => void
 }>()
-
-const cartStore = useCartStore()
 
 const individualProductPath = computed((): IRouteProductDetails => {
   return {
@@ -51,7 +49,7 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
           itemtype="https://schema.org/BuyAction"
           :class="$style.button"
           :aria-label="buttonAriaLabel"
-          @click="cartStore.addProductToCart(product.id)"
+          @click="cardButtonHandler(product.id)"
         >
           <span aria-hidden="true" itemprop="name"> Добавить в корзину </span>
         </AppButton>

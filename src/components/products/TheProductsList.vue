@@ -4,12 +4,18 @@ import { type IProduct } from '@/types/products/IProduct'
 
 defineProps<{
   products: IProduct[]
+  cardButtonHandler: (productId: number) => void
 }>()
 </script>
 
 <template>
   <ul :class="$style.list">
-    <TheProductsListItem v-for="product in products" :key="product.id" :product="product" />
+    <TheProductsListItem
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      :cardButtonHandler="cardButtonHandler"
+    />
   </ul>
 </template>
 

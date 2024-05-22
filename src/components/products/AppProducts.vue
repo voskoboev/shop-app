@@ -4,11 +4,12 @@ import { type IProduct } from '@/types/products/IProduct'
 
 defineProps<{
   products: IProduct[]
+  cardButtonHandler: (productId: number) => void
 }>()
 </script>
 
 <template>
   <section>
-    <TheProductsList :products="products" />
+    <TheProductsList :products="products" :cardButtonHandler="cardButtonHandler" />
   </section>
 </template>

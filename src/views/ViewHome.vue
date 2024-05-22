@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import { useProductsStore } from '@/stores/productsStore'
+import { useCartStore } from '@/stores/cartStore'
 import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
 import AppProducts from '@/components/products/AppProducts.vue'
 
 const categoriesStore = useCategoriesStore()
 const productsStore = useProductsStore()
+const cartStore = useCartStore()
 
 categoriesStore.fetchAllCategories()
 productsStore.fetchAllProducts()
@@ -22,7 +24,11 @@ productsStore.fetchAllProducts()
       <AppSpinner v-else :class="$style.categoriesSpinner" />
     </div>
     <div :class="$style.rightPanel">
-      <AppProducts v-if="productsStore.areAllProductsLoaded" :products="productsStore.products" />
+      <AppProducts
+        v-if="productsStore.areAllProductsLoaded"
+        :products="productsStore.products"
+        :cardButtonHandler="cartStore.addProductToCartFromAllProducts"
+      />
       <AppSpinner v-else />
     </div>
   </div>
