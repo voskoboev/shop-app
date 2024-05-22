@@ -22,6 +22,10 @@ const router = createRouter({
     {
       path: '/cart',
       component: () => import('@/views/ViewCart.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('@/views/ViewNotFound.vue')
     }
   ]
 })
