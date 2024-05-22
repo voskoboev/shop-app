@@ -86,10 +86,10 @@ productsStore.fetchIndividualProduct(route.params.id)
 }
 
 .productDetailsInfo {
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .wrapper {

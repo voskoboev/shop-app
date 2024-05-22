@@ -67,10 +67,10 @@ productsStore.fetchCategoryProducts(route.params.id)
 }
 
 .productsWrapper {
-  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .products {

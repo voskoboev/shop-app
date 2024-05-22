@@ -12,15 +12,15 @@ import { RouterView } from 'vue-router'
 
 <style module>
 .main {
-  flex-grow: 1;
   display: flex;
+  flex-grow: 1;
 }
 
 .mainContainer {
+  display: flex;
+  flex-grow: 1;
   padding-top: 50px;
   padding-bottom: 100px;
-  flex-grow: 1;
-  display: flex;
 }
 
 @media (max-width: 768px) {

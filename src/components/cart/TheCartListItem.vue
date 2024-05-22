@@ -35,8 +35,8 @@ defineProps<{
 
 <style module>
 .card {
-  padding: 16px 24px;
   display: flex;
+  padding: 16px 24px;
   border: 1px solid #dedede;
   border-radius: var(--rounding);
 }
@@ -48,10 +48,10 @@ defineProps<{
 }
 
 .image {
-  object-fit: cover;
-  border-radius: var(--rounding);
   width: 100px;
   aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--rounding);
 }
 
 @media (max-width: 576px) {
@@ -61,11 +61,11 @@ defineProps<{
 }
 
 .info {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  width: 100%;
   padding-left: 30px;
 }
 
@@ -77,8 +77,8 @@ defineProps<{
 }
 
 .title {
-  text-align: center;
   width: 30%;
+  text-align: center;
 }
 
 @media (max-width: 576px) {
@@ -88,8 +88,8 @@ defineProps<{
 }
 
 .price {
-  text-align: center;
   width: 30%;
+  text-align: center;
 }
 
 @media (max-width: 576px) {
@@ -104,9 +104,11 @@ defineProps<{
   width: 30%;
 }
 
+
 @media (max-width: 768px) {
   .buttonWrapper {
     justify-content: center;
+    width: 100%;
   }
 }
 </style>

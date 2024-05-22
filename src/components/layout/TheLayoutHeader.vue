@@ -60,15 +60,15 @@ const cartStore = useCartStore()
   position: absolute;
   top: -10px;
   right: -10px;
-  content: attr(data-product-amount);
-  width: 26px;
-  height: 26px;
-  background-color: rgb(206, 9, 9);
-  color: var(--color-bright);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 26px;
+  height: 26px;
+  content: attr(data-product-amount);
+  background-color: rgb(206, 9, 9);
+  border-radius: 50%;
+  color: var(--color-bright);
 }
 
 .cartIcon {

@@ -46,12 +46,12 @@ categoriesStore.createStopScrollSelector()
 
 <style module>
 .categoriesMenu {
-  padding-right: 20px;
-  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .buttonMenuOpen {
@@ -70,15 +70,15 @@ categoriesStore.createStopScrollSelector()
 .buttonMenuOpenDecorLine::before,
 .buttonMenuOpenDecorLine::after {
   height: 4px;
-  background: var(--color-dark);
+  background-color: var(--color-dark);
   border-radius: 2px;
 }
 
 .buttonMenuOpenDecorLine::before,
 .buttonMenuOpenDecorLine::after {
   position: absolute;
-  content: '';
   left: 0;
+  content: '';
 }
 
 .buttonMenuOpenDecorLine {
@@ -87,13 +87,13 @@ categoriesStore.createStopScrollSelector()
 }
 
 .buttonMenuOpenDecorLine::before {
-  width: 40px;
   top: -10px;
+  width: 40px;
 }
 
 .buttonMenuOpenDecorLine::after {
-  bottom: -10px;
   width: 30px;
+  bottom: -10px;
 }
 
 .nav {
@@ -102,26 +102,26 @@ categoriesStore.createStopScrollSelector()
 
 @media (max-width: 768px) {
   .nav {
-    z-index: 100;
     position: fixed;
     inset: 0;
+    z-index: 100;
     background-color: rgba(255, 255, 255, 0.96);
   }
 }
 
 .wrapper {
   position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
+  margin-bottom: 20px;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
@@ -131,15 +131,14 @@ categoriesStore.createStopScrollSelector()
 }
 
 .buttonMenuClose {
-  position: relative;
-  width: 40px;
-  height: 40px;
   position: absolute;
   top: 24px;
   right: 14px;
-  border-radius: 50%;
-  border: 2px solid var(--color-dark);
   display: none;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-dark);
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
@@ -153,9 +152,9 @@ categoriesStore.createStopScrollSelector()
   position: absolute;
   top: 17px;
   left: 3px;
-  content: '';
   width: 30px;
   height: 2px;
+  content: '';
   background: var(--color-dark);
 }
 

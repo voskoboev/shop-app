@@ -60,16 +60,16 @@ defineProps<{
 
 @media (any-hover: hover) {
   .listItem:hover {
-    transition: 0.3s color ease;
     color: var(--color-accent);
+    transition: 0.3s color ease;
   }
 }
 
 .listItem:not(:last-child)::after {
-  color: var(--color-dark);
-  content: '\203A';
   position: absolute;
-  right: -18px;
   top: 0;
+  right: -18px;
+  content: '\203A';
+  color: var(--color-dark);
 }
 </style>

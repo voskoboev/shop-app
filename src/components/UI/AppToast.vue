@@ -12,32 +12,32 @@ defineProps<{
 
 <style module>
 .toast {
-  transition:
-    0.2s opacity,
-    visibility ease;
-  opacity: 0;
-  visibility: hidden;
-  color: var(--color-bright);
-  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
-  font-size: 1.1em;
   position: fixed;
   top: 20px;
   left: 50%;
-  transform: translate(-50%);
-  background-color: var(--color-success);
-  border-radius: var(--rounding);
-  width: 250px;
-  padding: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   z-index: 50;
+  visibility: hidden;
+  opacity: 0;
+  width: 250px;
+  padding: 14px;
+  border-radius: var(--rounding);
+  background-color: var(--color-success);
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+  font-size: 1.1em;
+  color: var(--color-bright);
+  text-align: center;
+  transform: translate(-50%);
+  transition:
+    0.2s opacity,
+    visibility ease;
 }
 
 .toastVisible {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
   transition:
     0.2s opacity,
     visibility ease;

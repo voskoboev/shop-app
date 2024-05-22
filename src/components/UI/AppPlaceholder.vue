@@ -14,19 +14,19 @@
 
 <style module>
 .placeholder {
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .placeholderInner {
-  text-align: center;
   min-width: 250px;
+  padding: 14px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--rounding);
   font-size: 1.5em;
   font-weight: 600;
-  border-radius: var(--rounding);
-  border: 1px solid var(--color-accent);
-  padding: 14px;
+  text-align: center;
 }
 </style>

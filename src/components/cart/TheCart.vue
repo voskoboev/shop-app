@@ -12,23 +12,23 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 
 <style module>
 .cart {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
+  margin-bottom: 20px;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: 20px;
 }
 
 .cartContainer {
-  justify-content: flex-start;
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   flex-grow: 1;
 }
 </style>

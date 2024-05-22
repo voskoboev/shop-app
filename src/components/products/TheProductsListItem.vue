@@ -62,9 +62,9 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
 
 <style module>
 .image {
-  border-radius: var(--rounding);
   width: 100%;
   aspect-ratio: 1 / 1;
+  border-radius: var(--rounding);
 }
 
 .info {
@@ -72,15 +72,15 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
 }
 
 .title {
+  margin-bottom: 14px;
   font-size: 1.1em;
   font-weight: 600;
-  margin-bottom: 14px;
 }
 
 .price {
+  margin-bottom: 6px;
   font-size: 1.5em;
   font-weight: 700;
-  margin-bottom: 6px;
 }
 
 .button {

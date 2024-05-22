@@ -9,13 +9,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-bright);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  padding: 0.6em 2em;
   border-radius: 14px;
   background-color: var(--color-accent);
   font-size: 1.2em;
-  padding: 0.6em 2em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-bright);
 }
 
 @media (any-hover: hover) {

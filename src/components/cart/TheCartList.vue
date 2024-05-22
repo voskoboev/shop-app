@@ -17,9 +17,9 @@ const cartStore = useCartStore()
 
 <style module>
 .list {
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
 }
 </style>
