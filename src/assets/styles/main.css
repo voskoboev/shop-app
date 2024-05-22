@@ -10,3 +10,8 @@
 #app {
   height: 100%;
 }
+
+.stopScroll {
+  height: 100%;
+  overflow: hidden;
+}

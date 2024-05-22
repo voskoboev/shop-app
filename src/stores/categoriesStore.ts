@@ -65,16 +65,6 @@ export const useCategoriesStore = defineStore('categories', () => {
     window.removeEventListener('resize', changeMenuStateDependingOnWindowWidth)
   }
 
-  const createStopScrollSelector = () => {
-    const styleSheet = document.styleSheets[0]
-    const stopScrollCssRules = '{ height: 100%; overflow: hidden; }'
-
-    styleSheet.insertRule(
-      `.${stopScrollSelectorName} ${stopScrollCssRules}`,
-      styleSheet.cssRules.length
-    )
-  }
-
   const disableBodyScroll = () => {
     body.classList.add(stopScrollSelectorName)
   }
@@ -106,7 +96,6 @@ export const useCategoriesStore = defineStore('categories', () => {
     removeWindowResizeListener,
     isMobileMenuOpen,
     openMobileMenu,
-    closeMobileMenu,
-    createStopScrollSelector
+    closeMobileMenu
   }
 })
