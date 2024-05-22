@@ -29,14 +29,14 @@ productsStore.fetchCategoryProducts(route.params.id)
 <template>
   <div :class="$style.productsContainer">
     <div :class="$style.navWrapper">
-      <AppBreadcrumbs :items="breadcrumbsItems" v-if="categoriesStore.isIndividualCategoryLoaded" />
+      <AppBreadcrumbs v-if="categoriesStore.isIndividualCategoryLoaded" :items="breadcrumbsItems" />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
     <div :class="$style.productsWrapper">
       <AppProducts
+        v-if="productsStore.areCategoryProductsLoaded"
         :class="$style.products"
         :products="productsStore.categoryProducts"
-        v-if="productsStore.areCategoryProductsLoaded"
       />
       <AppSpinner v-else />
     </div>

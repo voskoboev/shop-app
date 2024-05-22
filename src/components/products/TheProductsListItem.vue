@@ -27,18 +27,18 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
   <li>
     <article itemscope itemtype="https://schema.org/Product">
       <div :class="$style.card">
-        <RouterLink :to="individualProductPath" aria-labelledby="productName productPrice">
-          <img :class="$style.image" :src="product.imageUrl" :alt="product.name" itemprop="image" />
+        <RouterLink aria-labelledby="productName productPrice" :to="individualProductPath">
+          <img itemprop="image" :class="$style.image" :src="product.imageUrl" :alt="product.name" />
           <div :class="$style.info">
-            <h3 id="productName" :class="$style.title" itemprop="name">
+            <h3 id="productName" itemprop="name" :class="$style.title">
               {{ product.name }}
             </h3>
             <p
               id="productPrice"
-              :class="$style.price"
               itemprop="offers"
               itemscope
               itemtype="https://schema.org/Offer"
+              :class="$style.price"
             >
               <span itemprop="price" :content="product.price">{{ product.price }}</span>
               <span itemprop="priceCurrency" content="RUB">&#8381;</span>
@@ -46,14 +46,14 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
           </div>
         </RouterLink>
         <AppButton
-          :class="$style.button"
-          @click="cartStore.addProductToCart(product.id)"
           itemprop="potentialAction"
           itemscope
           itemtype="https://schema.org/BuyAction"
+          :class="$style.button"
           :aria-label="buttonAriaLabel"
+          @click="cartStore.addProductToCart(product.id)"
         >
-          <span itemprop="name" aria-hidden="true"> Добавить в корзину </span>
+          <span aria-hidden="true" itemprop="name"> Добавить в корзину </span>
         </AppButton>
       </div>
     </article>

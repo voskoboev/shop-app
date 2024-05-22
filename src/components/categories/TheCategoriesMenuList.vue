@@ -6,7 +6,7 @@ const categoriesStore = useCategoriesStore()
 </script>
 
 <template>
-  <ul :class="$style.menuList" itemscope itemtype="https://schema.org/ItemList" role="menu">
+  <ul role="menu" itemscope itemtype="https://schema.org/ItemList" :class="$style.menuList">
     <TheCategoriesMenuListItem
       v-for="(category, index) in categoriesStore.categories"
       :key="category.id"

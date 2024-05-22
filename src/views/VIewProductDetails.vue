@@ -30,21 +30,21 @@ productsStore.fetchIndividualProduct(route.params.id)
 <template>
   <div :class="$style.productDetails">
     <div :class="$style.breadcrumbsWrapper">
-      <AppBreadcrumbs :items="breadcrumbsItems" v-if="productsStore.isIndividualProductLoaded" />
+      <AppBreadcrumbs v-if="productsStore.isIndividualProductLoaded" :items="breadcrumbsItems" />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
-    <section :class="$style.productDetailsInfo" itemscope itemtype="https://schema.org/Product">
-      <div :class="$style.wrapper" v-if="productsStore.isIndividualProductLoaded">
+    <section itemscope itemtype="https://schema.org/Product" :class="$style.productDetailsInfo">
+      <div v-if="productsStore.isIndividualProductLoaded" :class="$style.wrapper">
         <div :class="$style.leftPanel">
           <img
+            itemprop="image"
             :class="$style.image"
             :src="productsStore.individualProduct.imageUrl"
             :alt="productsStore.individualProduct.name"
-            itemprop="image"
           />
         </div>
         <div :class="$style.rightPanel">
-          <h2 :class="$style.title" itemprop="name">
+          <h2 itemprop="name" :class="$style.title">
             {{ productsStore.individualProduct.name }}
           </h2>
           <p :class="$style.price">
@@ -55,14 +55,14 @@ productsStore.fetchIndividualProduct(route.params.id)
           </p>
           <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
           <AppButton
-            @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
-            :class="$style.button"
             itemprop="potentialAction"
             itemscope
             itemtype="https://schema.org/BuyAction"
+            :class="$style.button"
             :aria-label="buttonAriaLabel"
+            @click="cartStore.addProductToCart(productsStore.individualProduct.id)"
           >
-            <span itemprop="name" aria-hidden="true"> Добавить в корзину </span>
+            <span aria-hidden="true" itemprop="name"> Добавить в корзину </span>
           </AppButton>
         </div>
       </div>

@@ -20,27 +20,27 @@ const categoryPath = computed((): IRouteCategory => {
 
 <template>
   <li
-    :class="$style.menuItem"
+    role="presentation"
     itemprop="itemListElement"
     itemscope
     itemtype="https://schema.org/ListItem"
-    role="presentation"
+    :class="$style.menuItem"
   >
     <meta itemprop="position" :content="String(microMarkupListPosition)" />
     <RouterLink
-      :to="categoryPath"
-      :class="$style.link"
-      itemprop="item"
       role="menuitem"
       aria-labelledby="categoryName"
+      itemprop="item"
+      :to="categoryPath"
+      :class="$style.link"
     >
       <img
+        itemprop="image"
         :class="$style.image"
         :src="category.thumbnailUrl"
         :alt="category.name"
-        itemprop="image"
       />
-      <p id="categoryName" :class="$style.title" itemprop="name">
+      <p id="categoryName" itemprop="name" :class="$style.title">
         {{ category.name }}
       </p>
     </RouterLink>

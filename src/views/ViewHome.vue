@@ -15,14 +15,14 @@ productsStore.fetchAllProducts()
   <div :class="$style.home">
     <div :class="$style.leftPanel">
       <TheCategoriesMenu
+        v-if="categoriesStore.areCategoriesLoaded"
         :class="$style.categoriesMenu"
         :categories="categoriesStore.categories"
-        v-if="categoriesStore.areCategoriesLoaded"
       />
-      <AppSpinner :class="$style.categoriesSpinner" v-else />
+      <AppSpinner v-else :class="$style.categoriesSpinner" />
     </div>
     <div :class="$style.rightPanel">
-      <AppProducts :products="productsStore.products" v-if="productsStore.areAllProductsLoaded" />
+      <AppProducts v-if="productsStore.areAllProductsLoaded" :products="productsStore.products" />
       <AppSpinner v-else />
     </div>
   </div>

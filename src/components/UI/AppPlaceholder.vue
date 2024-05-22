@@ -1,10 +1,10 @@
 <template>
   <div
-    :class="$style.placeholder"
     tabindex="0"
     role="status"
     aria-live="polite"
     aria-labelledby="placeholderInner"
+    :class="$style.placeholder"
   >
     <div id="placeholderInner" :class="$style.placeholderInner">
       <slot />

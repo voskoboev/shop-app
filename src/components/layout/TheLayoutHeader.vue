@@ -10,14 +10,14 @@ const cartStore = useCartStore()
   <header :class="$style.header">
     <div class="container" :class="$style.headerContainer">
       <h1 :class="$style.title">
-        <RouterLink to="/" :class="$style.titleLink" aria-label="Главная страница">
+        <RouterLink to="/" aria-label="Главная страница" :class="$style.titleLink">
           Lightspeed
         </RouterLink>
       </h1>
       <RouterLink
         to="/cart"
-        :class="$style.cartLink"
         aria-label="Корзина покупок"
+        :class="$style.cartLink"
         :data-product-amount="cartStore.cartProductsAmount"
       >
         <IconCart :class="$style.cartIcon" />

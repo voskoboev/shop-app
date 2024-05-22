@@ -23,8 +23,8 @@ defineProps<{
         <p :class="$style.price">{{ cartProduct.price }} &#8381;</p>
         <div :class="$style.buttonWrapper">
           <AppButton
-            @click="cartStore.deleteProductFromCart(cartProduct.id)"
             aria-label="Удалить товар из корзины"
+            @click="cartStore.deleteProductFromCart(cartProduct.id)"
             >Удалить</AppButton
           >
         </div>
@@ -103,7 +103,6 @@ defineProps<{
   justify-content: flex-end;
   width: 30%;
 }
-
 
 @media (max-width: 768px) {
   .buttonWrapper {

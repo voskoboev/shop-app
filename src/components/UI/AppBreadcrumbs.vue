@@ -8,31 +8,31 @@ defineProps<{
 </script>
 
 <template>
-  <nav :class="$style.breadcrumbs" aria-label="Навигационное меню по страницам сайта">
-    <ol :class="$style.list" itemscope itemtype="https://schema.org/BreadcrumbList" role="menu">
+  <nav aria-label="Навигационное меню по страницам сайта" :class="$style.breadcrumbs">
+    <ol role="menu" itemscope itemtype="https://schema.org/BreadcrumbList" :class="$style.list">
       <li
-        :class="$style.listItem"
+        role="presentation"
         itemprop="itemListElement"
         itemscope
         itemtype="https://schema.org/ListItem"
-        role="presentation"
+        :class="$style.listItem"
       >
         <meta itemprop="position" content="1" />
-        <RouterLink to="/" itemprop="item" role="menuitem">
+        <RouterLink to="/" role="menuitem" itemprop="item">
           <span itemprop="name">Главная</span>
         </RouterLink>
       </li>
       <li
-        v-for="(item, index) in items"
-        :key="index"
-        :class="$style.listItem"
+        role="presentation"
         itemprop="itemListElement"
         itemscope
         itemtype="https://schema.org/ListItem"
-        role="presentation"
+        v-for="(item, index) in items"
+        :key="index"
+        :class="$style.listItem"
       >
         <meta itemprop="position" :content="String(index + 2)" />
-        <RouterLink :to="item.path" itemprop="item" role="menuitem">
+        <RouterLink role="menuitem" itemprop="item" :to="item.path">
           <span itemprop="name">
             {{ item.name }}
           </span>
