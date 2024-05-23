@@ -1,1 +1,4 @@
-export type TAddToCartProductsStateData = 'products' | 'categoryProducts' | 'individualProduct'
+export type TAddToCartProductsStateData<T> = Extract<
+  T,
+  'products' | 'categoryProducts' | 'individualProduct'
+>

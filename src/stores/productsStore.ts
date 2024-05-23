@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { serverApi } from '@/api/serverApi'
-import { useFetch } from '@/composables/useFetch'
+import { useFetch } from '@/composables/api/useFetch'
 import { type IProductsData } from '@/types/products/IProductsData'
 import { type IProduct } from '@/types/products/IProduct'
 

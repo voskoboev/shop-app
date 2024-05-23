@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { setBeforeEachGuards } from '@/router/guards/setBeforeEachGuards'
+import { useBeforeEachGuards } from '@/composables/router-guards/useBeforeEachGuards'
 import ViewHome from '@/views/ViewHome.vue'
 
 const router = createRouter({
@@ -30,6 +30,6 @@ const router = createRouter({
   ]
 })
 
-setBeforeEachGuards(router)
+useBeforeEachGuards(router)
 
 export default router

@@ -32,7 +32,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const addProductToCartById = (
-    productsStateData: Extract<keyof typeof productsStore, TAddToCartProductsStateData>,
+    productsStateData: TAddToCartProductsStateData<keyof typeof productsStore>,
     productId: number | null = null
   ) => {
     let foundProduct: IProduct | undefined
