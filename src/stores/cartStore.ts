@@ -78,7 +78,13 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const getCartProductsFromClientApi = () => {
-    cartProducts.value = clientApi.getItem()
+    const receivedItem = clientApi.getItem()
+
+    if (receivedItem) {
+      cartProducts.value = receivedItem
+    } else {
+      setCartProductsToClientApi()
+    }
   }
 
   return {
