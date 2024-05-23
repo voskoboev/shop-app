@@ -4,6 +4,7 @@
   --color-accent: #0e9e6e;
   --color-success: #198754;
   --color-danger: #dc3545;
+  --color-disabled: #808080;
   --rounding: 20px;
 
   box-sizing: border-box;

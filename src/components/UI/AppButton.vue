@@ -23,4 +23,13 @@
     opacity: 0.9;
   }
 }
+
+.button:disabled {
+  background-color: var(--color-disabled);
+  cursor: default;
+}
+
+.button:disabled:hover {
+  opacity: 1;
+}
 </style>

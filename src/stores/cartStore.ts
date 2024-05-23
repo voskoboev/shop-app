@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { clientApi } from '@/api/clientApi'
 import { useProductsStore } from '@/stores/productsStore'
+import { type Ref } from 'vue'
 import { type IProduct } from '@/types/products/IProduct'
 import { type TAddToCartProductsStateData } from '@/types/cart/TAddToCartProductsStateData'
 
@@ -10,15 +11,16 @@ export const useCartStore = defineStore('cart', () => {
 
   const cartProducts = ref<IProduct[]>([])
   const isProductAddedToCart = ref(false)
+  const isOrderPlaced = ref(false)
   const cartProductsAmount = computed(() => cartProducts.value.length)
   const areCartProductsAvailable = computed(() => cartProducts.value.length > 0)
 
-  const toggleToastVisibility = () => {
+  const toggleToastVisibility = (itemStatus: Ref<boolean>) => {
     const timeout = 1000
-    isProductAddedToCart.value = true
+    itemStatus.value = true
 
     setTimeout(() => {
-      isProductAddedToCart.value = false
+      itemStatus.value = false
     }, timeout)
   }
 
@@ -26,7 +28,7 @@ export const useCartStore = defineStore('cart', () => {
     cartProducts.value.push(product)
 
     if (!isProductAddedToCart.value) {
-      toggleToastVisibility()
+      toggleToastVisibility(isProductAddedToCart)
     }
   }
 
@@ -65,6 +67,12 @@ export const useCartStore = defineStore('cart', () => {
     cartProducts.value.splice(foundProductIndex, 1)
   }
 
+  const placeOrder = () => {
+    if (!isOrderPlaced.value) {
+      toggleToastVisibility(isOrderPlaced)
+    }
+  }
+
   const setCartProductsToClientApi = () => {
     clientApi.setItem([...cartProducts.value])
   }
@@ -76,12 +84,14 @@ export const useCartStore = defineStore('cart', () => {
   return {
     cartProducts,
     isProductAddedToCart,
+    isOrderPlaced,
     cartProductsAmount,
     areCartProductsAvailable,
     addProductToCartFromAllProducts,
     addProductToCartFromCategory,
     addProductToCartFromIndividualProduct,
     deleteProductFromCart,
+    placeOrder,
     setCartProductsToClientApi,
     getCartProductsFromClientApi
   }

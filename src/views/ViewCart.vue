@@ -15,16 +15,37 @@ const breadcrumbsItems: IBreadcrumbsItem[] = [
 </script>
 
 <template>
-  <div :class="$style.wrapper">
-    <AppBreadcrumbs :items="breadcrumbsItems" />
-    <TheCart v-if="cartStore.areCartProductsAvailable" />
-    <AppPlaceholder v-else> Корзина пуста </AppPlaceholder>
-  </div>
+  <section :class="$style.cart">
+    <AppToast :visibilityStatus="cartStore.isOrderPlaced"> Заказ оформлен </AppToast>
+    <div :class="$style.breadcrumbsWrapper">
+      <AppBreadcrumbs :items="breadcrumbsItems" />
+    </div>
+    <div :class="$style.buttonBuyWrapper">
+      <AppButton :disabled="!cartStore.areCartProductsAvailable" @click="cartStore.placeOrder">
+        Сделать заказ
+      </AppButton>
+    </div>
+    <div :class="$style.cartWrapper">
+      <TheCart v-if="cartStore.areCartProductsAvailable" />
+      <AppPlaceholder v-else> Корзина пуста </AppPlaceholder>
+    </div>
+  </section>
 </template>
 
 <style module>
-.wrapper {
+.cart {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+}
+
+.cartWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.buttonBuyWrapper {
+  margin-bottom: 30px;
 }
 </style>
