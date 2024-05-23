@@ -8,8 +8,8 @@ import AppProducts from '@/components/products/AppProducts.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const route = useRoute()
-const productsStore = useProductsStore()
 const categoriesStore = useCategoriesStore()
+const productsStore = useProductsStore()
 const cartStore = useCartStore()
 
 const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {

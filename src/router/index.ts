@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useBeforeEachGuards } from '@/composables/router-guards/useBeforeEachGuards'
+import { useBeforeEachGuards } from '@/composables/router/useBeforeEachGuards'
 import ViewHome from '@/views/ViewHome.vue'
 
 const router = createRouter({
