@@ -7,6 +7,7 @@ import router from '@/router'
 import AppButton from '@/components/UI/AppButton.vue'
 import AppSpinner from '@/components/UI/AppSpinner.vue'
 import AppPlaceholder from '@/components/UI/AppPlaceholder.vue'
+import AppError from '@/components/UI/AppError.vue'
 import AppToast from '@/components/UI/AppToast.vue'
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
 
@@ -18,24 +19,8 @@ app.use(router)
 app.component('AppBreadcrumbs', AppBreadcrumbs)
 app.component('AppButton', AppButton)
 app.component('AppPlaceholder', AppPlaceholder)
+app.component('AppError', AppError)
 app.component('AppSpinner', AppSpinner)
 app.component('AppToast', AppToast)
 
 app.mount('#app')
-
-// setBeforeEachGuards()
-// import router from '@/router'
-
-// import { useCategoriesStore } from '@/stores/categoriesStore'
-
-// const categoriesStore = useCategoriesStore()
-
-// export const setRouterBeforeEachGuards = () => {
-//   router.beforeEach((_, from, next) => {
-//     if (from.path === '/') {
-//       categoriesStore.closeMobileMenu()
-//     }
-//     //
-//     next()
-//   })
-// }

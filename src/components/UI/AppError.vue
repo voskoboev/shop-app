@@ -22,7 +22,7 @@
 .errorInner {
   min-width: 250px;
   max-width: 320px;
-  padding: 14px;
+  padding: 18px;
   border: 1px solid var(--color-danger);
   border-radius: var(--rounding);
   font-size: 1.5em;

@@ -1,14 +1,14 @@
 @import '@/assets/styles/base.css';
 
+#app {
+  height: 100%;
+}
+
 .container {
   max-width: 1432px;
   padding-left: 16px;
   padding-right: 16px;
   margin: 0 auto;
-}
-
-#app {
-  height: 100%;
 }
 
 .stopScroll {

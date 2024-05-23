@@ -23,7 +23,6 @@ const buttonAriaLabel = computed(
   () => `Добавить в корзину товар ${productsStore.individualProduct.name}`
 )
 
-productsStore.resetIndividualProductValue()
 productsStore.fetchIndividualProduct(route.params.id)
 </script>
 
@@ -49,9 +48,8 @@ productsStore.fetchIndividualProduct(route.params.id)
           </h2>
           <p :class="$style.price">
             <span itemprop="price" :content="productsStore.individualProduct.price">
-              {{ productsStore.individualProduct.price }}
-            </span>
-            <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+              {{ productsStore.individualProduct.price }} </span
+            >&nbsp;<span itemprop="priceCurrency" content="RUB">&#8381;</span>
           </p>
           <div v-html="productsStore.individualProduct.description" :class="$style.descr"></div>
           <AppButton

@@ -38,8 +38,8 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
               itemtype="https://schema.org/Offer"
               :class="$style.price"
             >
-              <span itemprop="price" :content="product.price">{{ product.price }}</span>
-              <span itemprop="priceCurrency" content="RUB">&#8381;</span>
+              <span itemprop="price" :content="product.price">{{ product.price }}</span
+              >&nbsp;<span itemprop="priceCurrency" content="RUB">&#8381;</span>
             </p>
           </div>
         </RouterLink>

@@ -14,7 +14,7 @@ export const useProductsStore = defineStore('products', () => {
   const isIndividualProductLoaded = ref(true)
 
   const fetchAllProducts = async () => {
-    const path = '/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl)'
+    const path = '/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl,description)'
     const errorMessage = 'All products fetch error'
 
     const fetchedData: IProductsData = await useFetch({
@@ -29,25 +29,8 @@ export const useProductsStore = defineStore('products', () => {
     }
   }
 
-  // TODO: проверить соответствия всех запрашиваемых сущностей, привести все к единой струкруре данных
-  const fetchIndividualProduct = async (productId: string | string[]) => {
-    const path = `/products/${productId}?responseFields=id,name,price,imageUrl,thumbnailUrl,description`
-    const errorMessage = 'Individual product fetch error'
-
-    individualProduct.value = await useFetch({
-      loadingStatus: isIndividualProductLoaded,
-      handler: serverApi.get,
-      path,
-      errorMessage
-    })
-  }
-
-  const resetIndividualProductValue = () => {
-    individualProduct.value = <IProduct>{}
-  }
-
   const fetchCategoryProducts = async (categoryId: string | string[]) => {
-    const path = `/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl)&category=${categoryId}`
+    const path = `/products?responseFields=items(id,name,price,imageUrl,thumbnailUrl,description)&category=${categoryId}`
     const errorMessage = 'Category products fetch error'
 
     const fetchedData: IProductsData = await useFetch({
@@ -62,8 +45,16 @@ export const useProductsStore = defineStore('products', () => {
     }
   }
 
-  const resetCategoryProductsValue = () => {
-    categoryProducts.value = []
+  const fetchIndividualProduct = async (productId: string | string[]) => {
+    const path = `/products/${productId}?responseFields=id,name,price,imageUrl,thumbnailUrl,description`
+    const errorMessage = 'Individual product fetch error'
+
+    individualProduct.value = await useFetch({
+      loadingStatus: isIndividualProductLoaded,
+      handler: serverApi.get,
+      path,
+      errorMessage
+    })
   }
 
   return {
@@ -75,8 +66,6 @@ export const useProductsStore = defineStore('products', () => {
     isIndividualProductLoaded,
     fetchAllProducts,
     fetchCategoryProducts,
-    resetCategoryProductsValue,
-    fetchIndividualProduct,
-    resetIndividualProductValue
+    fetchIndividualProduct
   }
 })

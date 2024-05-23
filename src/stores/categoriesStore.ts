@@ -11,8 +11,8 @@ export const useCategoriesStore = defineStore('categories', () => {
   const stopScrollSelectorName = 'stopScroll'
   const categories = ref<ICategory[]>([])
   const individualCategory = ref(<TIndividualCategory>{})
-  const isIndividualCategoryLoaded = ref(false)
   const areCategoriesLoaded = ref(true)
+  const isIndividualCategoryLoaded = ref(false)
   const isMobileMenuOpen = ref(true)
 
   const fetchAllCategories = async () => {
@@ -31,7 +31,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     }
   }
 
-  const fetchIndividualCategory = async (categoryId: any) => {
+  const fetchIndividualCategory = async (categoryId: string | string[]) => {
     const path = `/categories/${categoryId}?responseFields=name`
     const errorMessage = 'Individual category fetch error'
 
@@ -41,10 +41,6 @@ export const useCategoriesStore = defineStore('categories', () => {
       path,
       errorMessage
     })
-  }
-
-  const resetIndividualCategoryValue = () => {
-    individualCategory.value = <TIndividualCategory>{}
   }
 
   const changeMenuStateDependingOnWindowWidth = () => {
@@ -90,7 +86,6 @@ export const useCategoriesStore = defineStore('categories', () => {
     areCategoriesLoaded,
     fetchAllCategories,
     fetchIndividualCategory,
-    resetIndividualCategoryValue,
     changeMenuStateDependingOnWindowWidth,
     addWindowResizeListener,
     removeWindowResizeListener,
