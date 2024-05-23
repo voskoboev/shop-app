@@ -21,19 +21,31 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   ]
 })
 
+categoriesStore.resetfetchIndividualCategoryValues()
 categoriesStore.fetchIndividualCategory(route.params.id)
+
+productsStore.resetCategoryProductsValues()
 productsStore.fetchCategoryProducts(route.params.id)
 </script>
 
 <template>
   <div :class="$style.productsContainer">
     <div :class="$style.navWrapper">
-      <AppBreadcrumbs v-if="categoriesStore.isIndividualCategoryLoaded" :items="breadcrumbsItems" />
+      <AppError v-if="categoriesStore.isIndividualCategoryError">
+        Ошибка при загрузке категории
+      </AppError>
+      <AppBreadcrumbs
+        v-else-if="categoriesStore.isIndividualCategoryLoaded"
+        :items="breadcrumbsItems"
+      />
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
     <div :class="$style.productsWrapper">
+      <AppError v-if="productsStore.isCategoryProductsError">
+        Ошибка при загрузке спиcка товаров категории
+      </AppError>
       <AppProducts
-        v-if="productsStore.areCategoryProductsLoaded"
+        v-else-if="productsStore.areCategoryProductsLoaded"
         :class="$style.products"
         :products="productsStore.categoryProducts"
         :cardButtonHandler="cartStore.addProductToCartFromCategory"

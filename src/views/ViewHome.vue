@@ -9,24 +9,33 @@ const categoriesStore = useCategoriesStore()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
 
+categoriesStore.resetfetchAllCategoriesValues()
 categoriesStore.fetchAllCategories()
+
+productsStore.resetAllProductsStateValues()
 productsStore.fetchAllProducts()
 </script>
 
 <template>
   <div :class="$style.home">
     <div :class="$style.leftPanel">
+      <AppError v-if="categoriesStore.isAllCategoriesError">
+        Ошибка при загрузке списка категорий
+      </AppError>
       <TheCategoriesMenu
-        v-if="categoriesStore.areCategoriesLoaded"
+        v-else-if="categoriesStore.areCategoriesLoaded"
         :class="$style.categoriesMenu"
-        :categories="categoriesStore.categories"
+        :categories="categoriesStore.allCategories"
       />
       <AppSpinner v-else :class="$style.categoriesSpinner" />
     </div>
     <div :class="$style.rightPanel">
+      <AppError v-if="productsStore.isAllProductsError">
+        Ошибка при загрузке спиcка товаров
+      </AppError>
       <AppProducts
-        v-if="productsStore.areAllProductsLoaded"
-        :products="productsStore.products"
+        v-else-if="productsStore.areAllProductsLoaded"
+        :products="productsStore.allProducts"
         :cardButtonHandler="cartStore.addProductToCartFromAllProducts"
       />
       <AppSpinner v-else />

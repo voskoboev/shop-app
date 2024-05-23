@@ -7,7 +7,7 @@
     :class="$style.error"
   >
     <div id="errorInner" :class="$style.errorInner">
-      <slot />
+      <slot>Ошибка</slot>
     </div>
   </div>
 </template>
@@ -20,12 +20,12 @@
 }
 
 .errorInner {
-  min-width: 250px;
+  min-width: 120px;
   max-width: 320px;
-  padding: 18px;
+  padding: 10px;
   border: 1px solid var(--color-danger);
   border-radius: var(--rounding);
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
   text-align: center;
 }

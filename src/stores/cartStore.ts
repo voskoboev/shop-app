@@ -10,7 +10,6 @@ export const useCartStore = defineStore('cart', () => {
 
   const cartProducts = ref<IProduct[]>([])
   const isProductAddedToCart = ref(false)
-
   const cartProductsAmount = computed(() => cartProducts.value.length)
   const areCartProductsAvailable = computed(() => cartProducts.value.length > 0)
 
@@ -49,7 +48,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const addProductToCartFromAllProducts = (productId: number) => {
-    addProductToCartById('products', productId)
+    addProductToCartById('allProducts', productId)
   }
 
   const addProductToCartFromCategory = (productId: number) => {

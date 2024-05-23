@@ -23,6 +23,7 @@ const buttonAriaLabel = computed(
   () => `Добавить в корзину товар ${productsStore.individualProduct.name}`
 )
 
+productsStore.resetIndividualProductValues()
 productsStore.fetchIndividualProduct(route.params.id)
 </script>
 
@@ -33,7 +34,10 @@ productsStore.fetchIndividualProduct(route.params.id)
       <AppSpinner v-else :class="$style.breadcrumbsSpinner" />
     </div>
     <section itemscope itemtype="https://schema.org/Product" :class="$style.productDetailsInfo">
-      <div v-if="productsStore.isIndividualProductLoaded" :class="$style.wrapper">
+      <AppError v-if="productsStore.isIndividualProductsError">
+        Ошибка при загрузке товара
+      </AppError>
+      <div v-else-if="productsStore.isIndividualProductLoaded" :class="$style.wrapper">
         <div :class="$style.leftPanel">
           <img
             loading="lazy"

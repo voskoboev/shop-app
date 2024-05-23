@@ -21,12 +21,12 @@
 }
 
 .placeholderInner {
-  min-width: 250px;
+  min-width: 200px;
   max-width: 320px;
-  padding: 18px;
+  padding: 10px;
   border: 1px solid var(--color-accent);
   border-radius: var(--rounding);
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
   text-align: center;
 }

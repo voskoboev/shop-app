@@ -1,7 +1,8 @@
 import { type Ref } from 'vue'
 
 export interface IUseFetchParams {
-  loadingStatus: Ref<boolean> | null | undefined
+  isLoadedStatus: Ref<boolean> | null
+  isErrorStatus: Ref<boolean> | null
   handler: (...args: any[]) => Promise<any>
   path: string
   errorMessage: string

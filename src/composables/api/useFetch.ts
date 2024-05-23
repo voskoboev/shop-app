@@ -1,23 +1,31 @@
 import { type IUseFetchParams } from '@/types/composables/IUseFetchParams'
 
-export async function useFetch({ loadingStatus, handler, path, errorMessage }: IUseFetchParams) {
+export async function useFetch({
+  isLoadedStatus,
+  isErrorStatus,
+  handler,
+  path,
+  errorMessage
+}: IUseFetchParams) {
   let data: any
 
   try {
-    if (loadingStatus) {
-      loadingStatus.value = false
+    if (isLoadedStatus) {
+      isLoadedStatus.value = false
     }
 
     const res = await handler(path)
 
-    console.log(`useFetch data: ${path}`, res.data)
-
     data = await res.data
   } catch (err: any) {
+    if (isErrorStatus) {
+      isErrorStatus.value = true
+    }
+
     console.error(`${errorMessage}: ${err.message}`)
   } finally {
-    if (loadingStatus) {
-      loadingStatus.value = true
+    if (isLoadedStatus) {
+      isLoadedStatus.value = true
     }
   }
 

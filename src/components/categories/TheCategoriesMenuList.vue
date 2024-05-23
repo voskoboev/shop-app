@@ -8,7 +8,7 @@ const categoriesStore = useCategoriesStore()
 <template>
   <ul role="menu" itemscope itemtype="https://schema.org/ItemList" :class="$style.menuList">
     <TheCategoriesMenuListItem
-      v-for="(category, index) in categoriesStore.categories"
+      v-for="(category, index) in categoriesStore.allCategories"
       :key="category.id"
       :category="category"
       :microMarkupListPosition="index + 1"
