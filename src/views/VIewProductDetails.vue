@@ -36,6 +36,7 @@ productsStore.fetchIndividualProduct(route.params.id)
       <div v-if="productsStore.isIndividualProductLoaded" :class="$style.wrapper">
         <div :class="$style.leftPanel">
           <img
+            loading="lazy"
             itemprop="image"
             :class="$style.image"
             :src="productsStore.individualProduct.imageUrl"

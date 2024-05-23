@@ -26,7 +26,13 @@ const buttonAriaLabel = computed(() => `Добавить в корзину то�
     <article itemscope itemtype="https://schema.org/Product">
       <div :class="$style.card">
         <RouterLink aria-labelledby="productName productPrice" :to="individualProductPath">
-          <img itemprop="image" :class="$style.image" :src="product.imageUrl" :alt="product.name" />
+          <img
+            loading="lazy"
+            itemprop="image"
+            :class="$style.image"
+            :src="product.imageUrl"
+            :alt="product.name"
+          />
           <div :class="$style.info">
             <h3 id="productName" itemprop="name" :class="$style.title">
               {{ product.name }}

@@ -35,6 +35,7 @@ const categoryPath = computed((): IRouteCategory => {
       :class="$style.link"
     >
       <img
+        loading="lazy"
         itemprop="image"
         :class="$style.image"
         :src="category.thumbnailUrl"

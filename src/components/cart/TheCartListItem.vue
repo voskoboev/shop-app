@@ -14,7 +14,12 @@ defineProps<{
   <li>
     <article :class="$style.card">
       <div>
-        <img :class="$style.image" :src="cartProduct.thumbnailUrl" :alt="cartProduct.name" />
+        <img
+          loading="lazy"
+          :class="$style.image"
+          :src="cartProduct.thumbnailUrl"
+          :alt="cartProduct.name"
+        />
       </div>
       <div :class="$style.info">
         <h3 :class="$style.title">
