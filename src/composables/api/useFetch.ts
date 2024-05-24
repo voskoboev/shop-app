@@ -7,7 +7,7 @@ export async function useFetch({
   path,
   errorMessage
 }: IUseFetchParams) {
-  let data: any
+  let data
 
   try {
     if (isLoadedStatus) {

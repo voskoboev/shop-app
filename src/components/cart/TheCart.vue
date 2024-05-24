@@ -3,21 +3,14 @@ import TheCartList from '@/components/cart/TheCartList.vue'
 </script>
 
 <template>
-  <!-- <section :class="$style.cart"> -->
+  <section>
     <div :class="$style.cartContainer">
       <TheCartList />
     </div>
-  <!-- </section> -->
+  </section>
 </template>
 
 <style module>
-/* .cart {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-} */
-
 .title {
   margin-bottom: 20px;
   font-size: 1.5em;

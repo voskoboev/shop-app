@@ -1,6 +1,6 @@
 import { type IProduct } from '@/types/products/IProduct'
 
-export const isIProduct = (data: any): data is IProduct => {
+export const isIProduct = (data: IProduct): data is IProduct => {
   return (
     typeof data.id === 'number' &&
     typeof data.name === 'string' &&
