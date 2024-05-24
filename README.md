@@ -1,10 +1,11 @@
 # Shop App
 
-Techs: HTML5, CSS3, Normalize.css, CSS Modules, TypeScript, Axios, Vue, Vue Router, Pinia.
+Techs: HTML5, CSS3, Normalize.css, CSS Modules, TypeScript, Axios, Vue 3, Vue Router, Pinia.
 
 Traits:
-- Layout is responsive, accessible, and SEO friendly with semantics and micro-markups.
+- Layout is responsive, accessible, and SEO friendly with semantics and micro-markups. Supposed to be inserted in Vue SSR.
 - Vue and Pinia code is written in composition style. 
+- [Hosted Site](https://lightspeed-shop-app.netlify.app/).
 
 ## Goal
 
