@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :class="[{ [$style.toastVisible]: visibilityStatus }, $style.toast]">
+  <div :class="[$style.toast, { [$style.toastVisible]: visibilityStatus }]">
     <slot />
   </div>
 </template>
