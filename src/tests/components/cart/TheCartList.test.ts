@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { useCartStore } from '@/stores/cartStore'
 import TheCartList from '@/components/cart/TheCartList.vue'
@@ -25,37 +25,26 @@ const cartProducts = [
 ]
 
 describe('TheCartList', () => {
-  beforeEach(() => {
-    setActivePinia(createPinia())
+  setActivePinia(createPinia())
+
+  const cartStore = useCartStore()
+  const wrapper = mount(TheCartList)
+
+  cartStore.$patch({
+    cartProducts
   })
 
-  it('Render component', () => {
-    const wrapper = mount(TheCartList)
-
+  it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Render correct number of cart items', () => {
-    const cartStore = useCartStore()
-
-    cartStore.$patch({
-      cartProducts
-    })
-
-    const wrapper = mount(TheCartList)
+  it('Renders correct number of cart products', () => {
     const cartItems = wrapper.findAllComponents(TheCartListItem)
 
     expect(cartItems).toHaveLength(2)
   })
 
-  it('Render cart items with valid data', () => {
-    const cartStore = useCartStore()
-
-    cartStore.$patch({
-      cartProducts
-    })
-
-    const wrapper = mount(TheCartList)
+  it('Renders cart items with valid data', () => {
     const cartItems = wrapper.findAllComponents(TheCartListItem)
 
     expect(cartItems[0].props('cartProduct')).toEqual(cartProducts[0])

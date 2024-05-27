@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useCartStore } from '@/stores/cartStore'
-import AppButton from '../UI/AppButton.vue'
 import { type IProduct } from '@/types/products/IProduct'
 
 const cartStore = useCartStore()

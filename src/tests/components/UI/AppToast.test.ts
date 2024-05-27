@@ -1,65 +1,65 @@
-import { mount } from '@vue/test-utils'
+import { mount, VueWrapper } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import AppToast from '@/components/UI/AppToast.vue'
 
+const slotText = 'Buy Product'
+const slotElem = '<div id="elemId"></div>'
+const slotElemId = 'elemId'
+
 describe('AppToast', () => {
-  it('Render component', () => {
+  let wrapper: VueWrapper
+
+  const setSlotValue = (value: string) => {
+    wrapper = mount(AppToast, {
+      slots: {
+        default: value
+      }
+    })
+  }
+
+  const setPropValue = (value: boolean) => {
+    wrapper = mount(AppToast, {
+      props: {
+        visibilityStatus: value
+      }
+    })
+  }
+
+  it('Renders component', () => {
     const wrapper = mount(AppToast)
 
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Render slot text value', () => {
-    const wrapper = mount(AppToast, {
-      slots: {
-        default: 'Text'
-      }
-    })
+  it('Renders slot text value', () => {
+    setSlotValue(slotText)
 
-    expect(wrapper.text()).toBe('Text')
+    expect(wrapper.text()).toBe(slotText)
   })
 
-  it('Render slot nested element', () => {
-    const wrapper = mount(AppToast, {
-      slots: {
-        default: '<div id="elemId"></div>'
-      }
-    })
-    const elem = wrapper.find('#elemId')
+  it('Renders slot nested element', () => {
+    setSlotValue(slotElem)
+
+    const elem = wrapper.find(`#${slotElemId}`)
 
     expect(elem.exists()).toBe(true)
   })
 
-  it('Check visibilityStatus prop is boolean', () => {
-    const wrapper = mount(AppToast, {
-      props: {
-        visibilityStatus: false
-      }
-    })
-
-    expect(wrapper.props('visibilityStatus')).toBeTypeOf('boolean')
-  })
-
-  it('Component has extra visibility class when visibilityStatus prop is true', () => {
-    const wrapper = mount(AppToast, {
-      props: {
-        visibilityStatus: true
-      }
-    })
-    const classes = wrapper.classes()
-
-    expect(classes).toContain(classes[1])
-  })
-
   it('Component has not extra visibility class when visibilityStatus prop is false', () => {
-    const wrapper = mount(AppToast, {
-      props: {
-        visibilityStatus: false
-      }
-    })
+    setPropValue(false)
+
     const classes = wrapper.classes()
 
     expect(classes).toHaveLength(1)
     expect(classes).not.toContain(classes[1])
+  })
+
+  it('Component has extra visibility class when visibilityStatus prop is true', () => {
+    setPropValue(true)
+
+    const classes = wrapper.classes()
+
+    expect(classes).toHaveLength(2)
+    expect(classes).toContain(classes[1])
   })
 })

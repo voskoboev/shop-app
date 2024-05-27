@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, beforeEach } from 'vitest'
-import { createRouter, createWebHistory } from 'vue-router'
+import { describe, it, expect } from 'vitest'
+import { createRouter, createWebHistory, RouterLink } from 'vue-router'
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
 import ViewHome from '@/views/ViewHome.vue'
 
@@ -22,46 +22,34 @@ const items = [
   }
 ]
 
-describe('AppBreadcrumbs', () => {
-  beforeEach(async () => {
-    router.push('/')
-    await router.isReady()
+describe('AppBreadcrumbs', async () => {
+  router.push('/')
+  await router.isReady()
+
+  const wrapper = mount(AppBreadcrumbs, {
+    global: {
+      plugins: [router]
+    },
+    props: {
+      items
+    }
   })
 
-  it('Render component', async () => {
-    const wrapper = mount(AppBreadcrumbs, {
-      global: {
-        plugins: [router]
-      }
-    })
-
+  it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Check items prop type', async () => {
-    const wrapper = mount(AppBreadcrumbs, {
-      global: {
-        plugins: [router]
-      },
-      props: {
-        items
-      }
-    })
+  it('Renders correct number of router links', () => {
+    const listItems = wrapper.findAllComponents(RouterLink)
 
-    expect(wrapper.props('items')).toBeInstanceOf(Array)
+    expect(listItems).toHaveLength(3)
   })
 
-  it('Check rendered list items minimal amount', async () => {
-    const wrapper = mount(AppBreadcrumbs, {
-      global: {
-        plugins: [router]
-      },
-      props: {
-        items
-      }
-    })
+  it('Renders router links with valid data', () => {
+    const routerLinks = wrapper.findAllComponents(RouterLink)
 
-    const listItems = wrapper.findAll('li')
-    expect(listItems.length).toBeGreaterThanOrEqual(2)
+    expect(routerLinks[0].props('to')).toBe('/')
+    expect(routerLinks[1].props('to')).toBe(items[0].path)
+    expect(routerLinks[2].props('to')).toBe(items[1].path)
   })
 })
