@@ -38,10 +38,12 @@ onMounted(() => {
       <div :class="$style.wrapper">
         <button
           aria-label="Закрыть меню категорий товаров"
+          aria-controls="categoriesNav"
           :class="$style.buttonMenuClose"
+          :aria-expanded="categoriesStore.isMobileMenuOpen"
           @click="categoriesStore.closeMobileMenu"
         ></button>
-        <TheCategoriesMenuList :categories="categories" />
+        <TheCategoriesMenuList />
       </div>
     </nav>
   </div>

@@ -45,7 +45,7 @@ describe('AppToast', () => {
     expect(elem.exists()).toBe(true)
   })
 
-  it('Component has not extra visibility class when visibilityStatus prop is false', () => {
+  it('Has not visibility class when visibilityStatus prop is false', () => {
     setPropValue(false)
 
     const classes = wrapper.classes()
@@ -54,7 +54,7 @@ describe('AppToast', () => {
     expect(classes).not.toContain(classes[1])
   })
 
-  it('Component has extra visibility class when visibilityStatus prop is true', () => {
+  it('Has visibility class when visibilityStatus prop is true', () => {
     setPropValue(true)
 
     const classes = wrapper.classes()

@@ -1,17 +1,17 @@
-import { mount, VueWrapper } from '@vue/test-utils'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { describe, it, expect, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { useCartStore } from '@/stores/cartStore'
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
 import AppButton from '@/components/UI/AppButton.vue'
 
-const cartProduct = {
+const mockCartProduct = {
   id: 1,
-  name: 'Name 1',
+  name: 'Name',
   price: 1,
-  imageUrl: 'imageUrl 1',
-  thumbnailUrl: 'thumbnailUrl 1',
-  description: 'description 1'
+  imageUrl: 'imageUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  description: 'description'
 }
 
 describe('TheCartListItem', () => {
@@ -19,19 +19,15 @@ describe('TheCartListItem', () => {
 
   const cartStore = useCartStore()
 
-  let wrapper: VueWrapper<any>
-
-  beforeEach(() => {
-    wrapper = mount(TheCartListItem, {
-      global: {
-        components: {
-          AppButton
-        }
-      },
-      props: {
-        cartProduct
+  const wrapper = mount(TheCartListItem, {
+    global: {
+      components: {
+        AppButton
       }
-    })
+    },
+    props: {
+      cartProduct: mockCartProduct
+    }
   })
 
   it('Renders component', () => {
@@ -39,7 +35,7 @@ describe('TheCartListItem', () => {
   })
 
   it('Renders cartProduct prop with valid data', () => {
-    expect(wrapper.props('cartProduct')).toEqual(cartProduct)
+    expect(wrapper.props('cartProduct')).toEqual(mockCartProduct)
   })
 
   it('Triggers deleteProductFromCart method on click', async () => {
@@ -48,6 +44,6 @@ describe('TheCartListItem', () => {
 
     await deleteButton.trigger('click')
 
-    expect(deleteSpy).toHaveBeenCalledWith(cartProduct.id)
+    expect(deleteSpy).toHaveBeenCalledWith(mockCartProduct.id)
   })
 })

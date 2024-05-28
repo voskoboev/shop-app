@@ -34,20 +34,17 @@ describe('AppBreadcrumbs', async () => {
       items
     }
   })
+  const routerLinks = wrapper.findAllComponents(RouterLink)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   it('Renders correct number of router links', () => {
-    const listItems = wrapper.findAllComponents(RouterLink)
-
-    expect(listItems).toHaveLength(3)
+    expect(routerLinks).toHaveLength(3)
   })
 
   it('Renders router links with valid data', () => {
-    const routerLinks = wrapper.findAllComponents(RouterLink)
-
     expect(routerLinks[0].props('to')).toBe('/')
     expect(routerLinks[1].props('to')).toBe(items[0].path)
     expect(routerLinks[2].props('to')).toBe(items[1].path)

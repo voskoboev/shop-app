@@ -8,14 +8,13 @@ describe('TheCart', () => {
   setActivePinia(createPinia())
 
   const wrapper = mount(TheCart)
+  const cartList = wrapper.findComponent(TheCartList)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders cart list component', () => {
-    const childComponent = wrapper.findComponent(TheCartList)
-
-    expect(childComponent.exists()).toBe(true)
+  it('Renders cart list child component', () => {
+    expect(cartList.exists()).toBe(true)
   })
 })

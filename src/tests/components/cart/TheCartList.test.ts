@@ -5,7 +5,7 @@ import { useCartStore } from '@/stores/cartStore'
 import TheCartList from '@/components/cart/TheCartList.vue'
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
 
-const cartProducts = [
+const mockCartProducts = [
   {
     id: 1,
     name: 'Name 1',
@@ -28,26 +28,22 @@ describe('TheCartList', () => {
   setActivePinia(createPinia())
 
   const cartStore = useCartStore()
-  const wrapper = mount(TheCartList)
 
-  cartStore.$patch({
-    cartProducts
-  })
+  cartStore.cartProducts = mockCartProducts
+
+  const wrapper = mount(TheCartList)
+  const cartListItems = wrapper.findAllComponents(TheCartListItem)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   it('Renders correct number of cart products', () => {
-    const cartItems = wrapper.findAllComponents(TheCartListItem)
-
-    expect(cartItems).toHaveLength(2)
+    expect(cartListItems).toHaveLength(2)
   })
 
   it('Renders cart items with valid data', () => {
-    const cartItems = wrapper.findAllComponents(TheCartListItem)
-
-    expect(cartItems[0].props('cartProduct')).toEqual(cartProducts[0])
-    expect(cartItems[1].props('cartProduct')).toEqual(cartProducts[1])
+    expect(cartListItems[0].props('cartProduct')).toEqual(mockCartProducts[0])
+    expect(cartListItems[1].props('cartProduct')).toEqual(mockCartProducts[1])
   })
 })
