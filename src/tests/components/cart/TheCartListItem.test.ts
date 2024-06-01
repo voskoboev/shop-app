@@ -4,8 +4,9 @@ import { createPinia, setActivePinia } from 'pinia'
 import { useCartStore } from '@/stores/cartStore'
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
 import AppButton from '@/components/UI/AppButton.vue'
+import { type IProduct } from '@/types/products/IProduct'
 
-const mockCartProduct = {
+const mockCartProduct: IProduct = {
   id: 1,
   name: 'Name',
   price: 1,

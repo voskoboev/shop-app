@@ -3,22 +3,27 @@ import { describe, it, expect } from 'vitest'
 import { createRouter, createWebHistory, RouterLink } from 'vue-router'
 import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
 import ViewCategory from '@/views/ViewCategory.vue'
+import { type RouteRecordRaw } from 'vue-router'
+import { type ICategory } from '@/types/categories/ICategory'
+import { type IRouteCategory } from '@/types/router/IRouteCategory'
 
-const routes = [{ path: '/category/:id', name: 'category', component: ViewCategory }]
+const routes: RouteRecordRaw[] = [
+  { path: '/category/:id', name: 'category', component: ViewCategory }
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
 
-const mockCategory = {
+const mockCategory: ICategory = {
   id: 1,
   name: 'Name',
   thumbnailUrl: 'thumbnailUrl'
 }
-const mockPropMicroMarkupListPosition = 1
+const mockMicroMarkupListPosition = 1
 
-const mockRouterLinkRoute = {
+const mockRoute: IRouteCategory = {
   name: 'category',
   params: {
     id: 1
@@ -35,7 +40,7 @@ describe('TheCategoriesMenuListItem', async () => {
     },
     props: {
       category: mockCategory,
-      microMarkupListPosition: mockPropMicroMarkupListPosition
+      microMarkupListPosition: mockMicroMarkupListPosition
     }
   })
   const routerLink = wrapper.findComponent(RouterLink)
@@ -46,7 +51,7 @@ describe('TheCategoriesMenuListItem', async () => {
 
   it('Renders category and microMarkupListPosition props with valid data', () => {
     expect(wrapper.props('category')).toEqual(mockCategory)
-    expect(wrapper.props('microMarkupListPosition')).toEqual(mockPropMicroMarkupListPosition)
+    expect(wrapper.props('microMarkupListPosition')).toEqual(mockMicroMarkupListPosition)
   })
 
   it('Renders router link child component', () => {
@@ -54,6 +59,6 @@ describe('TheCategoriesMenuListItem', async () => {
   })
 
   it('Renders router link child component with valid data', () => {
-    expect(routerLink.props('to')).toEqual(mockRouterLinkRoute)
+    expect(routerLink.props('to')).toEqual(mockRoute)
   })
 })

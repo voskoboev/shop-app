@@ -4,8 +4,9 @@ import { createPinia, setActivePinia } from 'pinia'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
+import { type ICategory } from '@/types/categories/ICategory'
 
-const mockAllCategories = [
+const mockAllCategories: ICategory[] = [
   {
     id: 1,
     name: 'name 1',

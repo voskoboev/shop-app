@@ -3,15 +3,17 @@ import { describe, it, expect } from 'vitest'
 import { createRouter, createWebHistory, RouterLink } from 'vue-router'
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
 import ViewHome from '@/views/ViewHome.vue'
+import { type RouteRecordRaw } from 'vue-router'
+import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
-const routes = [{ path: '/', component: ViewHome }]
+const routes: RouteRecordRaw[] = [{ path: '/', component: ViewHome }]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
 
-const items = [
+const mockItems: IBreadcrumbsItem[] = [
   {
     path: '/products/1',
     name: 'Product'
@@ -31,7 +33,7 @@ describe('AppBreadcrumbs', async () => {
       plugins: [router]
     },
     props: {
-      items
+      items: mockItems
     }
   })
   const routerLinks = wrapper.findAllComponents(RouterLink)
@@ -46,7 +48,7 @@ describe('AppBreadcrumbs', async () => {
 
   it('Renders router links with valid data', () => {
     expect(routerLinks[0].props('to')).toBe('/')
-    expect(routerLinks[1].props('to')).toBe(items[0].path)
-    expect(routerLinks[2].props('to')).toBe(items[1].path)
+    expect(routerLinks[1].props('to')).toBe(mockItems[0].path)
+    expect(routerLinks[2].props('to')).toBe(mockItems[1].path)
   })
 })
