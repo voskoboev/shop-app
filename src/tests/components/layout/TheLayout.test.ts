@@ -1,31 +1,18 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { createRouter, createWebHistory } from 'vue-router'
 import TheLayout from '@/components/layout/TheLayout.vue'
 import AppToast from '@/components/UI/AppToast.vue'
 import TheLayoutHeader from '@/components/layout/TheLayoutHeader.vue'
 import TheLayoutMain from '@/components/layout/TheLayoutMain.vue'
 import TheLayoutFooter from '@/components/layout/TheLayoutFooter.vue'
-import ViewHome from '@/views/ViewHome.vue'
-import { type RouteRecordRaw } from 'vue-router'
 
-const routes: RouteRecordRaw[] = [{ path: '/', component: ViewHome }]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
-
-describe('TheLayout', async () => {
-  router.push('/')
-  await router.isReady()
-
+describe('TheLayout', () => {
   setActivePinia(createPinia())
 
   const wrapper = mount(TheLayout, {
     global: {
-      plugins: [router]
+      stubs: ['router-link', 'router-view']
     },
     components: {
       AppToast

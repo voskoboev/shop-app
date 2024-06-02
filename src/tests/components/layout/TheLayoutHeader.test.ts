@@ -3,25 +3,13 @@ import { describe, it, expect } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { RouterLink, createRouter, createWebHistory } from 'vue-router'
 import TheLayoutHeader from '@/components/layout/TheLayoutHeader.vue'
-import ViewHome from '@/views/ViewHome.vue'
-import { type RouteRecordRaw } from 'vue-router'
 
-const routes: RouteRecordRaw[] = [{ path: '/', component: ViewHome }]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
-
-describe('TheLayoutHeader', async () => {
-  router.push('/')
-  await router.isReady()
-
+describe('TheLayoutHeader', () => {
   setActivePinia(createPinia())
 
   const wrapper = mount(TheLayoutHeader, {
     global: {
-      plugins: [router]
+      stubs: ['router-link']
     }
   })
   const routerLinks = wrapper.findAllComponents(RouterLink)

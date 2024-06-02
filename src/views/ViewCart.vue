@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useCartStore } from '@/stores/cartStore'
 import TheCart from '@/components/cart/TheCart.vue'
-import AppPlaceholder from '@/components/UI/AppPlaceholder.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 const cartStore = useCartStore()

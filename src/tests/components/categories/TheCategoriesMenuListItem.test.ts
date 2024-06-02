@@ -30,13 +30,11 @@ const mockRoute: IRouteCategory = {
   }
 }
 
-describe('TheCategoriesMenuListItem', async () => {
-  router.push('/')
-  await router.isReady()
-
+describe('TheCategoriesMenuListItem', () => {
   const wrapper = mount(TheCategoriesMenuListItem, {
     global: {
       plugins: [router]
+      // stubs: ["router-link", "router-view"]
     },
     props: {
       category: mockCategory,
@@ -49,7 +47,7 @@ describe('TheCategoriesMenuListItem', async () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders category and microMarkupListPosition props with valid data', () => {
+  it('Checks category and microMarkupListPosition props with valid data', () => {
     expect(wrapper.props('category')).toEqual(mockCategory)
     expect(wrapper.props('microMarkupListPosition')).toEqual(mockMicroMarkupListPosition)
   })

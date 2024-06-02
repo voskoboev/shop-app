@@ -31,7 +31,7 @@ describe('TheCartList', () => {
   const cartStore = useCartStore()
 
   cartStore.cartProducts = mockCartProducts
-
+  
   const wrapper = mount(TheCartList)
   const cartListItems = wrapper.findAllComponents(TheCartListItem)
 
@@ -39,7 +39,7 @@ describe('TheCartList', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders correct number of cart products', () => {
+  it('Renders correct number of cart items', () => {
     expect(cartListItems).toHaveLength(2)
   })
 

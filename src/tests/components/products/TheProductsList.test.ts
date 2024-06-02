@@ -1,24 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi } from 'vitest'
-import { createRouter, createWebHistory } from 'vue-router'
 import TheProductsList from '@/components/products/TheProductsList.vue'
 import TheProductsListItem from '@/components/products/TheProductsListItem.vue'
-import ViewProductDetails from '@/views/ViewProductDetails.vue'
-import { type RouteRecordRaw } from 'vue-router'
 import { type IProduct } from '@/types/products/IProduct'
-
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/product/:id',
-    name: 'product-details',
-    component: ViewProductDetails
-  }
-]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
 
 const mockProducts: IProduct[] = [
   {
@@ -39,15 +23,12 @@ const mockProducts: IProduct[] = [
   }
 ]
 
-const mockCardButtonHandler = vi.fn()
-
-describe('TheProductsList', async () => {
-  router.push('/')
-  await router.isReady()
+describe('TheProductsList', () => {
+  const mockCardButtonHandler = vi.fn()
 
   const wrapper = mount(TheProductsList, {
     global: {
-      plugins: [router]
+      stubs: ['router-link']
     },
     props: {
       products: mockProducts,
@@ -60,7 +41,7 @@ describe('TheProductsList', async () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Check component props', () => {
+  it('Checks products and cardButtonHandler props with valid data', () => {
     expect(wrapper.props('products')).toEqual(mockProducts)
     expect(wrapper.props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })

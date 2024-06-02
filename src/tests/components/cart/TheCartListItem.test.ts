@@ -20,6 +20,8 @@ describe('TheCartListItem', () => {
 
   const cartStore = useCartStore()
 
+  cartStore.deleteProductFromCart = vi.fn()
+
   const wrapper = mount(TheCartListItem, {
     global: {
       components: {
@@ -30,21 +32,19 @@ describe('TheCartListItem', () => {
       cartProduct: mockCartProduct
     }
   })
+  const deleteButton = wrapper.findComponent(AppButton)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders cartProduct prop with valid data', () => {
+  it('Checks cartProduct prop with valid data', () => {
     expect(wrapper.props('cartProduct')).toEqual(mockCartProduct)
   })
 
-  it('Triggers deleteProductFromCart method on click', async () => {
-    const deleteButton = wrapper.findComponent(AppButton)
-    const deleteSpy = vi.spyOn(cartStore, 'deleteProductFromCart')
-
+  it('Triggers deleteProductFromCart method on delete button on click', async () => {
     await deleteButton.trigger('click')
 
-    expect(deleteSpy).toHaveBeenCalledWith(mockCartProduct.id)
+    expect(cartStore.deleteProductFromCart).toHaveBeenCalledWith(mockCartProduct.id)
   })
 })

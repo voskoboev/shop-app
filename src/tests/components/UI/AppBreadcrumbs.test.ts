@@ -1,17 +1,9 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import { createRouter, createWebHistory, RouterLink } from 'vue-router'
+import {RouterLink } from 'vue-router'
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
-import ViewHome from '@/views/ViewHome.vue'
-import { type RouteRecordRaw } from 'vue-router'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
-const routes: RouteRecordRaw[] = [{ path: '/', component: ViewHome }]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
 
 const mockItems: IBreadcrumbsItem[] = [
   {
@@ -24,13 +16,10 @@ const mockItems: IBreadcrumbsItem[] = [
   }
 ]
 
-describe('AppBreadcrumbs', async () => {
-  router.push('/')
-  await router.isReady()
-
+describe('AppBreadcrumbs', () => {
   const wrapper = mount(AppBreadcrumbs, {
     global: {
-      plugins: [router]
+      stubs: ['router-link']
     },
     props: {
       items: mockItems
@@ -40,6 +29,10 @@ describe('AppBreadcrumbs', async () => {
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
+  })
+
+  it('Checks items prop with valid data', () => {
+    expect(wrapper.props('items')).toEqual(mockItems)
   })
 
   it('Renders correct number of router links', () => {
