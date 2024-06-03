@@ -1,20 +1,9 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
-import { createRouter, createWebHistory, RouterLink } from 'vue-router'
+import { describe, it, expect, vi } from 'vitest'
+import { RouterLink } from 'vue-router'
 import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
-import ViewCategory from '@/views/ViewCategory.vue'
-import { type RouteRecordRaw } from 'vue-router'
 import { type ICategory } from '@/types/categories/ICategory'
 import { type IRouteCategory } from '@/types/router/IRouteCategory'
-
-const routes: RouteRecordRaw[] = [
-  { path: '/category/:id', name: 'category', component: ViewCategory }
-]
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
 
 const mockCategory: ICategory = {
   id: 1,
@@ -22,19 +11,30 @@ const mockCategory: ICategory = {
   thumbnailUrl: 'thumbnailUrl'
 }
 const mockMicroMarkupListPosition = 1
+const mockRouteParams = { id: 1 }
 
 const mockRoute: IRouteCategory = {
   name: 'category',
-  params: {
-    id: 1
-  }
+  params: mockRouteParams
 }
 
 describe('TheCategoriesMenuListItem', () => {
+  vi.mock('vue-router', () => ({
+    useRoute: () => ({
+      params: mockRouteParams
+    }),
+    RouterLink: {
+      props: {
+        to: Object
+      }
+    }
+  }))
+
   const wrapper = mount(TheCategoriesMenuListItem, {
     global: {
-      plugins: [router]
-      // stubs: ["router-link", "router-view"]
+      components: {
+        RouterLink
+      }
     },
     props: {
       category: mockCategory,

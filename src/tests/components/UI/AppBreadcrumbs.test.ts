@@ -1,9 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import {RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import AppBreadcrumbs from '@/components/UI/AppBreadcrumbs.vue'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
-
 
 const mockItems: IBreadcrumbsItem[] = [
   {
@@ -19,6 +18,9 @@ const mockItems: IBreadcrumbsItem[] = [
 describe('AppBreadcrumbs', () => {
   const wrapper = mount(AppBreadcrumbs, {
     global: {
+      components: {
+        RouterLink
+      },
       stubs: ['router-link']
     },
     props: {

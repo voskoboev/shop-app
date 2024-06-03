@@ -9,6 +9,9 @@ describe('TheLayoutMain', () => {
 
   const wrapper = mount(TheLayoutMain, {
     global: {
+      components: {
+        RouterView
+      },
       stubs: ['router-view']
     }
   })

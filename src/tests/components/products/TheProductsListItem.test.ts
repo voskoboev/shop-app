@@ -27,6 +27,9 @@ describe('TheProductsListItem', () => {
 
   const wrapper = mount(TheProductsListItem, {
     global: {
+      components: {
+        RouterLink
+      },
       stubs: ['router-link']
     },
     components: {

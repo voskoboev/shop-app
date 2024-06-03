@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { RouterLink, createRouter, createWebHistory } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import TheLayoutHeader from '@/components/layout/TheLayoutHeader.vue'
 
 describe('TheLayoutHeader', () => {
@@ -9,6 +9,9 @@ describe('TheLayoutHeader', () => {
 
   const wrapper = mount(TheLayoutHeader, {
     global: {
+      components: {
+        RouterLink
+      },
       stubs: ['router-link']
     }
   })

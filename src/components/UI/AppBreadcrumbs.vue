@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { RouterLink } from 'vue-router'
 import { type IBreadcrumbsItem } from '@/types/router/IBreadcrumbsItem'
 
 defineProps<{

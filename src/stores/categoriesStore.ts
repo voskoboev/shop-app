@@ -42,7 +42,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     const path = `/categories/${categoryId}?responseFields=name`
     const errorMessage = 'Individual category fetch error'
 
-    const fetchedData: { name: string } = await useFetch({
+    const fetchedData: TIndividualCategory = await useFetch({
       isLoadedStatus: isIndividualCategoryLoaded,
       isErrorStatus: isIndividualCategoryError,
       handler: serverApi.get,

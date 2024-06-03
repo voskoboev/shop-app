@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { RouterLink } from 'vue-router'
 import { useCartStore } from '@/stores/cartStore'
 import IconCart from '@/components/icons/IconCart.vue'
 

@@ -61,6 +61,16 @@ describe('TheCategoriesMenu', () => {
     expect(menuList.exists()).toBe(true)
   })
 
+  it('Renders nav by condition', async () => {
+    categoriesStore.isMobileMenuOpen = true
+
+    await wrapper.vm.$nextTick()
+
+    const nav = wrapper.find('nav')
+
+    expect(nav.exists()).toBe(true)
+  })
+
   it('Triggers openMobileMenu method on open menu button on click', async () => {
     await buttonOpenMenu.trigger('click')
 

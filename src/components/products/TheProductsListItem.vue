@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
 import { type IProduct } from '@/types/products/IProduct'
 import { type IRouteProductDetails } from '@/types/router/IRouteProductDetails'
 

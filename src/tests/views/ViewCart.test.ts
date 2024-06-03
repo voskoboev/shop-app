@@ -48,12 +48,9 @@ describe('ViewCart', () => {
       AppPlaceholder
     }
   })
-
   const toast = wrapper.findComponent(AppToast)
   const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
   const button = wrapper.findComponent(AppButton)
-  const cart = wrapper.findComponent(TheCart)
-  const placeholder = wrapper.findComponent(AppPlaceholder)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
@@ -77,11 +74,6 @@ describe('ViewCart', () => {
     expect(cartStore.placeOrder).toHaveBeenCalled()
   })
 
-  it('Renders cart child component and does not render placeholder', () => {
-    expect(cart.exists()).toBe(true)
-    expect(placeholder.exists()).toBe(false)
-  })
-
   it('Disables button when cart products are not available', async () => {
     cartStore.cartProducts = []
 
@@ -96,5 +88,25 @@ describe('ViewCart', () => {
     await wrapper.vm.$nextTick()
 
     expect(button.attributes('disabled')).toBeUndefined()
+  })
+
+  it('Renders cart child component by condition', async () => {
+    cartStore.cartProducts = mockCartProducts
+
+    await wrapper.vm.$nextTick()
+
+    const cart = wrapper.findComponent(TheCart)
+
+    expect(cart.exists()).toBe(true)
+  })
+
+  it('Renders cart placeholder child component by condition', async () => {
+    cartStore.cartProducts = []
+
+    await wrapper.vm.$nextTick()
+
+    const placeholder = wrapper.findComponent(AppPlaceholder)
+
+    expect(placeholder.exists()).toBe(true)
   })
 })
