@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import { type ICategory } from '@/types/categories/ICategory'
@@ -11,10 +11,10 @@ defineProps<{
 const categoriesStore = useCategoriesStore()
 
 categoriesStore.changeMenuStateDependingOnWindowWidth()
+categoriesStore.addWindowResizeListener()
 
-onMounted(() => {
-  categoriesStore.addWindowResizeListener()
-})
+// onMounted(() => {
+// })
 </script>
 
 <template>

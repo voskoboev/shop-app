@@ -9,7 +9,7 @@ const slotElemId = 'elemId'
 describe('AppButton', () => {
   let wrapper: VueWrapper
 
-  const setSlotValue = (value: string) => {
+  const setWrapperWithSlotValue = (value: string) => {
     wrapper = mount(AppButton, {
       slots: {
         default: value
@@ -24,14 +24,13 @@ describe('AppButton', () => {
   })
 
   it('Renders slot text value', () => {
-    setSlotValue(slotText)
+    setWrapperWithSlotValue(slotText)
 
     expect(wrapper.text()).toBe(slotText)
   })
 
   it('Renders slot nested element', () => {
-    setSlotValue(slotElem)
-
+    setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 
     expect(elem.exists()).toBe(true)

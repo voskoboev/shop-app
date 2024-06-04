@@ -9,7 +9,7 @@ const slotElemId = 'elemId'
 describe('AppToast', () => {
   let wrapper: VueWrapper
 
-  const setSlotValue = (value: string) => {
+  const setWrapperWithSlotValue = (value: string) => {
     wrapper = mount(AppToast, {
       slots: {
         default: value
@@ -17,7 +17,7 @@ describe('AppToast', () => {
     })
   }
 
-  const setPropValue = (value: boolean) => {
+  const setWrapperWithPropValue = (value: boolean) => {
     wrapper = mount(AppToast, {
       props: {
         visibilityStatus: value
@@ -32,22 +32,20 @@ describe('AppToast', () => {
   })
 
   it('Renders slot text value', () => {
-    setSlotValue(slotText)
+    setWrapperWithSlotValue(slotText)
 
     expect(wrapper.text()).toBe(slotText)
   })
 
   it('Renders slot nested element', () => {
-    setSlotValue(slotElem)
-
+    setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 
     expect(elem.exists()).toBe(true)
   })
 
   it('Has not visibility class when visibilityStatus prop is false', () => {
-    setPropValue(false)
-
+    setWrapperWithPropValue(false)
     const classes = wrapper.classes()
 
     expect(classes).toHaveLength(1)
@@ -55,8 +53,7 @@ describe('AppToast', () => {
   })
 
   it('Has visibility class when visibilityStatus prop is true', () => {
-    setPropValue(true)
-
+    setWrapperWithPropValue(true)
     const classes = wrapper.classes()
 
     expect(classes).toHaveLength(2)

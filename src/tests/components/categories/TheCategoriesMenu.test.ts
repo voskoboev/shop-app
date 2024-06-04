@@ -63,7 +63,6 @@ describe('TheCategoriesMenu', () => {
 
   it('Renders nav by condition', async () => {
     categoriesStore.isMobileMenuOpen = true
-
     await wrapper.vm.$nextTick()
 
     const nav = wrapper.find('nav')

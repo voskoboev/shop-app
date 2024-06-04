@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import { useProductsStore } from '@/stores/productsStore'
@@ -24,17 +24,16 @@ describe('ViewCategory', () => {
   const categoriesStore = useCategoriesStore()
   const productsStore = useProductsStore()
 
+  categoriesStore.resetfetchIndividualCategoryValues = vi.fn()
   categoriesStore.fetchIndividualCategory = vi.fn()
   productsStore.resetCategoryProductsValues = vi.fn()
   productsStore.fetchCategoryProducts = vi.fn()
-  categoriesStore.resetfetchIndividualCategoryValues = vi.fn()
 
   const wrapper = mount(ViewCategory, {
     components: {
       AppError,
       AppBreadcrumbs,
-      AppSpinner,
-      AppProducts
+      AppSpinner
     }
   })
 
