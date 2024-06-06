@@ -18,28 +18,31 @@ describe('TheLayout', () => {
       AppToast
     }
   })
-  const toast = wrapper.findComponent(AppToast)
-  const header = wrapper.findComponent(TheLayoutHeader)
-  const main = wrapper.findComponent(TheLayoutMain)
-  const footer = wrapper.findComponent(TheLayoutFooter)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   it('Renders toast child component', () => {
+    const toast = wrapper.findComponent(AppToast)
+
     expect(toast.exists()).toBe(true)
   })
 
   it('Renders header child component', () => {
+    const header = wrapper.findComponent(TheLayoutHeader)
+
     expect(header.exists()).toBe(true)
   })
 
   it('Renders main child component', () => {
+    const main = wrapper.findComponent(TheLayoutMain)
+
     expect(main.exists()).toBe(true)
   })
 
   it('Renders footer child component', () => {
+    const footer = wrapper.findComponent(TheLayoutFooter)
     expect(footer.exists()).toBe(true)
   })
 })

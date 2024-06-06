@@ -15,13 +15,14 @@ describe('TheLayoutMain', () => {
       stubs: ['router-view']
     }
   })
-  const routerView = wrapper.findComponent(RouterView)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   it('Renders router view child component', () => {
+    const routerView = wrapper.findComponent(RouterView)
+
     expect(routerView.exists()).toBe(true)
   })
 })

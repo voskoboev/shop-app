@@ -35,7 +35,6 @@ describe('AppProducts', () => {
       cardButtonHandler: mockCardButtonHandler
     }
   })
-  const productsList = wrapper.findComponent(TheProductsList)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
@@ -47,6 +46,8 @@ describe('AppProducts', () => {
   })
 
   it('Renders products list child component', () => {
+    const productsList = wrapper.findComponent(TheProductsList)
+
     expect(productsList.exists()).toBe(true)
   })
 })

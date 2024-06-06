@@ -15,13 +15,14 @@ describe('TheLayoutHeader', () => {
       stubs: ['router-link']
     }
   })
-  const routerLinks = wrapper.findAllComponents(RouterLink)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   it('Renders router link child components', () => {
+    const routerLinks = wrapper.findAllComponents(RouterLink)
+
     expect(routerLinks[0].exists()).toBe(true)
     expect(routerLinks[1].exists()).toBe(true)
   })

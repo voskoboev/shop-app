@@ -14,7 +14,6 @@ const mockProduct: IProduct = {
   thumbnailUrl: 'thumbnailUrl 1',
   description: 'description 1'
 }
-
 const mockRoute: IRouteProductDetails = {
   name: 'product-details',
   params: {

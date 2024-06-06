@@ -59,7 +59,6 @@ describe('ViewCategory', () => {
 
   it('Renders breadcrumbs error child component by condition', async () => {
     categoriesStore.isIndividualCategoryError = true
-
     await wrapper.vm.$nextTick()
 
     const errorBreadcrumbs = wrapper.findComponent(AppError)
@@ -70,7 +69,6 @@ describe('ViewCategory', () => {
   it('Renders breadcrumbs child component by condition', async () => {
     categoriesStore.isIndividualCategoryError = false
     categoriesStore.isIndividualCategoryLoaded = true
-
     await wrapper.vm.$nextTick()
 
     const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
@@ -81,7 +79,6 @@ describe('ViewCategory', () => {
   it('Renders breadcrumbs spinner child component by condition', async () => {
     categoriesStore.isIndividualCategoryError = false
     categoriesStore.isIndividualCategoryLoaded = false
-
     await wrapper.vm.$nextTick()
 
     const spinnerBreadcrumbs = wrapper.findComponent(AppSpinner)
@@ -91,7 +88,6 @@ describe('ViewCategory', () => {
 
   it('Renders products error child component by condition', async () => {
     productsStore.isCategoryProductsError = true
-
     await wrapper.vm.$nextTick()
 
     const productsError = wrapper.findComponent(AppError)
@@ -102,7 +98,6 @@ describe('ViewCategory', () => {
   it('Renders products child component by condition', async () => {
     productsStore.isCategoryProductsError = false
     productsStore.areCategoryProductsLoaded = true
-
     await wrapper.vm.$nextTick()
 
     const products = wrapper.findComponent(AppProducts)
@@ -113,7 +108,6 @@ describe('ViewCategory', () => {
   it('Renders products spinner child component by condition', async () => {
     productsStore.isCategoryProductsError = false
     productsStore.areCategoryProductsLoaded = false
-
     await wrapper.vm.$nextTick()
 
     const spinnerProducts = wrapper.findAllComponents(AppSpinner)

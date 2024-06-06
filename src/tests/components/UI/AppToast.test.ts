@@ -19,6 +19,7 @@ describe('AppToast', () => {
 
   const setWrapperWithPropValue = (value: boolean) => {
     wrapper = mount(AppToast, {
+      attachTo: document.body,
       props: {
         visibilityStatus: value
       }

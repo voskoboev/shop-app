@@ -49,7 +49,6 @@ describe('ViewHome', () => {
 
   it('Renders categories menu error child component by condition', async () => {
     categoriesStore.isAllCategoriesError = true
-
     await wrapper.vm.$nextTick()
 
     const errorCategoriesMenu = wrapper.findComponent(AppError)
@@ -60,7 +59,6 @@ describe('ViewHome', () => {
   it('Renders categories menu child component by condition', async () => {
     categoriesStore.isAllCategoriesError = false
     categoriesStore.areCategoriesLoaded = true
-
     await wrapper.vm.$nextTick()
 
     const categoriesMenu = wrapper.findComponent(TheCategoriesMenu)
@@ -71,7 +69,6 @@ describe('ViewHome', () => {
   it('Renders categories menu spinner child component by condition', async () => {
     categoriesStore.isAllCategoriesError = false
     categoriesStore.areCategoriesLoaded = false
-
     await wrapper.vm.$nextTick()
 
     const spinnercategoriesMenu = wrapper.findComponent(AppSpinner)
@@ -81,7 +78,6 @@ describe('ViewHome', () => {
 
   it('Renders products error child component by condition', async () => {
     productsStore.isAllProductsError = true
-
     await wrapper.vm.$nextTick()
 
     const errorProducts = wrapper.findComponent(AppError)
@@ -92,7 +88,6 @@ describe('ViewHome', () => {
   it('Renders products child component by condition', async () => {
     productsStore.isAllProductsError = false
     productsStore.areAllProductsLoaded = true
-
     await wrapper.vm.$nextTick()
 
     const products = wrapper.findComponent(AppProducts)
@@ -103,7 +98,6 @@ describe('ViewHome', () => {
   it('Renders product spinner child component by condition', async () => {
     productsStore.isAllProductsError = false
     productsStore.areAllProductsLoaded = false
-
     await wrapper.vm.$nextTick()
 
     const spinners = wrapper.findAllComponents(AppSpinner)

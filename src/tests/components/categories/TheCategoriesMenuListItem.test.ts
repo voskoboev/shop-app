@@ -12,7 +12,6 @@ const mockCategory: ICategory = {
 }
 const mockMicroMarkupListPosition = 1
 const mockRouteParams = { id: 1 }
-
 const mockRoute: IRouteCategory = {
   name: 'category',
   params: mockRouteParams

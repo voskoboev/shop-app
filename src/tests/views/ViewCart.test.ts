@@ -48,8 +48,6 @@ describe('ViewCart', () => {
       AppPlaceholder
     }
   })
-  const toast = wrapper.findComponent(AppToast)
-  const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
   const button = wrapper.findComponent(AppButton)
 
   it('Renders component', () => {
@@ -57,10 +55,14 @@ describe('ViewCart', () => {
   })
 
   it('Renders toast child component', () => {
+    const toast = wrapper.findComponent(AppToast)
+
     expect(toast.exists()).toBe(true)
   })
 
   it('Renders breadcrumbs child component', () => {
+    const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
+
     expect(breadcrumbs.exists()).toBe(true)
   })
 
@@ -76,7 +78,6 @@ describe('ViewCart', () => {
 
   it('Disables button when cart products are not available', async () => {
     cartStore.cartProducts = []
-
     await wrapper.vm.$nextTick()
 
     expect(button.attributes('disabled')).toBe('')
@@ -84,7 +85,6 @@ describe('ViewCart', () => {
 
   it('Enables button when cart products are available', async () => {
     cartStore.cartProducts = mockCartProducts
-
     await wrapper.vm.$nextTick()
 
     expect(button.attributes('disabled')).toBeUndefined()
@@ -92,7 +92,6 @@ describe('ViewCart', () => {
 
   it('Renders cart child component by condition', async () => {
     cartStore.cartProducts = mockCartProducts
-
     await wrapper.vm.$nextTick()
 
     const cart = wrapper.findComponent(TheCart)
@@ -102,7 +101,6 @@ describe('ViewCart', () => {
 
   it('Renders cart placeholder child component by condition', async () => {
     cartStore.cartProducts = []
-
     await wrapper.vm.$nextTick()
 
     const placeholder = wrapper.findComponent(AppPlaceholder)

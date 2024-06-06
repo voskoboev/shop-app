@@ -15,7 +15,6 @@ describe('App', () => {
   window.addEventListener = vi.fn()
 
   const wrapper = mount(App)
-  const layout = wrapper.findComponent(TheLayout)
 
   it('Renders component', () => {
     expect(wrapper.exists()).toBe(true)
@@ -33,6 +32,8 @@ describe('App', () => {
   })
 
   it('Renders layout child component', () => {
+    const layout = wrapper.findComponent(TheLayout)
+
     expect(layout.exists()).toBe(true)
   })
 })
