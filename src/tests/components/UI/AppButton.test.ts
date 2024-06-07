@@ -33,6 +33,6 @@ describe('AppButton', () => {
     setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 
-    expect(elem.exists()).toBe(true)
+    expect(elem.html()).toBe(slotElem)
   })
 })

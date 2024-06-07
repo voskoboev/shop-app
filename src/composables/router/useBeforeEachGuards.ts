@@ -1,13 +1,13 @@
 import { type Router } from 'vue-router'
-import { useCategoriesStore } from '@/stores/categoriesStore'
+import { useMenuStore } from '@/stores/UI/menuStore'
 
 export function useBeforeEachGuards(router: Router) {
   router.beforeEach((_, from, next) => {
-    const categoriesStore = useCategoriesStore()
+    const menuStore = useMenuStore()
 
     if (from.path === '/') {
-      categoriesStore.closeMobileMenu()
-      categoriesStore.removeWindowResizeListener()
+      menuStore.closeMobileMenu()
+      menuStore.removeWindowResizeListener()
     }
 
     next()

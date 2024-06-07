@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { type ICategory } from '@/types/categories/ICategory'
 import { isICategory } from '@/types/categories/isICategory'
+import { type ICategory } from '@/types/categories/ICategory'
 
 describe('isICategory', () => {
   it('Should return true if param has valid data', () => {

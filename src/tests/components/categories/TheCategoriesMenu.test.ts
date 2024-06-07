@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { useCategoriesStore } from '@/stores/categoriesStore'
+import { useMenuStore } from '@/stores/UI/menuStore'
 import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import { type ICategory } from '@/types/categories/ICategory'
@@ -22,12 +22,12 @@ const mockCategories: ICategory[] = [
 describe('TheCategoriesMenu', () => {
   setActivePinia(createPinia())
 
-  const categoriesStore = useCategoriesStore()
+  const menuStore = useMenuStore()
 
-  categoriesStore.openMobileMenu = vi.fn()
-  categoriesStore.closeMobileMenu = vi.fn()
-  categoriesStore.changeMenuStateDependingOnWindowWidth = vi.fn()
-  categoriesStore.addWindowResizeListener = vi.fn()
+  menuStore.openMobileMenu = vi.fn()
+  menuStore.closeMobileMenu = vi.fn()
+  menuStore.changeMenuStateDependingOnWindowWidth = vi.fn()
+  menuStore.addWindowResizeListener = vi.fn()
 
   const wrapper = mount(TheCategoriesMenu, {
     props: {
@@ -48,13 +48,13 @@ describe('TheCategoriesMenu', () => {
   })
 
   it('Calls changeMenuStateDependingOnWindowWidth method when component created', () => {
-    expect(categoriesStore.changeMenuStateDependingOnWindowWidth).toHaveBeenCalled()
+    expect(menuStore.changeMenuStateDependingOnWindowWidth).toHaveBeenCalled()
   })
 
   it('Calls addWindowResizeListener method when component mounted', async () => {
     await wrapper.vm.$nextTick()
 
-    expect(categoriesStore.addWindowResizeListener).toHaveBeenCalled()
+    expect(menuStore.addWindowResizeListener).toHaveBeenCalled()
   })
 
   it('Renders categories menu list child component', () => {
@@ -62,7 +62,7 @@ describe('TheCategoriesMenu', () => {
   })
 
   it('Renders nav by condition', async () => {
-    categoriesStore.isMobileMenuOpen = true
+    menuStore.isMobileMenuOpen = true
     await wrapper.vm.$nextTick()
 
     const nav = wrapper.find('nav')
@@ -73,12 +73,12 @@ describe('TheCategoriesMenu', () => {
   it('Triggers openMobileMenu method on open menu button on click', async () => {
     await buttonOpenMenu.trigger('click')
 
-    expect(categoriesStore.openMobileMenu).toHaveBeenCalled()
+    expect(menuStore.openMobileMenu).toHaveBeenCalled()
   })
 
   it('Triggers closeMobileMenu method on close menu button on click', async () => {
     await buttonCloseMenu.trigger('click')
 
-    expect(categoriesStore.closeMobileMenu).toHaveBeenCalled()
+    expect(menuStore.closeMobileMenu).toHaveBeenCalled()
   })
 })

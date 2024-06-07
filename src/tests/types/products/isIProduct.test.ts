@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { type IProduct } from '@/types/products/IProduct'
 import { isIProduct } from '@/types/products/isIProduct'
+import { type IProduct } from '@/types/products/IProduct'
 
 describe('isIProduct', () => {
   it('Should return true if param has valid data', () => {

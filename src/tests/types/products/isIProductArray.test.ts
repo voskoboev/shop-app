@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { type IProduct } from '@/types/products/IProduct'
 import { isIProductArray } from '@/types/products/isIProductArray'
+import { type IProduct } from '@/types/products/IProduct'
 
 const mockValidProductArray: IProduct[] = [
   {

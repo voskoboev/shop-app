@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { type ICategory } from '@/types/categories/ICategory'
 import { isICategoryArray } from '@/types/categories/isICategoryArray'
+import { type ICategory } from '@/types/categories/ICategory'
 
 const mockValidCategoryArray: ICategory[] = [
   {

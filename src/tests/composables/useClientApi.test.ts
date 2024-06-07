@@ -20,21 +20,10 @@ const mockProducts: IProduct[] = [
     description: 'description 2'
   }
 ]
-
-const mockLocalStorage = () => {
-  const store: Record<string, string> = {}
-
-  return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => (store[key] = value)
-  }
-}
-
-const mockLs = mockLocalStorage()
 const mockItemKey = 'mockKey'
 
 describe('useClientApi', () => {
-  vi.stubGlobal('localStorage', mockLs)
+  vi.mock('localStorage')
 
   const clientApi = useClientApi(mockItemKey)
 

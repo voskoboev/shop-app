@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-// import { onMounted } from 'vue'
-import { useCategoriesStore } from '@/stores/categoriesStore'
+// import { useCategoriesStore } from '@/stores/categoriesStore'
+import { useMenuStore } from '@/stores/UI/menuStore'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import { type ICategory } from '@/types/categories/ICategory'
 
@@ -8,13 +8,10 @@ defineProps<{
   categories: ICategory[]
 }>()
 
-const categoriesStore = useCategoriesStore()
+const menuStore = useMenuStore()
 
-categoriesStore.changeMenuStateDependingOnWindowWidth()
-categoriesStore.addWindowResizeListener()
-
-// onMounted(() => {
-// })
+menuStore.changeMenuStateDependingOnWindowWidth()
+menuStore.addWindowResizeListener()
 </script>
 
 <template>
@@ -23,8 +20,8 @@ categoriesStore.addWindowResizeListener()
       aria-label="Открыть меню категорий товаров"
       aria-controls="categoriesNav"
       :class="$style.buttonMenuOpen"
-      :aria-expanded="categoriesStore.isMobileMenuOpen"
-      @click="categoriesStore.openMobileMenu"
+      :aria-expanded="menuStore.isMobileMenuOpen"
+      @click="menuStore.openMobileMenu"
     >
       <div :class="$style.buttonMenuOpenDecorLine"></div>
     </button>
@@ -32,7 +29,7 @@ categoriesStore.addWindowResizeListener()
     <nav
       id="categoriesNav"
       aria-label="Навигационное меню категорий товаров"
-      v-if="categoriesStore.isMobileMenuOpen"
+      v-if="menuStore.isMobileMenuOpen"
       :class="$style.nav"
     >
       <div :class="$style.wrapper">
@@ -40,8 +37,8 @@ categoriesStore.addWindowResizeListener()
           aria-label="Закрыть меню категорий товаров"
           aria-controls="categoriesNav"
           :class="$style.buttonMenuClose"
-          :aria-expanded="categoriesStore.isMobileMenuOpen"
-          @click="categoriesStore.closeMobileMenu"
+          :aria-expanded="menuStore.isMobileMenuOpen"
+          @click="menuStore.closeMobileMenu"
         ></button>
         <TheCategoriesMenuList />
       </div>

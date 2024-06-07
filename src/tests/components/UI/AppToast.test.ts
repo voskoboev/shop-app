@@ -42,7 +42,7 @@ describe('AppToast', () => {
     setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 
-    expect(elem.exists()).toBe(true)
+    expect(elem.html()).toBe(slotElem)
   })
 
   it('Has not visibility class when visibilityStatus prop is false', () => {

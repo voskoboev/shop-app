@@ -9,7 +9,7 @@ const categoriesStore = useCategoriesStore()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
 
-categoriesStore.resetfetchAllCategoriesValues()
+categoriesStore.resetAllCategoriesValues()
 categoriesStore.fetchAllCategories()
 
 productsStore.resetAllProductsStateValues()

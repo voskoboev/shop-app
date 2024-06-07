@@ -15,7 +15,7 @@ describe('ViewHome', () => {
   const categoriesStore = useCategoriesStore()
   const productsStore = useProductsStore()
 
-  categoriesStore.resetfetchAllCategoriesValues = vi.fn()
+  categoriesStore.resetAllCategoriesValues = vi.fn()
   categoriesStore.fetchAllCategories = vi.fn()
   productsStore.resetAllProductsStateValues = vi.fn()
   productsStore.fetchAllProducts = vi.fn()
@@ -31,8 +31,8 @@ describe('ViewHome', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Calls resetfetchAllCategoriesValues method when component is created', () => {
-    expect(categoriesStore.resetfetchAllCategoriesValues).toHaveBeenCalled()
+  it('Calls resetAllCategoriesValues method when component is created', () => {
+    expect(categoriesStore.resetAllCategoriesValues).toHaveBeenCalled()
   })
 
   it('Calls fetchAllCategories method when component is created', () => {
