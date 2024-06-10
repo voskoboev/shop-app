@@ -93,6 +93,8 @@ export const useCartStore = defineStore('cart', () => {
     isOrderPlaced,
     cartProductsAmount,
     areCartProductsAvailable,
+    addProductToCart,
+    addProductToCartById,
     addProductToCartFromAllProducts,
     addProductToCartFromCategory,
     addProductToCartFromIndividualProduct,

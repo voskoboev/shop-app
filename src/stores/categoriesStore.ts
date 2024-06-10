@@ -56,10 +56,12 @@ export const useCategoriesStore = defineStore('categories', () => {
 
   const resetAllCategoriesValues = () => {
     allCategories.value = []
+    isAllCategoriesError.value = false
   }
 
-  const resetfetchIndividualCategoryValues = () => {
+  const resetIndividualCategoryValues = () => {
     individualCategory.value = <TIndividualCategory>{}
+    isIndividualCategoryError.value = false
   }
 
   return {
@@ -72,6 +74,6 @@ export const useCategoriesStore = defineStore('categories', () => {
     fetchAllCategories,
     fetchIndividualCategory,
     resetAllCategoriesValues,
-    resetfetchIndividualCategoryValues
+    resetIndividualCategoryValues
   }
 })

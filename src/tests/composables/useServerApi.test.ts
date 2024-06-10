@@ -4,7 +4,7 @@ import { useServerApi } from '@/composables/api/useServerApi'
 
 const mockBaseUrl = 'https://api.com'
 const mockAuthData = 'mockAuthToken'
-const mockPath = '/api-path'
+const mockPath = '/mock-api-path'
 const mockResponse = { data: 'Mock data' }
 
 const mockFetchArgs = {
@@ -20,7 +20,7 @@ describe('useServerApi', () => {
   axios.create = vi.fn().mockReturnValue({
     get: vi.fn()
   })
-  
+
   const axiosInstance = axios.create()
   const serverApi = useServerApi(mockBaseUrl, mockAuthData)
 

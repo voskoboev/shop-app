@@ -43,6 +43,7 @@ describe('TheLayout', () => {
 
   it('Renders footer child component', () => {
     const footer = wrapper.findComponent(TheLayoutFooter)
+    
     expect(footer.exists()).toBe(true)
   })
 })

@@ -53,7 +53,7 @@ describe('TheProductsList', () => {
   it('Renders products list items with valid data', () => {
     expect(productsListItems[0].props('product')).toEqual(mockProducts[0])
     expect(productsListItems[0].props('cardButtonHandler')).toEqual(mockCardButtonHandler)
-
+    
     expect(productsListItems[1].props('product')).toEqual(mockProducts[1])
     expect(productsListItems[1].props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })

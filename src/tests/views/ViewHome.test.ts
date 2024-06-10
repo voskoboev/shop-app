@@ -50,7 +50,6 @@ describe('ViewHome', () => {
   it('Renders categories menu error child component by condition', async () => {
     categoriesStore.isAllCategoriesError = true
     await wrapper.vm.$nextTick()
-
     const errorCategoriesMenu = wrapper.findComponent(AppError)
 
     expect(errorCategoriesMenu.exists()).toBe(true)
@@ -60,7 +59,6 @@ describe('ViewHome', () => {
     categoriesStore.isAllCategoriesError = false
     categoriesStore.areCategoriesLoaded = true
     await wrapper.vm.$nextTick()
-
     const categoriesMenu = wrapper.findComponent(TheCategoriesMenu)
 
     expect(categoriesMenu.exists()).toBe(true)
@@ -70,7 +68,6 @@ describe('ViewHome', () => {
     categoriesStore.isAllCategoriesError = false
     categoriesStore.areCategoriesLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinnercategoriesMenu = wrapper.findComponent(AppSpinner)
 
     expect(spinnercategoriesMenu.exists()).toBe(true)
@@ -89,7 +86,6 @@ describe('ViewHome', () => {
     productsStore.isAllProductsError = false
     productsStore.areAllProductsLoaded = true
     await wrapper.vm.$nextTick()
-
     const products = wrapper.findComponent(AppProducts)
 
     expect(products.exists()).toBe(true)
@@ -99,7 +95,6 @@ describe('ViewHome', () => {
     productsStore.isAllProductsError = false
     productsStore.areAllProductsLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinners = wrapper.findAllComponents(AppSpinner)
 
     expect(spinners[1].exists()).toBe(true)

@@ -9,14 +9,14 @@ const routes: RouteRecordRaw[] = [
     component: ViewHome
   },
   {
-    path: '/products/:id',
-    name: 'product-details',
-    component: () => import('@/views/ViewProductDetails.vue')
-  },
-  {
     path: '/category/:id',
     name: 'category',
     component: () => import('@/views/ViewCategory.vue')
+  },
+  {
+    path: '/products/:id',
+    name: 'product-details',
+    component: () => import('@/views/ViewProductDetails.vue')
   },
   {
     path: '/cart',

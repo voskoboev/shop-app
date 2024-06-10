@@ -55,7 +55,6 @@ describe('ViewProductDetails', () => {
   it('Renders breadcrumbs child component by condition', async () => {
     productsStore.isIndividualProductLoaded = true
     await wrapper.vm.$nextTick()
-
     const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
 
     expect(breadcrumbs.exists()).toBe(true)
@@ -64,7 +63,6 @@ describe('ViewProductDetails', () => {
   it('Renders breadcrumbs spinner child component by condition', async () => {
     productsStore.isIndividualProductLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinnerBreadcrumbs = wrapper.findComponent(AppSpinner)
 
     expect(spinnerBreadcrumbs.exists()).toBe(true)
@@ -73,7 +71,6 @@ describe('ViewProductDetails', () => {
   it('Renders product error child component by condition', async () => {
     productsStore.isIndividualProductsError = true
     await wrapper.vm.$nextTick()
-
     const errorProducts = wrapper.findComponent(AppError)
 
     expect(errorProducts.exists()).toBe(true)
@@ -83,7 +80,6 @@ describe('ViewProductDetails', () => {
     productsStore.isIndividualProductsError = false
     productsStore.isIndividualProductLoaded = true
     await wrapper.vm.$nextTick()
-
     const product = wrapper.find('div._wrapper_31c314')
 
     expect(product.exists()).toBe(true)
@@ -93,7 +89,6 @@ describe('ViewProductDetails', () => {
     productsStore.isIndividualProductsError = false
     productsStore.isIndividualProductLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinners = wrapper.findAllComponents(AppSpinner)
 
     expect(spinners[1].exists()).toBe(true)

@@ -6,7 +6,7 @@ import { type IUseFetchParams } from '@/types/composables/IUseFetchParams'
 const mockPath = '/mock-api-path'
 const mockErrorMessage = 'Mock fetch error'
 const mockFetchedData = { data: 'Mock data' }
-const error = new Error('Mock error')
+const mockError = new Error('Mock error')
 
 describe('useFetch', async () => {
   const mockIsLoadedStatus = ref(false)
@@ -38,7 +38,7 @@ describe('useFetch', async () => {
   })
 
   it('Should change error status if there is error', async () => {
-    mockHandler.mockRejectedValue(error)
+    mockHandler.mockRejectedValue(mockError)
     await useFetch(mockArgs)
 
     expect(mockIsErrorStatus.value).toBe(true)

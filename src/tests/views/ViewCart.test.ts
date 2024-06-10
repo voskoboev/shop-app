@@ -93,7 +93,6 @@ describe('ViewCart', () => {
   it('Renders cart child component by condition', async () => {
     cartStore.cartProducts = mockCartProducts
     await wrapper.vm.$nextTick()
-
     const cart = wrapper.findComponent(TheCart)
 
     expect(cart.exists()).toBe(true)
@@ -102,7 +101,6 @@ describe('ViewCart', () => {
   it('Renders cart placeholder child component by condition', async () => {
     cartStore.cartProducts = []
     await wrapper.vm.$nextTick()
-
     const placeholder = wrapper.findComponent(AppPlaceholder)
 
     expect(placeholder.exists()).toBe(true)

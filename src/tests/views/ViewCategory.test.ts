@@ -24,7 +24,7 @@ describe('ViewCategory', () => {
   const categoriesStore = useCategoriesStore()
   const productsStore = useProductsStore()
 
-  categoriesStore.resetfetchIndividualCategoryValues = vi.fn()
+  categoriesStore.resetIndividualCategoryValues = vi.fn()
   categoriesStore.fetchIndividualCategory = vi.fn()
   productsStore.resetCategoryProductsValues = vi.fn()
   productsStore.fetchCategoryProducts = vi.fn()
@@ -41,8 +41,8 @@ describe('ViewCategory', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Calls resetfetchIndividualCategoryValues method when component is created', () => {
-    expect(categoriesStore.resetfetchIndividualCategoryValues).toHaveBeenCalled()
+  it('Calls resetIndividualCategoryValues method when component is created', () => {
+    expect(categoriesStore.resetIndividualCategoryValues).toHaveBeenCalled()
   })
 
   it('Calls fetchIndividualCategory method when component is created', () => {
@@ -60,7 +60,6 @@ describe('ViewCategory', () => {
   it('Renders breadcrumbs error child component by condition', async () => {
     categoriesStore.isIndividualCategoryError = true
     await wrapper.vm.$nextTick()
-
     const errorBreadcrumbs = wrapper.findComponent(AppError)
 
     expect(errorBreadcrumbs.exists()).toBe(true)
@@ -70,7 +69,6 @@ describe('ViewCategory', () => {
     categoriesStore.isIndividualCategoryError = false
     categoriesStore.isIndividualCategoryLoaded = true
     await wrapper.vm.$nextTick()
-
     const breadcrumbs = wrapper.findComponent(AppBreadcrumbs)
 
     expect(breadcrumbs.exists()).toBe(true)
@@ -80,7 +78,6 @@ describe('ViewCategory', () => {
     categoriesStore.isIndividualCategoryError = false
     categoriesStore.isIndividualCategoryLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinnerBreadcrumbs = wrapper.findComponent(AppSpinner)
 
     expect(spinnerBreadcrumbs.exists()).toBe(true)
@@ -89,7 +86,6 @@ describe('ViewCategory', () => {
   it('Renders products error child component by condition', async () => {
     productsStore.isCategoryProductsError = true
     await wrapper.vm.$nextTick()
-
     const productsError = wrapper.findComponent(AppError)
 
     expect(productsError.exists()).toBe(true)
@@ -99,7 +95,6 @@ describe('ViewCategory', () => {
     productsStore.isCategoryProductsError = false
     productsStore.areCategoryProductsLoaded = true
     await wrapper.vm.$nextTick()
-
     const products = wrapper.findComponent(AppProducts)
 
     expect(products.exists()).toBe(true)
@@ -109,7 +104,6 @@ describe('ViewCategory', () => {
     productsStore.isCategoryProductsError = false
     productsStore.areCategoryProductsLoaded = false
     await wrapper.vm.$nextTick()
-
     const spinnerProducts = wrapper.findAllComponents(AppSpinner)
 
     expect(spinnerProducts[1].exists()).toBe(true)

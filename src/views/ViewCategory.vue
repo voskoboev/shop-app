@@ -21,7 +21,7 @@ const breadcrumbsItems = computed((): IBreadcrumbsItem[] => {
   ]
 })
 
-categoriesStore.resetfetchIndividualCategoryValues()
+categoriesStore.resetIndividualCategoryValues()
 categoriesStore.fetchIndividualCategory(route.params.id)
 
 productsStore.resetCategoryProductsValues()
