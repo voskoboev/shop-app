@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import axios from 'axios'
 import { useServerApi } from '@/composables/api/useServerApi'
+import { type AxiosInstance } from 'axios'
+import { type IServerApi } from '@/types/api/IServerApi'
 
 const mockBaseUrl = 'https://api.com'
 const mockAuthData = 'mockAuthToken'
@@ -15,20 +17,25 @@ const mockFetchArgs = {
 }
 
 describe('useServerApi', () => {
-  vi.mock('axios')
+  let axiosInstance: AxiosInstance
+  let serverApi: IServerApi
 
-  axios.create = vi.fn().mockReturnValue({
-    get: vi.fn()
+  beforeEach(() => {
+    vi.mock('axios')
+
+    axios.create = vi.fn().mockReturnValue({
+      get: vi.fn()
+    })
+
+    axiosInstance = axios.create()
+    serverApi = useServerApi(mockBaseUrl, mockAuthData)
   })
 
-  const axiosInstance = axios.create()
-  const serverApi = useServerApi(mockBaseUrl, mockAuthData)
-
-  it('Should create axios instance with valid arguments', () => {
+  it('Should create an axios instance with valid arguments', () => {
     expect(axios.create).toHaveBeenCalledWith(mockFetchArgs)
   })
 
-  it('Should receive data with get method request', async () => {
+  it('Should receive data with the get method request', async () => {
     axiosInstance.get = vi.fn().mockResolvedValue(mockResponse)
 
     const res = await serverApi.get(mockPath)

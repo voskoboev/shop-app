@@ -1,10 +1,12 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useCartStore } from '@/stores/cartStore'
 import TheCartList from '@/components/cart/TheCartList.vue'
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
 import { type IProduct } from '@/types/products/IProduct'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockCartProducts: IProduct[] = [
   {
@@ -26,24 +28,34 @@ const mockCartProducts: IProduct[] = [
 ]
 
 describe('TheCartList', () => {
-  setActivePinia(createPinia())
+  let wrapper: TVueWrapperInstance<typeof TheCartList>
 
-  const cartStore = useCartStore()
+  beforeEach(() => {
+    setActivePinia(createPinia())
 
-  cartStore.cartProducts = mockCartProducts
-  
-  const wrapper = mount(TheCartList)
-  const cartListItems = wrapper.findAllComponents(TheCartListItem)
+    wrapper = mount(TheCartList, {
+      global: {
+        plugins: [createTestingPinia()]
+      }
+    })
 
-  it('Renders component', () => {
+    const cartStore = useCartStore()
+    cartStore.cartProducts = mockCartProducts
+  })
+
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders correct number of cart items', () => {
+  it('Renders the correct number of cart items', () => {
+    const cartListItems = wrapper.findAllComponents(TheCartListItem)
+
     expect(cartListItems).toHaveLength(2)
   })
 
   it('Renders cart items with valid data', () => {
+    const cartListItems = wrapper.findAllComponents(TheCartListItem)
+
     expect(cartListItems[0].props('cartProduct')).toEqual(mockCartProducts[0])
     expect(cartListItems[1].props('cartProduct')).toEqual(mockCartProducts[1])
   })

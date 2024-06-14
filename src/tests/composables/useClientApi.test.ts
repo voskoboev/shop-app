@@ -1,6 +1,7 @@
 import { useClientApi } from '@/composables/api/useClientApi'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { type IProduct } from '@/types/products/IProduct'
+import { type IClientApi } from '@/types/api/IClientApi'
 
 const mockProducts: IProduct[] = [
   {
@@ -20,21 +21,26 @@ const mockProducts: IProduct[] = [
     description: 'description 2'
   }
 ]
-const mockItemKey = 'mockKey'
+
+const mockItemKey = 'key'
 
 describe('useClientApi', () => {
-  vi.mock('localStorage')
+  let clientApi: IClientApi
 
-  const clientApi = useClientApi(mockItemKey)
+  beforeEach(() => {
+    vi.mock('localStorage')
 
-  it('Should set item in localStorage', () => {
+    clientApi = useClientApi(mockItemKey)
+  })
+
+  it('Should set an item in localStorage', () => {
     clientApi.setItem(mockProducts)
     const receivedItem = localStorage.getItem(mockItemKey)
 
     expect(receivedItem).toEqual(JSON.stringify(mockProducts))
   })
 
-  it('Should get item from localStorage', () => {
+  it('Should get an item from localStorage', () => {
     localStorage.setItem(mockItemKey, JSON.stringify(mockProducts))
     const receivedItem = clientApi.getItem()
 

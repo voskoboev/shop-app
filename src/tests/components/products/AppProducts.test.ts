@@ -1,8 +1,9 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import AppProducts from '@/components/products/AppProducts.vue'
 import TheProductsList from '@/components/products/TheProductsList.vue'
 import { type IProduct } from '@/types/products/IProduct'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockProducts: IProduct[] = [
   {
@@ -26,17 +27,21 @@ const mockProducts: IProduct[] = [
 describe('AppProducts', () => {
   const mockCardButtonHandler = vi.fn()
 
-  const wrapper = mount(AppProducts, {
-    global: {
-      stubs: ['router-link']
-    },
-    props: {
-      products: mockProducts,
-      cardButtonHandler: mockCardButtonHandler
-    }
+  let wrapper: TVueWrapperInstance<typeof AppProducts>
+
+  beforeEach(() => {
+    wrapper = mount(AppProducts, {
+      global: {
+        stubs: ['router-link']
+      },
+      props: {
+        products: mockProducts,
+        cardButtonHandler: mockCardButtonHandler
+      }
+    })
   })
 
-  it('Renders component', () => {
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
@@ -45,7 +50,7 @@ describe('AppProducts', () => {
     expect(wrapper.props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })
 
-  it('Renders products list child component', () => {
+  it('Renders the products list child component', () => {
     const productsList = wrapper.findComponent(TheProductsList)
 
     expect(productsList.exists()).toBe(true)

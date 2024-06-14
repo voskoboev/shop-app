@@ -3,9 +3,9 @@ import { describe, it, expect } from 'vitest'
 import TheLayoutFooter from '@/components/layout/TheLayoutFooter.vue'
 
 describe('TheLayoutFooter', () => {
-  const wrapper = mount(TheLayoutFooter)
-
   it('Renders component', () => {
+    const wrapper = mount(TheLayoutFooter)
+
     expect(wrapper.exists()).toBe(true)
   })
 })

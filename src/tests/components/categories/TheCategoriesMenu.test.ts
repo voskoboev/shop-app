@@ -1,10 +1,13 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useMenuStore } from '@/stores/UI/menuStore'
 import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
+import { type Store } from 'pinia'
 import { type ICategory } from '@/types/categories/ICategory'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockCategories: ICategory[] = [
   {
@@ -20,63 +23,66 @@ const mockCategories: ICategory[] = [
 ]
 
 describe('TheCategoriesMenu', () => {
-  setActivePinia(createPinia())
+  let wrapper: TVueWrapperInstance<typeof TheCategoriesMenu>
+  let menuStore: Store<any, any>
 
-  const menuStore = useMenuStore()
+  beforeEach(() => {
+    setActivePinia(createPinia())
 
-  menuStore.openMobileMenu = vi.fn()
-  menuStore.closeMobileMenu = vi.fn()
-  menuStore.changeMenuStateDependingOnWindowWidth = vi.fn()
-  menuStore.addWindowResizeListener = vi.fn()
+    wrapper = mount(TheCategoriesMenu, {
+      global: {
+        plugins: [createTestingPinia()]
+      },
+      props: {
+        categories: mockCategories
+      }
+    })
 
-  const wrapper = mount(TheCategoriesMenu, {
-    props: {
-      categories: mockCategories
-    }
+    menuStore = useMenuStore()
   })
-  const menuList = wrapper.findComponent(TheCategoriesMenuList)
-  const buttons = wrapper.findAll('button')
-  const buttonOpenMenu = buttons[0]
-  const buttonCloseMenu = buttons[1]
 
-  it('Renders component', () => {
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Checks categories prop with valid data', () => {
+  it('Checks the categories prop with valid data', () => {
     expect(wrapper.props('categories')).toEqual(mockCategories)
   })
 
-  it('Calls changeMenuStateDependingOnWindowWidth method when component created', () => {
+  it('Calls the changeMenuStateDependingOnWindowWidth method when the component is created', () => {
     expect(menuStore.changeMenuStateDependingOnWindowWidth).toHaveBeenCalled()
   })
 
-  it('Calls addWindowResizeListener method when component mounted', async () => {
-    await wrapper.vm.$nextTick()
-
+  it('Calls the addWindowResizeListener method when the component is created', () => {
     expect(menuStore.addWindowResizeListener).toHaveBeenCalled()
   })
 
-  it('Renders categories menu list child component', () => {
+  it('Renders the categories menu list child component', () => {
+    const menuList = wrapper.findComponent(TheCategoriesMenuList)
+
     expect(menuList.exists()).toBe(true)
   })
 
-  it('Renders nav by condition', async () => {
+  it('Renders the nav HTML element by condition', () => {
     menuStore.isMobileMenuOpen = true
-    await wrapper.vm.$nextTick()
-
     const nav = wrapper.find('nav')
 
     expect(nav.exists()).toBe(true)
   })
 
-  it('Triggers openMobileMenu method on open menu button on click', async () => {
+  it('Triggers the openMobileMenu method on the open menu button on click', async () => {
+    const buttons = wrapper.findAll('button')
+    const buttonOpenMenu = buttons[0]
+
     await buttonOpenMenu.trigger('click')
 
     expect(menuStore.openMobileMenu).toHaveBeenCalled()
   })
 
-  it('Triggers closeMobileMenu method on close menu button on click', async () => {
+  it('Triggers the closeMobileMenu method on the close menu button on click', async () => {
+    const buttons = wrapper.findAll('button')
+    const buttonCloseMenu = buttons[1]
+
     await buttonCloseMenu.trigger('click')
 
     expect(menuStore.closeMobileMenu).toHaveBeenCalled()

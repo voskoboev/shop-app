@@ -22,11 +22,11 @@ const mockValidProductArray: IProduct[] = [
 ]
 
 describe('isIProduct', () => {
-  it('Should return true if param has valid data', () => {
+  it('Should return true if a param has valid data', () => {
     expect(isIProductArray(mockValidProductArray)).toBe(true)
   })
 
-  it('Should return false if param has invalid data object type', () => {
+  it('Should return false if a param has an invalid data object type', () => {
     const mockInvalidProductArray: any = {
       id: 1,
       name: 'name ',
@@ -39,7 +39,7 @@ describe('isIProduct', () => {
     expect(isIProductArray(mockInvalidProductArray)).toBe(false)
   })
 
-  it('Should return false if param has invalid data set type', () => {
+  it('Should return false if a param has an invalid data set type', () => {
     const mockInvalidProductArray: any = new Set(mockValidProductArray)
 
     expect(isIProductArray(mockInvalidProductArray)).toBe(false)

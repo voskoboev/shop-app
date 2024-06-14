@@ -1,37 +1,47 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useCartStore } from '@/stores/cartStore'
 import App from '@/App.vue'
 import TheLayout from '@/components/layout/TheLayout.vue'
+import { type Store } from 'pinia'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 describe('App', () => {
-  setActivePinia(createPinia())
+  let wrapper: TVueWrapperInstance<typeof App>
+  let cartStore: Store<any, any>
 
-  const cartStore = useCartStore()
-
-  cartStore.getCartProductsFromClientApi = vi.fn()
-  cartStore.setCartProductsToClientApi = vi.fn()
   window.addEventListener = vi.fn()
 
-  const wrapper = mount(App)
+  beforeEach(() => {
+    setActivePinia(createPinia())
 
-  it('Renders component', () => {
+    wrapper = mount(App, {
+      global: {
+        plugins: [createTestingPinia()]
+      }
+    })
+
+    cartStore = useCartStore()
+  })
+
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Calls getCartProductsFromClientApi method when component is created', () => {
+  it('Calls the getCartProductsFromClientApi method when the component is created', () => {
     expect(cartStore.getCartProductsFromClientApi).toHaveBeenCalled()
   })
 
-  it('Calls beforeunload listener with setCartProductsToClientApi method when component is created', () => {
+  it('Invokes a beforeunload listener with the setCartProductsToClientApi method when the component is created', () => {
     expect(window.addEventListener).toHaveBeenCalledWith(
       'beforeunload',
       cartStore.setCartProductsToClientApi
     )
   })
 
-  it('Renders layout child component', () => {
+  it('Renders the layout child component', () => {
     const layout = wrapper.findComponent(TheLayout)
 
     expect(layout.exists()).toBe(true)

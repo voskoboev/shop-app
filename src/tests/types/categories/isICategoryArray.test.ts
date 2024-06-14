@@ -16,11 +16,11 @@ const mockValidCategoryArray: ICategory[] = [
 ]
 
 describe('isICategoryArray', () => {
-  it('Should return true if param has valid data', () => {
+  it('Should return true if a param has valid data', () => {
     expect(isICategoryArray(mockValidCategoryArray)).toBe(true)
   })
 
-  it('Should return false if param has invalid data object type', () => {
+  it('Should return false if a param has an invalid data object type', () => {
     const mockInvalidCategoryArray: any = {
       id: 1,
       name: 'name',
@@ -30,7 +30,7 @@ describe('isICategoryArray', () => {
     expect(isICategoryArray(mockInvalidCategoryArray)).toBe(false)
   })
 
-  it('Should return false if param has invalid data set type', () => {
+  it('Should return false if a param has an invalid data set type', () => {
     const mockInvalidCategoryArray: any = new Set(mockValidCategoryArray)
 
     expect(isICategoryArray(mockInvalidCategoryArray)).toBe(false)

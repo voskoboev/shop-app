@@ -1,13 +1,14 @@
-import { mount, VueWrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import AppToast from '@/components/UI/AppToast.vue'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const slotText = 'Buy Product'
 const slotElem = '<div id="elemId"></div>'
 const slotElemId = 'elemId'
 
 describe('AppToast', () => {
-  let wrapper: VueWrapper
+  let wrapper: TVueWrapperInstance<typeof AppToast>
 
   const setWrapperWithSlotValue = (value: string) => {
     wrapper = mount(AppToast, {
@@ -26,26 +27,26 @@ describe('AppToast', () => {
     })
   }
 
-  it('Renders component', () => {
+  it('Renders the component', () => {
     const wrapper = mount(AppToast)
 
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders slot text value', () => {
+  it('Renders a slot text value', () => {
     setWrapperWithSlotValue(slotText)
 
     expect(wrapper.text()).toBe(slotText)
   })
 
-  it('Renders slot nested element', () => {
+  it('Renders a slot nested HTML element', () => {
     setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 
     expect(elem.html()).toBe(slotElem)
   })
 
-  it('Has not visibility class when visibilityStatus prop is false', () => {
+  it('Has not the visibility class when the visibilityStatus prop is false', () => {
     setWrapperWithPropValue(false)
     const classes = wrapper.classes()
 
@@ -53,7 +54,7 @@ describe('AppToast', () => {
     expect(classes).not.toContain(classes[1])
   })
 
-  it('Has visibility class when visibilityStatus prop is true', () => {
+  it('Has the visibility class when the visibilityStatus prop is true', () => {
     setWrapperWithPropValue(true)
     const classes = wrapper.classes()
 

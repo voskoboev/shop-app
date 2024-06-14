@@ -4,6 +4,15 @@ import { useCartStore } from '@/stores/cartStore'
 import { useProductsStore } from '@/stores/productsStore'
 import { type IProduct } from '@/types/products/IProduct'
 
+const mockProduct: IProduct = {
+  id: 1,
+  name: 'Name',
+  price: 1,
+  imageUrl: 'imageUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  description: 'description'
+}
+
 const mockProducts: IProduct[] = [
   {
     id: 1,
@@ -22,15 +31,6 @@ const mockProducts: IProduct[] = [
     description: 'description 2'
   }
 ]
-
-const mockProduct: IProduct = {
-  id: 1,
-  name: 'Name',
-  price: 1,
-  imageUrl: 'imageUrl',
-  thumbnailUrl: 'thumbnailUrl',
-  description: 'description'
-}
 
 // const mockProductId = 1
 

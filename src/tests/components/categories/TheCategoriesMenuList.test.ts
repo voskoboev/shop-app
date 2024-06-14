@@ -1,10 +1,12 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useCategoriesStore } from '@/stores/categoriesStore'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
 import { type ICategory } from '@/types/categories/ICategory'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockAllCategories: ICategory[] = [
   {
@@ -20,24 +22,34 @@ const mockAllCategories: ICategory[] = [
 ]
 
 describe('TheCategoriesMenuList', () => {
-  setActivePinia(createPinia())
+  let wrapper: TVueWrapperInstance<typeof TheCategoriesMenuList>
 
-  const categoriesStore = useCategoriesStore()
+  beforeAll(() => {
+    setActivePinia(createPinia())
 
-  categoriesStore.allCategories = mockAllCategories
+    wrapper = mount(TheCategoriesMenuList, {
+      global: {
+        plugins: [createTestingPinia()]
+      }
+    })
 
-  const wrapper = mount(TheCategoriesMenuList)
-  const menuListItems = wrapper.findAllComponents(TheCategoriesMenuListItem)
+    const categoriesStore = useCategoriesStore()
+    categoriesStore.allCategories = mockAllCategories
+  })
 
-  it('Renders component', () => {
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders correct number of categories list item child components', () => {
+  it('Renders the correct number of categories list item child components', () => {
+    const menuListItems = wrapper.findAllComponents(TheCategoriesMenuListItem)
+
     expect(menuListItems).toHaveLength(2)
   })
 
   it('Renders categories list items with valid data', () => {
+    const menuListItems = wrapper.findAllComponents(TheCategoriesMenuListItem)
+
     expect(menuListItems[0].props('category')).toEqual(mockAllCategories[0])
     expect(menuListItems[1].props('category')).toEqual(mockAllCategories[1])
   })

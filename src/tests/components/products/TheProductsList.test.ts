@@ -1,8 +1,9 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import TheProductsList from '@/components/products/TheProductsList.vue'
 import TheProductsListItem from '@/components/products/TheProductsListItem.vue'
 import { type IProduct } from '@/types/products/IProduct'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockProducts: IProduct[] = [
   {
@@ -26,18 +27,21 @@ const mockProducts: IProduct[] = [
 describe('TheProductsList', () => {
   const mockCardButtonHandler = vi.fn()
 
-  const wrapper = mount(TheProductsList, {
-    global: {
-      stubs: ['router-link']
-    },
-    props: {
-      products: mockProducts,
-      cardButtonHandler: mockCardButtonHandler
-    }
-  })
-  const productsListItems = wrapper.findAllComponents(TheProductsListItem)
+  let wrapper: TVueWrapperInstance<typeof TheProductsList>
 
-  it('Renders component', () => {
+  beforeEach(() => {
+    wrapper = mount(TheProductsList, {
+      global: {
+        stubs: ['router-link']
+      },
+      props: {
+        products: mockProducts,
+        cardButtonHandler: mockCardButtonHandler
+      }
+    })
+  })
+
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
@@ -46,14 +50,17 @@ describe('TheProductsList', () => {
     expect(wrapper.props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })
 
-  it('Renders correct number of products list items child components', () => {
+  it('Renders the correct number of products list items child components', () => {
+    const productsListItems = wrapper.findAllComponents(TheProductsListItem)
+
     expect(productsListItems).toHaveLength(2)
   })
 
   it('Renders products list items with valid data', () => {
+    const productsListItems = wrapper.findAllComponents(TheProductsListItem)
+
     expect(productsListItems[0].props('product')).toEqual(mockProducts[0])
     expect(productsListItems[0].props('cardButtonHandler')).toEqual(mockCardButtonHandler)
-    
     expect(productsListItems[1].props('product')).toEqual(mockProducts[1])
     expect(productsListItems[1].props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })

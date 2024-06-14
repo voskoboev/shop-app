@@ -1,22 +1,27 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { RouterLink } from 'vue-router'
 import TheLayoutHeader from '@/components/layout/TheLayoutHeader.vue'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 describe('TheLayoutHeader', () => {
-  setActivePinia(createPinia())
+  let wrapper: TVueWrapperInstance<typeof TheLayoutHeader>
 
-  const wrapper = mount(TheLayoutHeader, {
-    global: {
-      components: {
-        RouterLink
-      },
-      stubs: ['router-link']
-    }
+  beforeEach(() => {
+    setActivePinia(createPinia())
+
+    wrapper = mount(TheLayoutHeader, {
+      global: {
+        components: {
+          RouterLink
+        },
+        stubs: ['router-link']
+      }
+    })
   })
 
-  it('Renders component', () => {
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 

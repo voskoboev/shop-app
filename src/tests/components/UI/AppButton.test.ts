@@ -1,13 +1,14 @@
-import { mount, VueWrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import AppButton from '@/components/UI/AppButton.vue'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const slotText = 'Buy Product'
 const slotElem = '<div id="elemId"></div>'
 const slotElemId = 'elemId'
 
 describe('AppButton', () => {
-  let wrapper: VueWrapper
+  let wrapper: TVueWrapperInstance<typeof AppButton>
 
   const setWrapperWithSlotValue = (value: string) => {
     wrapper = mount(AppButton, {
@@ -17,19 +18,19 @@ describe('AppButton', () => {
     })
   }
 
-  it('Renders component', () => {
-    const wrapper = mount(AppButton)
+  it('Renders the component', () => {
+    wrapper = mount(AppButton)
 
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders slot text value', () => {
+  it('Renders a slot text value', () => {
     setWrapperWithSlotValue(slotText)
 
     expect(wrapper.text()).toBe(slotText)
   })
 
-  it('Renders slot nested element', () => {
+  it('Renders a slot nested HTML element', () => {
     setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 

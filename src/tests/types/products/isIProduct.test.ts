@@ -3,7 +3,7 @@ import { isIProduct } from '@/types/products/isIProduct'
 import { type IProduct } from '@/types/products/IProduct'
 
 describe('isIProduct', () => {
-  it('Should return true if param has valid data', () => {
+  it('Should return true if a param has valid data', () => {
     const mockValidProduct: IProduct = {
       id: 1,
       name: 'name',
@@ -16,7 +16,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockValidProduct)).toBe(true)
   })
 
-  it('Should return false if param has invalid data id type', () => {
+  it('Should return false if a param has an invalid data id type', () => {
     const mockInvalidProduct: any = {
       id: '1',
       name: 'name',
@@ -29,7 +29,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has invalid data name type', () => {
+  it('Should return false if a param has an invalid data name type', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 1,
@@ -42,7 +42,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has invalid data price type', () => {
+  it('Should return false if a param has an invalid data price type', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 'name',
@@ -55,7 +55,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has invalid data imageUrl type', () => {
+  it('Should return false if a param has an invalid data imageUrl type', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 'name',
@@ -68,7 +68,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has invalid data thumbnailUrl type', () => {
+  it('Should return false if a param has an invalid data thumbnailUrl type', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 'name',
@@ -81,7 +81,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has invalid data description type', () => {
+  it('Should return false if a param has an invalid data description type', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 'name',
@@ -94,7 +94,7 @@ describe('isIProduct', () => {
     expect(isIProduct(mockInvalidProduct)).toBe(false)
   })
 
-  it('Should return false if param has less properties', () => {
+  it('Should return false if a param has deficiency properties', () => {
     const mockInvalidProduct: any = {
       id: 1,
       name: 'name',

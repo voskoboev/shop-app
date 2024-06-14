@@ -1,13 +1,14 @@
-import { mount, VueWrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
 import AppError from '@/components/UI/AppError.vue'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const slotText = 'Buy Product'
 const slotElem = '<div id="elemId"></div>'
 const slotElemId = 'elemId'
 
 describe('AppError', () => {
-  let wrapper: VueWrapper
+  let wrapper: TVueWrapperInstance<typeof AppError>
 
   const setWrapperWithSlotValue = (value: string) => {
     wrapper = mount(AppError, {
@@ -17,19 +18,19 @@ describe('AppError', () => {
     })
   }
 
-  it('Renders component', () => {
-    const wrapper = mount(AppError)
+  it('Renders the component', () => {
+    wrapper = mount(AppError)
 
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders slot text value', () => {
+  it('Renders a slot text value', () => {
     setWrapperWithSlotValue(slotText)
 
     expect(wrapper.text()).toBe(slotText)
   })
 
-  it('Renders slot nested element', () => {
+  it('Renders a slot nested HTML element', () => {
     setWrapperWithSlotValue(slotElem)
     const elem = wrapper.find(`#${slotElemId}`)
 

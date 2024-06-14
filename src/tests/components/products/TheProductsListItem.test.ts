@@ -1,10 +1,11 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { RouterLink } from 'vue-router'
 import TheProductsListItem from '@/components/products/TheProductsListItem.vue'
 import AppButton from '@/components/UI/AppButton.vue'
 import { type IProduct } from '@/types/products/IProduct'
 import { type IRouteProductDetails } from '@/types/router/IRouteProductDetails'
+import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 const mockProduct: IProduct = {
   id: 1,
@@ -24,25 +25,27 @@ const mockRoute: IRouteProductDetails = {
 describe('TheProductsListItem', () => {
   const mockCardButtonHandler = vi.fn()
 
-  const wrapper = mount(TheProductsListItem, {
-    global: {
-      components: {
-        RouterLink
-      },
-      stubs: ['router-link']
-    },
-    components: {
-      AppButton
-    },
-    props: {
-      product: mockProduct,
-      cardButtonHandler: mockCardButtonHandler
-    }
-  })
-  const routerLink = wrapper.findComponent(RouterLink)
-  const button = wrapper.findComponent(AppButton)
+  let wrapper: TVueWrapperInstance<typeof TheProductsListItem>
 
-  it('Renders component', () => {
+  beforeEach(() => {
+    wrapper = mount(TheProductsListItem, {
+      global: {
+        components: {
+          RouterLink
+        },
+        stubs: ['router-link']
+      },
+      components: {
+        AppButton
+      },
+      props: {
+        product: mockProduct,
+        cardButtonHandler: mockCardButtonHandler
+      }
+    })
+  })
+
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
@@ -51,19 +54,27 @@ describe('TheProductsListItem', () => {
     expect(wrapper.props('cardButtonHandler')).toEqual(mockCardButtonHandler)
   })
 
-  it('Renders router link child component', () => {
+  it('Renders the router link child component', () => {
+    const routerLink = wrapper.findComponent(RouterLink)
+
     expect(routerLink.exists()).toBe(true)
   })
 
-  it('Renders router link child component with valid data', () => {
+  it('Renders the router link child component with valid data', () => {
+    const routerLink = wrapper.findComponent(RouterLink)
+
     expect(routerLink.props('to')).toEqual(mockRoute)
   })
 
-  it('Renders button child component', () => {
+  it('Renders the button child component', () => {
+    const button = wrapper.findComponent(AppButton)
+
     expect(button.exists()).toBe(true)
   })
 
-  it('Triggers cardButtonHandler method on click', async () => {
+  it('Triggers the cardButtonHandler method on click', async () => {
+    const button = wrapper.findComponent(AppButton)
+
     await button.trigger('click')
 
     expect(mockCardButtonHandler).toHaveBeenCalledWith(mockProduct.id)
