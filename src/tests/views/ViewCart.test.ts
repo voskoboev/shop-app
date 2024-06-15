@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { nextTick } from 'vue'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { useCartStore } from '@/stores/cartStore'
 import ViewCart from '@/views/ViewCart.vue'
@@ -17,11 +18,13 @@ describe('ViewCart', () => {
   let cartStore: Store<any, any>
 
   beforeEach(() => {
-    setActivePinia(createPinia())
+    const testingPinia = createTestingPinia()
+
+    setActivePinia(testingPinia)
 
     wrapper = mount(ViewCart, {
       global: {
-        plugins: [createTestingPinia()],
+        plugins: [testingPinia],
         stubs: ['router-link']
       },
       components: {
@@ -57,19 +60,20 @@ describe('ViewCart', () => {
     expect(button.exists()).toBe(true)
   })
 
-  // it('Triggers placeOrder method on button child component on click', async () => {
-  //   cartStore.areCartProductsAvailable = false
-  //   const button = wrapper.findComponent(AppButton)
+  it('Triggers the placeOrder method on the button child component on click', async () => {
+    cartStore.areCartProductsAvailable = true
+    const button = wrapper.findComponent(AppButton)
+    await nextTick()
 
-  //   await button.trigger('click')
+    await button.trigger('click')
 
-  //   expect(cartStore.placeOrder).toHaveBeenCalled()
-  // })
+    expect(cartStore.placeOrder).toHaveBeenCalled()
+  })
 
   it('Disables the button when cart products are not available', async () => {
     cartStore.areCartProductsAvailable = false
+    await nextTick()
     const button = wrapper.findComponent(AppButton)
-    await wrapper.vm.$nextTick()
 
     expect(button.attributes('disabled')).toBe('')
   })
@@ -77,14 +81,14 @@ describe('ViewCart', () => {
   it('Enables the button when cart products are available', async () => {
     cartStore.areCartProductsAvailable = true
     const button = wrapper.findComponent(AppButton)
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(button.attributes('disabled')).toBeUndefined()
   })
 
   it('Renders the cart child component by condition', async () => {
     cartStore.areCartProductsAvailable = true
-    await wrapper.vm.$nextTick()
+    await nextTick()
     const cart = wrapper.findComponent(TheCart)
 
     expect(cart.exists()).toBe(true)
@@ -93,7 +97,7 @@ describe('ViewCart', () => {
   it('Renders the cart placeholder child component by condition', async () => {
     cartStore.areCartProductsAvailable = false
     const placeholder = wrapper.findComponent(AppPlaceholder)
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(placeholder.exists()).toBe(true)
   })

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { useMenuStore } from '@/stores/UI/menuStore'
 import TheCategoriesMenu from '@/components/categories/TheCategoriesMenu.vue'
@@ -27,11 +27,13 @@ describe('TheCategoriesMenu', () => {
   let menuStore: Store<any, any>
 
   beforeEach(() => {
-    setActivePinia(createPinia())
+    const testingPinia = createTestingPinia()
+
+    setActivePinia(testingPinia)
 
     wrapper = mount(TheCategoriesMenu, {
       global: {
-        plugins: [createTestingPinia()]
+        plugins: [testingPinia]
       },
       props: {
         categories: mockCategories

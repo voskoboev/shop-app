@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
 import { useCartStore } from '@/stores/cartStore'
 import App from '@/App.vue'
@@ -15,11 +15,13 @@ describe('App', () => {
   window.addEventListener = vi.fn()
 
   beforeEach(() => {
-    setActivePinia(createPinia())
+    const testingPinia = createTestingPinia()
+
+    setActivePinia(testingPinia)
 
     wrapper = mount(App, {
       global: {
-        plugins: [createTestingPinia()]
+        plugins: [testingPinia]
       }
     })
 

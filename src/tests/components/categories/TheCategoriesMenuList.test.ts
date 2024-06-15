@@ -1,8 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeAll } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
-import { useCategoriesStore } from '@/stores/categoriesStore'
 import TheCategoriesMenuList from '@/components/categories/TheCategoriesMenuList.vue'
 import TheCategoriesMenuListItem from '@/components/categories/TheCategoriesMenuListItem.vue'
 import { type ICategory } from '@/types/categories/ICategory'
@@ -25,16 +24,21 @@ describe('TheCategoriesMenuList', () => {
   let wrapper: TVueWrapperInstance<typeof TheCategoriesMenuList>
 
   beforeAll(() => {
-    setActivePinia(createPinia())
-
-    wrapper = mount(TheCategoriesMenuList, {
-      global: {
-        plugins: [createTestingPinia()]
+    const testingPinia = createTestingPinia({
+      initialState: {
+        categories: {
+          allCategories: mockAllCategories
+        }
       }
     })
 
-    const categoriesStore = useCategoriesStore()
-    categoriesStore.allCategories = mockAllCategories
+    setActivePinia(testingPinia)
+
+    wrapper = mount(TheCategoriesMenuList, {
+      global: {
+        plugins: [testingPinia]
+      }
+    })
   })
 
   it('Renders the component', () => {

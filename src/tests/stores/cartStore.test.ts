@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
+import { setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useCartStore } from '@/stores/cartStore'
-import { useProductsStore } from '@/stores/productsStore'
+import { type Store } from 'pinia'
 import { type IProduct } from '@/types/products/IProduct'
 
 const mockProduct: IProduct = {
@@ -32,43 +33,50 @@ const mockProducts: IProduct[] = [
   }
 ]
 
-// const mockProductId = 1
-
 describe('cartStore', () => {
-  setActivePinia(createPinia())
-
-  const cartStore = useCartStore()
-  const productsStore = useProductsStore()
-
-  productsStore.categoryProducts = mockProducts
-  productsStore.individualProduct = mockProduct
+  let cartStore: Store<any, any>
 
   beforeEach(() => {
-    cartStore.cartProducts = []
+    const testingPinia = createTestingPinia({
+      initialState: {
+        cart: {
+          cartProducts: []
+        },
+        products: {
+          categoryProducts: mockProducts,
+          individualProduct: mockProduct
+        }
+      },
+      stubActions: false
+    })
+
+    setActivePinia(testingPinia)
+
+    cartStore = useCartStore()
   })
 
-  it('Adds product to cart', () => {
+  it('Adds a product to the cart', () => {
     cartStore.addProductToCart(mockProduct)
 
     expect(cartStore.cartProducts).toHaveLength(1)
     expect(cartStore.cartProducts[0]).toEqual(mockProduct)
   })
 
-  it('Adds individual product to cart by id', () => {
+  it('Adds an individual product to the cart by id', () => {
     cartStore.addProductToCartById('individualProduct')
 
     expect(cartStore.cartProducts).toHaveLength(1)
     expect(cartStore.cartProducts).toEqual([mockProduct])
   })
 
-  it('Adds category product to cart by id', () => {
+  it('Adds a category product to the cart by id', () => {
     cartStore.addProductToCartById('categoryProducts', mockProducts[0].id)
 
     expect(cartStore.cartProducts).toHaveLength(1)
     expect(cartStore.cartProducts[0]).toEqual(mockProducts[0])
   })
 
-  it('Adds category product to cart by id', () => {
+  it('Adds a category product to the cart by id', () => {
     cartStore.addProductToCartById('categoryProducts', mockProducts[0].id)
 
     expect(cartStore.cartProducts).toHaveLength(1)

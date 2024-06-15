@@ -1,8 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { setActivePinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
-import { useCartStore } from '@/stores/cartStore'
 import TheCartList from '@/components/cart/TheCartList.vue'
 import TheCartListItem from '@/components/cart/TheCartListItem.vue'
 import { type IProduct } from '@/types/products/IProduct'
@@ -31,16 +30,21 @@ describe('TheCartList', () => {
   let wrapper: TVueWrapperInstance<typeof TheCartList>
 
   beforeEach(() => {
-    setActivePinia(createPinia())
-
-    wrapper = mount(TheCartList, {
-      global: {
-        plugins: [createTestingPinia()]
+    const testingPinia = createTestingPinia({
+      initialState: {
+        cart: {
+          cartProducts: mockCartProducts
+        }
       }
     })
 
-    const cartStore = useCartStore()
-    cartStore.cartProducts = mockCartProducts
+    setActivePinia(testingPinia)
+
+    wrapper = mount(TheCartList, {
+      global: {
+        plugins: [testingPinia]
+      }
+    })
   })
 
   it('Renders the component', () => {

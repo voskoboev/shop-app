@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createPinia, setActivePinia } from 'pinia'
+import { setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { RouterView } from 'vue-router'
 import TheLayoutMain from '@/components/layout/TheLayoutMain.vue'
 import { type TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
@@ -9,7 +10,7 @@ describe('TheLayoutMain', () => {
   let wrapper: TVueWrapperInstance<typeof TheLayoutMain>
 
   beforeEach(() => {
-    setActivePinia(createPinia())
+    setActivePinia(createTestingPinia())
 
     wrapper = mount(TheLayoutMain, {
       global: {

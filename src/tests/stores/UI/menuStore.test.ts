@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useMenuStore } from '@/stores/UI/menuStore'
+import { type Store } from 'pinia'
 
 const mediumTabletWindowWidth = 768
 const lowerThanMediumTabletWindowWidth = 767
@@ -8,14 +10,19 @@ const heigherThanMediumTabletWindowWidth = 769
 const stopScrollSelectorName = 'stopScroll'
 
 describe('menuStore', () => {
-  setActivePinia(createPinia())
+  let menuStore: Store<any, any>
 
-  const menuStore = useMenuStore()
+  beforeEach(() => {
+    const testingPinia = createTestingPinia({
+      stubActions: false
+    })
 
-  const body = document.body
-  const bodyCssClasses = body.classList
+    setActivePinia(testingPinia)
 
-  it('Changes menu state if window inner width is less than medium tables size value', () => {
+    menuStore = useMenuStore()
+  })
+
+  it('Changes the menu state if the window inner width is less than the medium tablet size value', () => {
     vi.stubGlobal('innerWidth', lowerThanMediumTabletWindowWidth)
 
     menuStore.changeMenuStateDependingOnWindowWidth()
@@ -23,7 +30,7 @@ describe('menuStore', () => {
     expect(menuStore.isMobileMenuOpen).toBe(false)
   })
 
-  it('Changes menu state if window inner width is equel to medium tables size value', () => {
+  it('Changes the menu state if the window inner width is equel to medium tables size value', () => {
     vi.stubGlobal('innerWidth', mediumTabletWindowWidth)
 
     menuStore.changeMenuStateDependingOnWindowWidth()
@@ -31,7 +38,7 @@ describe('menuStore', () => {
     expect(menuStore.isMobileMenuOpen).toBe(false)
   })
 
-  it('Changes menu state if window inner width is more than medium tables size value', () => {
+  it('Changes the menu state if the window inner width is more than medium tables size value', () => {
     vi.stubGlobal('innerWidth', heigherThanMediumTabletWindowWidth)
 
     menuStore.changeMenuStateDependingOnWindowWidth()
@@ -39,7 +46,7 @@ describe('menuStore', () => {
     expect(menuStore.isMobileMenuOpen).toBe(true)
   })
 
-  it('Adds window resize listener on call of addWindowResizeListener method', () => {
+  it('Adds the window resize listener on call of the addWindowResizeListener method', () => {
     window.addEventListener = vi.fn()
 
     menuStore.addWindowResizeListener()
@@ -47,7 +54,7 @@ describe('menuStore', () => {
     expect(window.addEventListener).toHaveBeenCalledWith('resize', expect.any(Function))
   })
 
-  it('Removes window resize listener on call of removeWindowResizeListener method', () => {
+  it('Removes the window resize listener on call of the removeWindowResizeListener method', () => {
     window.removeEventListener = vi.fn()
 
     menuStore.removeWindowResizeListener()
@@ -55,17 +62,17 @@ describe('menuStore', () => {
     expect(window.removeEventListener).toHaveBeenCalledWith('resize', expect.any(Function))
   })
 
-  it('Checks menu opening status and checks stop scroll selector on body after openMobileMenu is called', () => {
+  it('Checks the menu opening status and checks the stop scroll selector on the body after o thepenMobileMenu method is called', () => {
     menuStore.openMobileMenu()
 
     expect(menuStore.isMobileMenuOpen).toBe(true)
-    expect(bodyCssClasses).toContain(stopScrollSelectorName)
+    expect(document.body.classList).toContain(stopScrollSelectorName)
   })
 
-  it('Checks menu opening status and checks stop scroll selector on body after closeMobileMenu is called', () => {
+  it('Checks the menu opening status and checks the stop scroll selector on the body after the closeMobileMenu method is called', () => {
     menuStore.closeMobileMenu()
 
     expect(menuStore.isMobileMenuOpen).toBe(false)
-    expect(bodyCssClasses).not.toContain(stopScrollSelectorName)
+    expect(document.body.classList).not.toContain(stopScrollSelectorName)
   })
 })

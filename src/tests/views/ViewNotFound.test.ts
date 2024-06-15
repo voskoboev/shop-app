@@ -1,28 +1,36 @@
 import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { RouterLink } from 'vue-router'
 import ViewNotFound from '@/views/ViewNotFound.vue'
+import type { TVueWrapperInstance } from '@/types/tests/TVueWrapperInstance'
 
 describe('ViewNotFound', () => {
-  const wrapper = mount(ViewNotFound, {
-    global: {
-      components: {
-        RouterLink
-      },
-      stubs: ['router-link']
-    }
-  })
-  const routerLink = wrapper.findComponent(RouterLink)
+  let wrapper: TVueWrapperInstance<typeof ViewNotFound>
 
-  it('Renders component', () => {
+  beforeEach(() => {
+    wrapper = mount(ViewNotFound, {
+      global: {
+        components: {
+          RouterLink
+        },
+        stubs: ['router-link']
+      }
+    })
+  })
+
+  it('Renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('Renders router link component', () => {
+  it('Renders the router link component', () => {
+    const routerLink = wrapper.findComponent(RouterLink)
+
     expect(routerLink.exists()).toBe(true)
   })
 
-  it('Renders router link component with valid data', () => {
+  it('Renders the router link component with valid data', () => {
+    const routerLink = wrapper.findComponent(RouterLink)
+
     expect(routerLink.props('to')).toBe('/')
   })
 })

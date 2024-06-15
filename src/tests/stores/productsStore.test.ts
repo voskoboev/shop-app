@@ -1,7 +1,9 @@
-import { describe, it, expect, vi } from 'vitest'
-import { setActivePinia, createPinia } from 'pinia'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { setActivePinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useProductsStore } from '@/stores/productsStore'
 import { serverApi } from '@/api/serverApi'
+import { type Store } from 'pinia'
 import { type IProductsData } from '@/types/products/IProductsData'
 import { type IProduct } from '@/types/products/IProduct'
 
@@ -25,11 +27,19 @@ const mockProducts: IProduct[] = [
 ]
 
 describe('productsStore', () => {
-  setActivePinia(createPinia())
+  let productsStore: Store<any, any>
 
-  vi.mock('serverApi')
+  beforeEach(() => {
+    const testingPinia = createTestingPinia({
+      stubActions: false
+    })
 
-  const productsStore = useProductsStore()
+    setActivePinia(testingPinia)
+
+    vi.mock('serverApi')
+
+    productsStore = useProductsStore()
+  })
 
   it('Should fetch all products and checks error status', async () => {
     const mockProductsData: IProductsData = {
